@@ -81,7 +81,7 @@
   "provisioners": [{
     "type": "shell",
     "environment_vars": [
-      "CM={{user `nocm`}}",
+      "CM={{user `cm`}}",
       "CM_VERSION={{user `cm_version`}}",
       "CM_SET_PATH={{user `cm_set_path`}}"
     ],

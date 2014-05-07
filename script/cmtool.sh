@@ -27,10 +27,10 @@ install_chef()
     echo "==> Installing Chef provisioner"
     if [[ ${CM_VERSION} == 'latest' ]]; then
         echo "Installing latest Chef version"
-        curl -L https://www.opscode.com/chef/install.sh | sh
+        curl -L https://www.getchef.com/chef/install.sh | bash
     else
         echo "Installing Chef version ${CM_VERSION}"
-        curl -L https://www.opscode.com/chef/install.sh | sh -s -- -v $CM_VERSION
+        curl -L https://www.getchef.com/chef/install.sh | bash -s -- -v $CM_VERSION
     fi
 
     if [[ ${CM_SET_PATH:-} == 'true' ]]; then

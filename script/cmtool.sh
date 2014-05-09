@@ -5,6 +5,7 @@
 # Values for CM can be:
 #   'nocm'            -- build a box without a configuration management tool
 #   'chef'            -- build a box with Chef
+#   'chefdk'          -- build a box with Chef Development Kit
 #   'salt'            -- build a box with Salt
 #   'puppet'          -- build a box with Puppet
 #
@@ -24,7 +25,7 @@ CM_VERSION=${CM_VERSION:-latest}
 
 install_chef()
 {
-    echo "==> Installing Chef provisioner"
+    echo "==> Installing Chef"
     if [[ ${CM_VERSION} == 'latest' ]]; then
         echo "Installing latest Chef version"
         curl -L https://www.getchef.com/chef/install.sh | bash
@@ -42,9 +43,39 @@ install_chef()
     fi
 }
 
+install_chef_dk()
+{
+    echo "==> Installing Chef Development Kit"
+    platform=`grep DISTRIB_ID /etc/lsb-release | cut -d "=" -f 2 | tr '[A-Z]' '[a-z]'`
+    platform_version=`grep DISTRIB_RELEASE /etc/lsb-release | cut -d "=" -f 2`
+    echo "==> platform=$platform"
+    echo "==> platform_version=$platform_version"
+  
+    CHEF_DK_DEB=chefdk_0.1.0-1_amd64.deb 
+    CHEF_DK_DEB_PATH=/tmp/${CHEF_DK_DEB}
+    if [[ $platform_version == 12.04 ]]; then
+        CHEF_DK_URL=https://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/12.04/x86_64/${CHEF_DK_DEB}
+    elif [[ $platform_version == 13.10 || $platform_version == 14.04 ]]; then
+        CHEF_DK_URL=https://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/13.10/x86_64/${CHEF_DK_DEB}
+    else
+        echo "==> Unsupported platform for Chef Development Kit"
+    fi
+
+    echo "==> Downloading ${CHEF_DK_URL}"
+    wget ${CHEF_DK_URL} -qO ${CHEF_DK_DEB_PATH}
+    echo "==> Installing ${CHEF_DK_DEB_PATH}"
+    sudo dpkg -i ${CHEF_DK_DEB_PATH}
+    rm ${CHEF_DK_DEB_PATH}
+
+    if [[ ${CM_SET_PATH:-} == 'true' ]]; then
+        echo "Automatically setting vagrant PATH to Chef Development Kit"
+        echo 'export PATH="/opt/chefdk/embedded/bin:/home/vagrant/.chefdk/gem/ruby/2.1.0/bin:$PATH"' >> /home/vagrant/.bash_profile
+    fi
+}
+
 install_salt()
 {
-    echo "==> Installing Salt provisioner"
+    echo "==> Installing Salt"
     if [[ ${CM_VERSION:-} == 'latest' ]]; then
         echo "Installing latest Salt version"
         wget -O - http://bootstrap.saltstack.org | sudo sh
@@ -56,7 +87,7 @@ install_salt()
 
 install_puppet()
 {
-    echo "==> Installing Puppet provisioner"
+    echo "==> Installing Puppet"
     . /etc/lsb-release
 
     DEB_NAME=puppetlabs-release-${DISTRIB_CODENAME}.deb
@@ -74,6 +105,10 @@ install_puppet()
 case "${CM}" in
   'chef')
     install_chef
+    ;;
+
+  'chefdk')
+    install_chef_dk
     ;;
 
   'salt')

@@ -45,7 +45,7 @@ $(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): %.json
 	cd $(dir $<)
 	rm -rf output-virtualbox-iso
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	packer build -only=virtualbox-sio $(PACKER_VARS) $<
+	packer build -only=virtualbox-iso $(PACKER_VARS) $<
 	
 list:
 	@for builder in $(BUILDER_TYPES) ; do \

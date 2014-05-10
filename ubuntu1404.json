@@ -92,8 +92,7 @@
       "script/sshd.sh",
       "script/vmtool.sh",
       "script/cmtool.sh",
-      "script/cleanup.sh",
-      "script/zerodisk.sh"
+      "script/cleanup.sh"
     ]
   }],
   "post-processors": [{

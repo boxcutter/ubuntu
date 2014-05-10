@@ -1,20 +1,43 @@
-# Make sure Udev doesn't block our network
-# http://6.ptmc.org/?p=164
-echo "cleaning up udev rules"
-rm -rf /dev/.udev/
-rm /lib/udev/rules.d/75-persistent-net-generator.rules
-
-echo "Adding a 2 sec delay to the interface up, to make the dhclient happy"
-echo "pre-up sleep 2" >> /etc/network/interfaces
+#!/bin/bash -eux
 
 # Clean up tmp
 rm -rf /tmp/*
 
-if [ -d "/var/lib/dhcp" ]; then
-    # Remove leftover leases and persistent rules
-    echo "cleaning up dhcp leases"
-    rm /var/lib/dhcp/*
-fi
-
-apt-get -y autoremove
+# Cleanup apt cache
+apt-get -y autoremove --purge
 apt-get -y clean
+apt-get -y autoclean
+
+# Remove Bash history
+unset HISTFILE
+rm -f /root/.bash_history
+rm -f /home/vagrant/.bash_history
+
+# Clean up log files
+find /var/log -type f | while read f; do echo -ne '' > $f; done;
+
+# Zero out the free space to save space in the final image
+dd if=/dev/zero of=/EMPTY bs=1M
+rm -f /EMPTY
+
+# Whiteout root
+count=`df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}'`;
+let count--
+dd if=/dev/zero of=/tmp/whitespace bs=1024 count=$count;
+rm /tmp/whitespace;
+
+# Whiteout /boot
+count=`df --sync -kP /boot | tail -n1 | awk -F ' ' '{print $4}'`;
+let count--
+dd if=/dev/zero of=/boot/whitespace bs=1024 count=$count;
+rm /boot/whitespace;
+
+# Whiteout swaps
+swappart=`cat /proc/swaps | tail -n1 | awk -F ' ' '{print $1}'`
+swapoff $swappart;
+dd if=/dev/zero of=$swappart;
+mkswap $swappart;
+swapon $swappart;
+
+# Wait (otherwise Packer will cry)
+sync

@@ -77,6 +77,6 @@ For Ubuntu, the ISO path variables are:
 * UBUNTU1404_SERVER_I386
 
 This override is commonly used to speed up Packer builds by
-pointing at pre-downloaded ISOs instead of using URLs on the
-Internet:
+pointing at pre-downloaded ISOs instead of using the default
+download Internet URLs:
 `UBUNTU1404_SERVER_AMD64 := file:///Volumes/Ubuntu/ubuntu-14.04-server-amd64.iso`

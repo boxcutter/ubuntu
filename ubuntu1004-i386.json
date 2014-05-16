@@ -108,6 +108,7 @@
       "script/sshd.sh",
       "script/vmtool.sh",
       "script/cmtool.sh",
+      "script/minimize.sh",
       "script/cleanup.sh"
     ]
   }],

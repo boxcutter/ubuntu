@@ -19,9 +19,6 @@ if [ -d "/var/lib/dhcp" ]; then
     rm /var/lib/dhcp/*
 fi 
 
-echo "==> Installed packages"
-dpkg --get-selections | grep -v deinstall
-
 echo "==> Cleaning up tmp"
 rm -rf /tmp/*
 
@@ -29,6 +26,9 @@ rm -rf /tmp/*
 apt-get -y autoremove --purge
 apt-get -y clean
 apt-get -y autoclean
+
+echo "==> Installed packages"
+dpkg --get-selections | grep -v deinstall
 
 # Remove Bash history
 unset HISTFILE

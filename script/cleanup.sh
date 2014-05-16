@@ -1,6 +1,28 @@
 #!/bin/bash -eux
 
-# Clean up tmp
+CLEANUP_PAUSE=${CLEANUP_PAUSE:-0}
+echo "==> Pausing for ${CLEANUP_PAUSE} seconds..."
+sleep ${CLEANUP_PAUSE}
+
+# Make sure udev does not block our network - http://6.ptmc.org/?p=164
+echo "==> Cleaning up udev rules"
+rm -rf /dev/.udev/
+rm /lib/udev/rules.d/75-persistent-net-generator.rules
+
+echo "==> Cleaning up leftover dhcp leases"
+# Ubuntu 10.04
+if [ -d "/var/lib/dhcp3" ]; then
+    rm /var/lib/dhcp3/*
+fi
+# Ubuntu 12.04 & 14.04
+if [ -d "/var/lib/dhcp" ]; then
+    rm /var/lib/dhcp/*
+fi 
+
+echo "==> Installed packages"
+dpkg --get-selections | grep -v deinstall
+
+echo "==> Cleaning up tmp"
 rm -rf /tmp/*
 
 # Cleanup apt cache

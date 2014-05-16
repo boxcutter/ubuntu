@@ -3,6 +3,7 @@
     "cm": "nocm",
     "cm_version": "",
     "cm_set_path": "",
+    "cleanup_pause": "",
     "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04-server-i386.iso",
     "iso_checksum": "33eb2ad62940aabe99f776f3c35ce90eaad6e2d2"
   },
@@ -18,6 +19,9 @@
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "10000s",
     "tools_upload_flavor": "linux",
+    "floppy_files": [
+      "floppy/vagrant.pub"
+    ],
     "boot_command": [
       "<esc><esc><enter><wait>",
       "/install/vmlinuz auto",
@@ -43,8 +47,7 @@
     "disk_size": 10140,
     "vmx_data": {
       "memsize": "512",
-      "numvcpus": "1",
-      "cpuid.coresPerSocket": "1"
+      "numvcpus": "1"
     }
   },
   {
@@ -60,6 +63,9 @@
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "10000s",
+    "floppy_files": [
+      "floppy/vagrant.pub"
+    ],
     "boot_command": [
       "<esc><esc><enter><wait>",
       "/install/vmlinuz noapic ",
@@ -83,11 +89,11 @@
     "environment_vars": [
       "CM={{user `cm`}}",
       "CM_VERSION={{user `cm_version`}}",
-      "CM_SET_PATH={{user `cm_set_path`}}"
+      "CM_SET_PATH={{user `cm_set_path`}}",
+      "CLEANUP_PAUSE={{user `cleanup_pause`}}"
     ],
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [
-      "script/base.sh",
       "script/vagrant.sh",
       "script/sshd.sh",
       "script/vmtool.sh",

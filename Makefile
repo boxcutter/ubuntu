@@ -39,6 +39,7 @@ BUILDER_TYPES := vmware virtualbox
 TEMPLATE_FILENAMES := $(wildcard *.json)
 BOX_FILENAMES := $(TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 BOX_FILES := $(foreach builder, $(BUILDER_TYPES), $(foreach box_filename, $(BOX_FILENAMES), box/$(builder)/$(box_filename)))
+TEST_BOX_FILES := $(foreach builder, $(BUILDER_TYPES), $(foreach box_filename, $(BOX_FILENAMES), test-box/$(builder)/$(box_filename)))
 VMWARE_BOX_DIR := box/vmware
 VIRTUALBOX_BOX_DIR := box/virtualbox
 VMWARE_OUTPUT := output-vmware-iso
@@ -50,6 +51,31 @@ CURRENT_DIR = $(shell pwd)
 .PHONY: all list clean
 
 all: $(BOX_FILES)
+
+test: $(TEST_BOX_FILES)
+
+###############################################################################
+# Target shortcuts
+define SHORTCUT
+
+vmware/$(1): $(VMWARE_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+test-vmware/$(1): test-$(VMWARE_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+virtualbox/$(1): $(VIRTUALBOX_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+test-virtualbox/$(1): test-$(VIRTUALBOX_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+$(1): vmware/$(1) virtualbox/$(1)
+
+test-$(1): test-vmware/$(1) test-virtualbox/$(1)
+
+endef
+
+SHORTCUT_TARGETS := ubuntu1004-i386 ubuntu1004 ubuntu1204-desktop ubuntu1204-docker ubuntu1204-i386 ubuntu1204 ubuntu1404-desktop ubuntu1404-docker ubuntu1404-i386 ubuntu1404
+$(foreach i,$(SHORTCUT_TARGETS),$(eval $(call SHORTCUT,$(i))))
+
+###############################################################################
 
 # Generic rule - not used currently
 #$(VMWARE_BOX_DIR)/%$(BOX_SUFFIX): %.json
@@ -186,10 +212,14 @@ $(VIRTUALBOX_BOX_DIR)/ubuntu1404$(BOX_SUFFIX): ubuntu1404.json
 	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
 
 list:
-	@for builder in $(BUILDER_TYPES) ; do \
-		for box_filename in $(BOX_FILENAMES) ; do \
-			echo box/$$builder/$$box_filename ; \
-		done ; \
+	@echo "Prepend 'vmware/' to build only vmware target:"
+	@echo "  make vmware/ubuntu1404"
+	@echo "Prepend 'virtualbox/' to build only virtualbox target:"
+	@echo "  make virtualbox/ubuntu1404"
+	@echo ""
+	@echo "Targets:"
+	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
+		echo $$shortcut_target ; \
 	done
 
 clean: clean-builders clean-output clean-packer-cache

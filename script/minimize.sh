@@ -48,7 +48,7 @@ echo "==> Removing APT files"
 find /var/lib/apt -type f | xargs rm -f
 echo "==> Removing anything in /usr/src"
 rm -rf /usr/src/*
-echo "==> Removing any docs
+echo "==> Removing any docs"
 rm -rf /usr/share/doc/*
-echo "==> Removing caches
+echo "==> Removing caches"
 find /var/cache -type f -exec rm -rf {} \;

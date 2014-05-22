@@ -101,9 +101,8 @@ pointing at pre-downloaded ISOs instead of using the default
 download Internet URLs:
 `UBUNTU1404_SERVER_AMD64 := file:///Volumes/Ubuntu/ubuntu-14.04-server-amd64.iso`
 
-### Acknowledgements
+### Acknowledgments
 
-[CloudBees](http://www.cloudbees.com) is providing a hosted [Jenkins](http://jenkins-ci.org/) master through their CloudBees FOSS program. We also use their [On-Premise Executor](https://developer.cloudbees.com/bin/view/DEV/On-Premise+Executors) feature to connect physical
-machines running VirtualBox, VMware Fusion, VMware Workstation and Hyper-V.
+[CloudBees](http://www.cloudbees.com) is providing a hosted [Jenkins](http://jenkins-ci.org/) master through their CloudBees FOSS program. Their [On-Premise Executor](https://developer.cloudbees.com/bin/view/DEV/On-Premise+Executors) feature is used to connect physical machines as build slaves running VirtualBox, VMware Fusion, VMware Workstation and Hyper-V.
 
 ![Powered By CloudBees](http://www.cloudbees.com/sites/default/files/Button-Powered-by-CB.png "Powered By CloudBees")![Built On DEV@Cloud](http://www.cloudbees.com/sites/default/files/Button-Built-on-CB-1.png "Built On DEV@Cloud")

@@ -1,4 +1,5 @@
 # Packer templates for Ubuntu
+[![Build Status](https://box-cutter.ci.cloudbees.com/buildStatus/icon?job=ubuntu-vm)](https://box-cutter.ci.cloudbees.com/job/box-cutter/)
 
 ### Overview
 

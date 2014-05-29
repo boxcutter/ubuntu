@@ -1,0 +1,13 @@
+caroline_ubuntu := /Volumes/Storage/ubuntu
+UBUNTU1004_SERVER_AMD64 := $(caroline_ubuntu)/ubuntu-10.04.4-server-amd64.iso
+UBUNTU1004_SERVER_I386 := $(caroline_ubuntu)/ubuntu-10.04.4-server-i386.iso
+UBUNTU1204_SERVER_AMD64 := $(caroline_ubuntu)/ubuntu-12.04.4-server-amd64.iso
+UBUNTU1204_SERVER_I386 := $(caroline_ubuntu)/ubuntu-12.04.4-server-i386.iso
+UBUNTU1204_ALTERNATE_AMD64 := $(caroline_ubuntu)/ubuntu-12.04.4-alternate-amd64.iso
+UBUNTU1304_SERVER_AMD64 := $(caroline_ubuntu)/ubuntu-13.04-server-amd64.iso
+UBUNTU1304_SERVER_I386 := $(caroline_ubuntu)/ubuntu-13.04-server-i386.iso
+UBUNTU1310_SERVER_AMD64 := $(caroline_ubuntu)/ubuntu-13.10-server-amd64.iso
+UBUNTU1310_SERVER_I386 := $(caroline_ubuntu)/ubuntu-13.10-server-i386.iso
+UBUNTU1404_SERVER_AMD64 := $(caroline_ubuntu)/ubuntu-14.04-server-amd64.iso
+UBUNTU1404_SERVER_I386 := $(caroline_ubuntu)/ubuntu-14.04-server-i386.iso
+

@@ -5,6 +5,7 @@
     "cm_set_path": "",
     "cleanup_pause": "",
     "headless": "",
+    "auto_upgrade": "",
     "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04-server-amd64.iso",
     "iso_checksum": "4d94f6111b8fe47da94396180ce499d8c0bb44f3"
   },
@@ -93,7 +94,8 @@
       "CM={{user `cm`}}",
       "CM_VERSION={{user `cm_version`}}",
       "CM_SET_PATH={{user `cm_set_path`}}",
-      "CLEANUP_PAUSE={{user `cleanup_pause`}}"
+      "CLEANUP_PAUSE={{user `cleanup_pause`}}",
+      "AUTO_UPGRADE={{user `auto_upgrade`}}"
     ],
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [

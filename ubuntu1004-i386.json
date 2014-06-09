@@ -4,6 +4,7 @@
     "cm_version": "",
     "cm_set_path": "",
     "cleanup_pause": "",
+    "headless": "",
     "iso_url": "http://releases.ubuntu.com/10.04.4/ubuntu-10.04.4-server-i386.iso",
     "iso_checksum": "5695d8b6b914269d1374ac8d4c3dd3786e92d3fe"
   },
@@ -18,6 +19,7 @@
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "10000s",
+    "headless": "{{ user `headless` }}",
     "tools_upload_flavor": "linux",
     "floppy_files": [
       "floppy/vagrant.pub"
@@ -63,6 +65,7 @@
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "10000s",
+    "headless": "{{ user `headless` }}",
     "floppy_files": [
       "floppy/vagrant.pub"
     ],

@@ -50,7 +50,7 @@ VIRTUALBOX_BUILDER := virtualbox-iso
 CURRENT_DIR = $(shell pwd)
 SOURCES := $(wildcard script/*.sh) $(floppy/*.*) $(http/*.cfg)
 
-.PHONY: all list clean
+.PHONY: all list clean validate
 
 all: $(BOX_FILES)
 
@@ -227,6 +227,13 @@ list:
 	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
 		echo $$shortcut_target ; \
 	done
+
+validate:
+	@for template_filename in $(TEMPLATE_FILENAMES) ; do \
+		echo Checking $$template_filename ; \
+		packer validate $$template_filename ; \
+	done
+
 
 clean: clean-builders clean-output clean-packer-cache
 		

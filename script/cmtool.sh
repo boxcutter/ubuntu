@@ -10,9 +10,10 @@
 #   'puppet'          -- build a box with Puppet
 #
 # Values for CM_VERSION can be (when CM is chef|salt|puppet):
-#   'x.y.z'           -- build a box with version x.y.z of Chef
-#   'x.y'             -- build a box with version x.y of Salt
-#   'latest'          -- build a box with the latest version
+#   'x.y.z'              -- build a box with version x.y.z of Chef
+#   'x.y'                -- build a box with version x.y of Salt
+#   'x.y.z-apuppetlabsb' -- build a box with package version of Puppet
+#   'latest'             -- build a box with the latest version
 #
 # Set CM_VERSION to 'latest' if unset because it can be problematic
 # to set variables in pairs with Packer (and Packer does not support
@@ -94,7 +95,13 @@ install_puppet()
     wget http://apt.puppetlabs.com/${DEB_NAME}
     dpkg -i ${DEB_NAME}
     apt-get update
-    apt-get install -y puppet facter
+    if [[ ${CM_VERSION:-} == 'latest' ]]; then
+      echo "Installing latest Puppet version"
+      apt-get install -y puppet
+    else
+      echo "Installing Puppet version $CM_VERSION"
+      apt-get install -y puppet-common=$CM_VERSION puppet=$CM_VERSION
+    fi
     rm -f ${DEB_NAME}
 }
 

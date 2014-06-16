@@ -22,9 +22,6 @@
     "ssh_wait_timeout": "10000s",
     "headless": "{{ user `headless` }}",
     "tools_upload_flavor": "linux",
-    "floppy_files": [
-      "floppy/vagrant.pub"
-    ],
     "boot_command": [
       "<esc><esc><enter><wait>",
       "/install/vmlinuz auto",
@@ -67,9 +64,6 @@
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "10000s",
-    "floppy_files": [
-      "floppy/vagrant.pub"
-    ],
     "boot_command": [
       "<esc><esc><enter><wait>",
       "/install/vmlinuz noapic ",

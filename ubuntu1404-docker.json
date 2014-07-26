@@ -6,8 +6,8 @@
     "cleanup_pause": "",
     "headless": "",
     "auto_upgrade": "",
-    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04-server-amd64.iso",
-    "iso_checksum": "4d94f6111b8fe47da94396180ce499d8c0bb44f3" 
+    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.1-server-amd64.iso",
+    "iso_checksum": "401c5f6666fe2879ac3a9a3247b487723410cf88" 
   },
   "builders": [{
     "vm_name": "ubuntu1404-docker",

@@ -6,8 +6,8 @@
     "cleanup_pause": "",
     "headless": "",
     "auto_upgrade": "",
-    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04-server-i386.iso",
-    "iso_checksum": "33eb2ad62940aabe99f776f3c35ce90eaad6e2d2"
+    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.1-server-i386.iso",
+    "iso_checksum": "22c6764a4b9335d7b384a081e0fed104236c99d9"
   },
   "builders": [{
     "vm_name": "ubuntu1404-i386",

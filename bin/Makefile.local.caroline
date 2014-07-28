@@ -8,6 +8,5 @@ UBUNTU1304_SERVER_AMD64 := $(caroline_ubuntu)/ubuntu-13.04-server-amd64.iso
 UBUNTU1304_SERVER_I386 := $(caroline_ubuntu)/ubuntu-13.04-server-i386.iso
 UBUNTU1310_SERVER_AMD64 := $(caroline_ubuntu)/ubuntu-13.10-server-amd64.iso
 UBUNTU1310_SERVER_I386 := $(caroline_ubuntu)/ubuntu-13.10-server-i386.iso
-UBUNTU1404_SERVER_AMD64 := $(caroline_ubuntu)/ubuntu-14.04-server-amd64.iso
-UBUNTU1404_SERVER_I386 := $(caroline_ubuntu)/ubuntu-14.04-server-i386.iso
-
+UBUNTU1404_SERVER_AMD64 := $(caroline_ubuntu)/ubuntu-14.04.1-server-amd64.iso
+UBUNTU1404_SERVER_I386 := $(caroline_ubuntu)/ubuntu-14.04.1-server-i386.iso

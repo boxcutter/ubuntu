@@ -11,10 +11,14 @@ UBUNTU1310_SERVER_I386 := $(caroline_ubuntu)/ubuntu-13.10-server-i386.iso
 UBUNTU1404_SERVER_AMD64 := $(caroline_ubuntu)/ubuntu-14.04.1-server-amd64.iso
 UBUNTU1404_SERVER_I386 := $(caroline_ubuntu)/ubuntu-14.04.1-server-i386.iso
 
-test-vagrantcloud:
-	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
-		bin/test-vagrantcloud-box.sh box-cutter/$$shortcut_target virtualbox virtualbox $(CURRENT_DIR)/test/*_spec.rb || exit; \
-	done
+test-vagrantcloud: test-vagrantcloud-vmware test-vagrantcloud-virtualbox
+
+test-vagrantcloud-vmware:
 	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
 		bin/test-vagrantcloud-box.sh box-cutter/$$shortcut_target vmware_fusion vmware_desktop $(CURRENT_DIR)/test/*_spec.rb || exit; \
+	done
+
+test-vagrantcloud-virtualbox:
+	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
+		bin/test-vagrantcloud-box.sh box-cutter/$$shortcut_target virtualbox virtualbox $(CURRENT_DIR)/test/*_spec.rb || exit; \
 	done

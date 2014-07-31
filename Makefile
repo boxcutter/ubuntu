@@ -28,9 +28,9 @@ HEADLESS ?=
 AUTO_UPGRADE ?=
 # Packer does not allow empty variables, so only pass variables that are defined
 ifdef CM_VERSION
-	PACKER_VARS := -var 'cm=$(CM)' -var 'cm_version=$(CM_VERSION)' -var 'headless=$(HEADLESS)' -var 'auto_upgrade=$(AUTO_UPGRADE)'
+	PACKER_VARS := -var 'cm=$(CM)' -var 'cm_version=$(CM_VERSION)' -var 'headless=$(HEADLESS)' -var 'upgrade=$(UPGRADE)'
 else
-	PACKER_VARS := -var 'cm=$(CM)' -var 'headless=$(HEADLESS)' -var 'auto_upgrade=$(AUTO_UPGRADE)'
+	PACKER_VARS := -var 'cm=$(CM)' -var 'headless=$(HEADLESS)' -var 'upgrade=$(UPGRADE)'
 endif
 ifeq ($(CM),nocm)
 	BOX_SUFFIX := -$(CM).box

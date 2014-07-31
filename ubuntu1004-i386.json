@@ -5,7 +5,7 @@
     "cm_set_path": "",
     "cleanup_pause": "",
     "headless": "",
-    "auto_upgrade": "",
+    "update": "false",
     "iso_url": "http://releases.ubuntu.com/10.04.4/ubuntu-10.04.4-server-i386.iso",
     "iso_checksum": "5695d8b6b914269d1374ac8d4c3dd3786e92d3fe"
   },
@@ -99,10 +99,11 @@
       "CM_VERSION={{user `cm_version`}}",
       "CM_SET_PATH={{user `cm_set_path`}}",
       "CLEANUP_PAUSE={{user `cleanup_pause`}}",
-      "AUTO_UPGRADE={{user `auto_upgrade`}}"
+      "UPDATE={{user `update`}}"
     ],
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [
+      "script/update.sh",
       "script/vagrant.sh",
       "script/sshd.sh",
       "script/vmtool.sh",

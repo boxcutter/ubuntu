@@ -5,7 +5,7 @@
     "cm_set_path": "",
     "cleanup_pause": "",
     "headless": "",
-    "auto_upgrade": "",
+    "update": "false",
     "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.4-server-amd64.iso",
     "iso_checksum": "b802bb065df98c0530d782eb94778c2da19e10d6"
   },
@@ -89,10 +89,11 @@
       "CM_VERSION={{user `cm_version`}}",
       "CM_SET_PATH={{user `cm_set_path`}}",
       "CLEANUP_PAUSE={{user `cleanup_pause`}}",
-      "AUTO_UPGRADE={{user `auto_upgrade`}}"
+      "UPDATE={{user `update`}}"
     ],
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [
+      "script/update.sh",
       "script/vagrant.sh",
       "script/sshd.sh",
       "script/vmtool.sh",

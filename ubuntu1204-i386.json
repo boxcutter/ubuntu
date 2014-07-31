@@ -6,6 +6,11 @@
     "cleanup_pause": "",
     "headless": "",
     "update": "false",
+    "http_proxy": "{{env `http_proxy`}}",
+    "https_proxy": "{{env `https_proxy`}}",
+    "ftp_proxy": "{{env `ftp_proxy`}}",
+    "rsync_proxy": "{{env `rsync_proxy`}}",
+    "no_proxy": "{{env `no_proxy`}}",
     "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.4-server-i386.iso",
     "iso_checksum": "3bae12e315c89d42d7bf571e4e35efce585c7624"
   },
@@ -89,7 +94,12 @@
       "CM_VERSION={{user `cm_version`}}",
       "CM_SET_PATH={{user `cm_set_path`}}",
       "CLEANUP_PAUSE={{user `cleanup_pause`}}",
-      "UPDATE={{user `update`}}"
+      "UPDATE={{user `update`}}",
+      "http_proxy={{user `http_proxy`}}",
+      "https_proxy={{user `https_proxy`}}",
+      "ftp_proxy={{user `ftp_proxy`}}",
+      "rsync_proxy={{user `rsync_proxy`}}",
+      "no_proxy={{user `no_proxy`}}"
     ],
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [

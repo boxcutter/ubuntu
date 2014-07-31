@@ -35,7 +35,19 @@ A GNU Make `Makefile` drives the process via the following targets:
     make test   # Run tests against all the boxes
     make list   # Print out individual targets
     make clean  # Clean up build detritus
-    
+
+### Proxy Settings
+
+The templates respect the following network proxy environment variables
+and forward them on to the virtual machine environment during the box creation
+process, should you be using a proxy:
+
+* http_proxy
+* https_proxy
+* ftp_proxy
+* rsync_proxy
+* no_proxy
+
 ### Tests
 
 The tests are written in [Serverspec](http://serverspec.org) and require the

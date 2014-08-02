@@ -19,6 +19,9 @@ if [ -d "/var/lib/dhcp" ]; then
     rm /var/lib/dhcp/*
 fi 
 
+# Add delay to prevent "vagrant reload" from failing
+echo "pre-up sleep 2" >> /etc/network/interfaces
+
 echo "==> Cleaning up tmp"
 rm -rf /tmp/*
 

@@ -1,8 +1,14 @@
 # Changelog
 
-## 1.0.0 (2014-05-09)
+## 1.0.4 (2014-08-01)
 
-* Initial commit
+* Adding fix to prevent issue when vagrant reload is used with public_network
+
+## 1.0.3 (2014-07-29)
+
+* Upgrade Docker to 0.11.1
+* Upgrade Ubuntu 14.04.0 to 14.04.1
+* Bump desktop disk size to 40GB
 
 ## 1.0.1 (2014-05-19)
 
@@ -13,8 +19,6 @@ Upgrade Docker to 0.11 RC
 * Giver Docker non-root access
 * Add docker alias when installed via docker.io package with update-alternatives
 
-## 1.0.3 (2014-07-29)
+## 1.0.0 (2014-05-09)
 
-* Upgrade Docker to 0.11.1
-* Upgrade Ubuntu 14.04.0 to 14.04.1
-* Bump desktop disk size to 40GB
+* Initial commit

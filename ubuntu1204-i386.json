@@ -10,8 +10,8 @@
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "rsync_proxy": "{{env `rsync_proxy`}}",
     "no_proxy": "{{env `no_proxy`}}",
-    "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.4-server-i386.iso",
-    "iso_checksum": "3bae12e315c89d42d7bf571e4e35efce585c7624"
+    "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.5-server-i386.iso",
+    "iso_checksum": "a34c224b7fe72a2f5c768be5afee5c53817743fd"
   },
   "builders": [{
     "vm_name": "ubuntu1204-i386",

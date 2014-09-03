@@ -2,15 +2,17 @@
 
 UBUNTU_MAJOR_VERSION=$(lsb_release -rs | cut -f1 -d .)
 
-legacy_docker_install() {
+docker_package_install() {
     # Add the Docker repository to your apt sources list.
     echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
+    # Add the Docker repository GPG key
+    curl -s https://get.docker.io/gpg | apt-key add -
 
     # Update your sources
     apt-get update
 
-    # Install, you will see another warning that the package cannot be authenticated. Confirm install.
-    apt-get install -y --force-yes lxc-docker
+    # Install Docker
+    apt-get install -y lxc-docker
 
     # Enable memory and swap accounting
     sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"/' /etc/default/grub
@@ -74,11 +76,5 @@ give_docker_non_root_access() {
     #service docker restart
 }
 
-if [[ $UBUNTU_MAJOR_VERSION == "12" || $UBUNTU_MAJOR_VERSION == "13" ]]
-then
-    legacy_docker_install 
-elif [[ $UBUNTU_MAJOR_VERSION == "14" ]]
-then
-    docker_install
-    give_docker_non_root_access
-fi
+docker_package_install 
+give_docker_non_root_access

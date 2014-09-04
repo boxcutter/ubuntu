@@ -3,6 +3,11 @@ ifneq ("$(wildcard Makefile.local)", "")
 	include Makefile.local
 endif
 
+PACKER_VERSION = $(shell packer --version | sed 's/^.* //g' | sed 's/^.//')
+ifneq (0.5.0, $(word 1, $(sort 0.5.0 $(PACKER_VERSION))))
+$(error Packer version less than 0.5.x, please upgrade)
+endif
+
 UBUNTU1004_SERVER_AMD64 ?= http://releases.ubuntu.com/10.04.4/ubuntu-10.04.4-server-amd64.iso
 UBUNTU1004_SERVER_I386 ?= http://releases.ubuntu.com/10.04.4/ubuntu-10.04.4-server-i386.iso
 UBUNTU1204_SERVER_AMD64 ?= http://releases.ubuntu.com/12.04/ubuntu-12.04.5-server-amd64.iso

@@ -21,14 +21,14 @@ ALLUSERS_ID := uri=http://acs.amazonaws.com/groups/global/AllUsers
 upload-s3: upload-s3-vmware upload-s3-virtualbox
 
 upload-s3-vmware:
-        @for vmware_box_file in $(VMWARE_BOX_FILES) ; do \
-                aws s3 cp $$vmware_box_file $(VMWARE_S3_BUCKET) --grants full=$(S3_GRANT_ID) read=$(ALLUSERS_ID) ; \
-        done
+	@for vmware_box_file in $(VMWARE_BOX_FILES) ; do \
+		aws s3 cp $$vmware_box_file $(VMWARE_S3_BUCKET) --grants full=$(S3_GRANT_ID) read=$(ALLUSERS_ID) ; \
+	done
 
 upload-s3-virtualbox:
-        @for virtualbox_box_file in $(VIRTUALBOX_BOX_FILES) ; do \
-                aws s3 cp $$virtualbox_box_file $(VIRTUALBOX_S3_BUCKET) --grants full=$(S3_GRANT_ID) read=$(ALLUSERS_ID) ; \
-        done
+	@for virtualbox_box_file in $(VIRTUALBOX_BOX_FILES) ; do \
+		aws s3 cp $$virtualbox_box_file $(VIRTUALBOX_S3_BUCKET) --grants full=$(S3_GRANT_ID) read=$(ALLUSERS_ID) ; \
+	done
 
 test-vagrantcloud: test-vagrantcloud-vmware test-vagrantcloud-virtualbox
 

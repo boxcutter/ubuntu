@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.5 (2014-09-03)
+
+* Upgrade VMware Tools to 9.8.3.37963 (build-2075148)
+* Bumping Ubuntu 12.04 image version to Ubuntu 12.04.5
+* Upgrade Docker to version 1.2.0
+
 ## 1.0.4 (2014-08-01)
 
 * Adding fix to prevent issue when vagrant reload is used with public_network

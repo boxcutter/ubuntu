@@ -42,6 +42,11 @@ ifeq ($(CM),nocm)
 else
 	BOX_SUFFIX := -$(CM)$(CM_VERSION).box
 endif
+ifdef PACKER_DEBUG
+	PACKER := PACKER_LOG=1 packer --debug
+else
+	PACKER := packer
+endif
 BUILDER_TYPES := vmware virtualbox
 TEMPLATE_FILENAMES := $(wildcard *.json)
 BOX_FILENAMES := $(TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
@@ -94,134 +99,134 @@ $(foreach i,$(SHORTCUT_TARGETS),$(eval $(call SHORTCUT,$(i))))
 #	cd $(dir $<)
 #	rm -rf output-vmware-iso
 #	mkdir -p $(VMWARE_BOX_DIR)
-#	packer build -only=vmware-iso $(PACKER_VARS) $<
+#	$(PACKER) build -only=vmware-iso $(PACKER_VARS) $<
 
 $(VMWARE_BOX_DIR)/ubuntu1004-i386$(BOX_SUFFIX): ubuntu1004-i386.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1004_SERVER_I386)" $<
+	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1004_SERVER_I386)" $<
 
 $(VMWARE_BOX_DIR)/ubuntu1004$(BOX_SUFFIX): ubuntu1004.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1004_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1004_SERVER_AMD64)" $<
 
 $(VMWARE_BOX_DIR)/ubuntu1204-desktop$(BOX_SUFFIX): ubuntu1204-desktop.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_ALTERNATE_AMD64)" $<
+	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_ALTERNATE_AMD64)" $<
 
 $(VMWARE_BOX_DIR)/ubuntu1204-docker$(BOX_SUFFIX): ubuntu1204-docker.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_AMD64)" $<
 
 $(VMWARE_BOX_DIR)/ubuntu1204-i386$(BOX_SUFFIX): ubuntu1204-i386.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_I386)" $<
+	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_I386)" $<
 
 $(VMWARE_BOX_DIR)/ubuntu1204$(BOX_SUFFIX): ubuntu1204.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_AMD64)" $<
 
 $(VMWARE_BOX_DIR)/ubuntu1404-desktop$(BOX_SUFFIX): ubuntu1404-desktop.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
 
 $(VMWARE_BOX_DIR)/ubuntu1404-docker$(BOX_SUFFIX): ubuntu1404-docker.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
 
 $(VMWARE_BOX_DIR)/ubuntu1404-i386$(BOX_SUFFIX): ubuntu1404-i386.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_I386)" $<
+	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_I386)" $<
 
 $(VMWARE_BOX_DIR)/ubuntu1404$(BOX_SUFFIX): ubuntu1404.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
 
 # Generic rule - not used currently
 #$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): %.json
 #	cd $(dir $<)
 #	rm -rf output-virtualbox-iso
 #	mkdir -p $(VIRTUALBOX_BOX_DIR)
-#	packer build -only=virtualbox-iso $(PACKER_VARS) $<
+#	$(PACKER) build -only=virtualbox-iso $(PACKER_VARS) $<
 	
 $(VIRTUALBOX_BOX_DIR)/ubuntu1004-i386$(BOX_SUFFIX): ubuntu1004-i386.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1004_SERVER_I386)" $<
+	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1004_SERVER_I386)" $<
 
 $(VIRTUALBOX_BOX_DIR)/ubuntu1004$(BOX_SUFFIX): ubuntu1004.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1004_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1004_SERVER_AMD64)" $<
 
 $(VIRTUALBOX_BOX_DIR)/ubuntu1204-desktop$(BOX_SUFFIX): ubuntu1204-desktop.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_ALTERNATE_AMD64)" $<
+	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_ALTERNATE_AMD64)" $<
 
 $(VIRTUALBOX_BOX_DIR)/ubuntu1204-docker$(BOX_SUFFIX): ubuntu1204-docker.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_AMD64)" $<
 
 $(VIRTUALBOX_BOX_DIR)/ubuntu1204-i386$(BOX_SUFFIX): ubuntu1204-i386.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_I386)" $<
+	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_I386)" $<
 
 $(VIRTUALBOX_BOX_DIR)/ubuntu1204$(BOX_SUFFIX): ubuntu1204.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_AMD64)" $<
 
 $(VIRTUALBOX_BOX_DIR)/ubuntu1404-desktop$(BOX_SUFFIX): ubuntu1404-desktop.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
 
 $(VIRTUALBOX_BOX_DIR)/ubuntu1404-docker$(BOX_SUFFIX): ubuntu1404-docker.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
 
 $(VIRTUALBOX_BOX_DIR)/ubuntu1404-i386$(BOX_SUFFIX): ubuntu1404-i386.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_I386)" $<
+	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_I386)" $<
 
 $(VIRTUALBOX_BOX_DIR)/ubuntu1404$(BOX_SUFFIX): ubuntu1404.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
 
 list:
 	@echo "Prepend 'vmware/' to build only vmware target:"

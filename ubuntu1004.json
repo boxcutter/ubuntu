@@ -1,5 +1,6 @@
 {
   "variables": {
+    "version": "",
     "cm": "nocm",
     "cm_version": "",
     "cleanup_pause": "",
@@ -123,6 +124,6 @@
   "post-processors": [{
     "type": "vagrant",
     "keep_input_artifact": false,
-    "output": "box/{{.Provider}}/ubuntu1004-{{user `cm`}}{{user `cm_version`}}.box"
+    "output": "box/{{.Provider}}/ubuntu1004-{{user `cm`}}{{user `cm_version`}}-{{user `version`}}.box"
   }]
 }

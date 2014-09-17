@@ -30,17 +30,17 @@ ifndef CM_VERSION
 	endif
 endif
 HEADLESS ?=
-AUTO_UPGRADE ?=
+BOX_VERSION ?= $(shell cat VERSION)
+ifeq ($(CM),nocm)
+	BOX_SUFFIX := -$(CM)-$(BOX_VERSION).box
+else
+	BOX_SUFFIX := -$(CM)$(CM_VERSION)-$(BOX_VERSION).box
+endif
 # Packer does not allow empty variables, so only pass variables that are defined
 ifdef CM_VERSION
-	PACKER_VARS := -var 'cm=$(CM)' -var 'cm_version=$(CM_VERSION)' -var 'headless=$(HEADLESS)' -var 'update=$(UPDATE)'
+	PACKER_VARS := -var 'cm=$(CM)' -var 'cm_version=$(CM_VERSION)' -var 'headless=$(HEADLESS)' -var 'update=$(UPDATE)' -var 'version=$(BOX_VERSION)'
 else
-	PACKER_VARS := -var 'cm=$(CM)' -var 'headless=$(HEADLESS)' -var 'update=$(UPDATE)'
-endif
-ifeq ($(CM),nocm)
-	BOX_SUFFIX := -$(CM).box
-else
-	BOX_SUFFIX := -$(CM)$(CM_VERSION).box
+	PACKER_VARS := -var 'cm=$(CM)' -var 'headless=$(HEADLESS)' -var 'update=$(UPDATE)' -var 'version=$(BOX_VERSION)'
 endif
 ifdef PACKER_DEBUG
 	PACKER := PACKER_LOG=1 packer --debug

@@ -1,5 +1,6 @@
 {
   "variables": {
+    "version": "",
     "cm": "nocm",
     "cm_version": "",
     "cleanup_pause": "",
@@ -114,6 +115,6 @@
     "type": "vagrant",
     "keep_input_artifact": false,
     "vagrantfile_template": "tpl/vagrantfile-ubuntu1404-desktop.tpl",
-    "output": "box/{{.Provider}}/ubuntu1404-desktop-{{user `cm`}}{{user `cm_version`}}.box"
+    "output": "box/{{.Provider}}/ubuntu1404-desktop-{{user `cm`}}{{user `cm_version`}}-{{user `version`}}.box"
   }]
 }

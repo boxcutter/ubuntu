@@ -76,5 +76,5 @@ give_docker_non_root_access() {
     #service docker restart
 }
 
-docker_package_install 
 give_docker_non_root_access
+docker_package_install 

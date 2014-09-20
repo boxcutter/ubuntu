@@ -1,6 +1,6 @@
 {
   "variables": {
-    "version": "",
+    "version": "0.1.0",
     "cm": "nocm",
     "cm_version": "",
     "cleanup_pause": "",

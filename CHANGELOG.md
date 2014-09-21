@@ -1,4 +1,9 @@
 # Changelog
+## 1.0.6 (2014-09-21)
+
+* Upgraded VirtualBox Guest Additions to 4.3.16
+* Fix regression in vagrant user not being added to docker group
+
 ## 1.0.5 (2014-09-05)
 
 * Upgraded VMware Tools to 9.8.3 for VMware Fusion 7

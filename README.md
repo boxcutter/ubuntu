@@ -10,19 +10,19 @@ using Packer.
 
 64-bit boxes:
 
-* [box-cutter/ubuntu1404](https://vagrantcloud.com/box-cutter/ubuntu1404) - Ubuntu Server 14.04.1 (64-bit), VMware 316MB/VirtualBox 269MB
+* [box-cutter/ubuntu1404](https://vagrantcloud.com/box-cutter/ubuntu1404) - Ubuntu Server 14.04.1 (64-bit), VMware 329MB/VirtualBox 290MB
 * [box-cutter/ubuntu1404-desktop](https://vagrantcloud.com/box-cutter/ubuntu1404-desktop) - Ubuntu Desktop 14.04.1 (64-bit), VMware 1.1GB/VirtualBox 1GB
-* [box-cutter/ubuntu1404-docker](https://vagrantcloud.com/box-cutter/ubuntu1404-docker) - Ubuntu Server 14.04.1 (64-bit) with Docker preinstalled, VMware 435MB/VirtualBox 389MB
-* [box-cutter/ubuntu1204](https://vagrantcloud.com/box-cutter/ubuntu1204) - Ubuntu Server 12.04.4 (64-bit), VMware 278MB, VirtualBox 233MB
-* [box-cutter/ubuntu1204-desktop](https://vagrantcloud.com/box-cutter/ubuntu1204-desktop) - Ubuntu Desktop 12.04.4 (64-bit), VMware 884MB/VirtualBox 813MB
-* [box-cutter/ubuntu1204-docker](https://vagrantcloud.com/box-cutter/ubuntu1204-docker) - Ubuntu Server 12.04.4 (64-bit) with Docker preinstalled, VMware 396MB/VirtualBox 350MB
-* [box-cutter/ubuntu1004](https://vagrantcloud.com/box-cutter/ubuntu1004)  - Ubuntu Server 10.04.4 (64-bit), VMware 221MB/VirtualBox 179MB
+* [box-cutter/ubuntu1404-docker](https://vagrantcloud.com/box-cutter/ubuntu1404-docker) - Ubuntu Server 14.04.1 (64-bit) with Docker preinstalled, VMware 446MB/VirtualBox 410MB
+* [box-cutter/ubuntu1204](https://vagrantcloud.com/box-cutter/ubuntu1204) - Ubuntu Server 12.04.5 (64-bit), VMware 284MB, VirtualBox 240MB
+* [box-cutter/ubuntu1204-desktop](https://vagrantcloud.com/box-cutter/ubuntu1204-desktop) - Ubuntu Desktop 12.04.4 (64-bit), VMware 918MB/VirtualBox 823MB
+* [box-cutter/ubuntu1204-docker](https://vagrantcloud.com/box-cutter/ubuntu1204-docker) - Ubuntu Server 12.04.5 (64-bit) with Docker preinstalled, VMware 393MB/VirtualBox 349MB
+* [box-cutter/ubuntu1004](https://vagrantcloud.com/box-cutter/ubuntu1004)  - Ubuntu Server 10.04.4 (64-bit), VMware 223MB/VirtualBox 182MB
 
 32-bit boxes:
 
-* [box-cutter/ubuntu1404-i386](https://vagrantcloud.com/box-cutter/ubuntu1404-i386) - Ubuntu Server 14.04.1 (32-bit), VMware 308MB/VirtualBox 278MB
-* [box-cutter/ubuntu1204-i386](https://vagrantcloud.com/box-cutter/ubuntu1204-i386) - Ubuntu Server 12.04.4 (32-bit), VMware 273MB/VirtualBox 239MB
-* [box-cutter/ubuntu1004-i386](https://vagrantcloud.com/box-cutter/ubuntu1004-i386) - Ubuntu Server 10.04.4 (32-bit), VMware 207MB/VirtualBox 181MB
+* [box-cutter/ubuntu1404-i386](https://vagrantcloud.com/box-cutter/ubuntu1404-i386) - Ubuntu Server 14.04.1 (32-bit), VMware 323MB/VirtualBox 282MB
+* [box-cutter/ubuntu1204-i386](https://vagrantcloud.com/box-cutter/ubuntu1204-i386) - Ubuntu Server 12.04.5 (32-bit), VMware 278MB/VirtualBox 237MB
+* [box-cutter/ubuntu1004-i386](https://vagrantcloud.com/box-cutter/ubuntu1004-i386) - Ubuntu Server 10.04.4 (32-bit), VMware 227MB/VirtualBox 186MB
 
 ## Building the Vagrant boxes
 
@@ -56,7 +56,9 @@ The tests are written in [Serverspec](http://serverspec.org) and require the
     vagrant plugin install vagrant-serverspec
     
 The `Makefile` has individual targets for each box type with the prefix
-`test-*` should you wish to run tests individually for each box.
+`test-*` should you wish to run tests individually for each box.  For example:
+
+    make test-box/virtualbox/ubuntu1404-nocm.box
 
 Similarly there are targets with the prefix `ssh-*` for registering a
 newly-built box with vagrant and for logging in using just one command to
@@ -75,7 +77,7 @@ used are:
 
 * CM
 * CM_VERSION
-* <iso_path>
+* \<iso_path\>
 * UPDATE
 
 `Makefile.local` is most commonly used to override the default configuration

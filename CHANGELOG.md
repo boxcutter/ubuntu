@@ -1,4 +1,8 @@
 # Changelog
+## 1.0.5 (2014-09-05)
+
+* Upgraded VMware Tools to 9.8.3 for VMware Fusion 7
+* Bump Docker version to 1.20
 
 ## 1.0.4 (2014-08-01)
 

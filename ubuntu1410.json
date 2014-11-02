@@ -1,0 +1,119 @@
+{
+  "variables": {
+    "version": "0.1.0",
+    "cm": "nocm",
+    "cm_version": "",
+    "cleanup_pause": "",
+    "headless": "",
+    "update": "false",
+    "http_proxy": "{{env `http_proxy`}}",
+    "https_proxy": "{{env `https_proxy`}}",
+    "ftp_proxy": "{{env `ftp_proxy`}}",
+    "rsync_proxy": "{{env `rsync_proxy`}}",
+    "no_proxy": "{{env `no_proxy`}}",
+    "iso_url": "http://releases.ubuntu.com/14.10/ubuntu-14.10-server-amd64.iso",
+    "iso_checksum": "0c1ebea31c3523cfe9a4ffed8bcf6c7d23dfb97b"
+  },
+  "builders": [{
+    "vm_name": "ubuntu1410",
+    "type": "vmware-iso",
+    "guest_os_type": "ubuntu-64",
+    "http_directory": "http",
+    "iso_url": "{{ user `iso_url` }}",
+    "iso_checksum": "{{ user `iso_checksum` }}",
+    "iso_checksum_type": "sha1",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "ssh_wait_timeout": "10000s",
+    "headless": "{{ user `headless` }}",
+    "tools_upload_flavor": "linux",
+    "boot_command": [
+      "<esc><esc><enter><wait>",
+      "/install/vmlinuz auto",
+      " console-setup/ask_detect=false",
+      " console-setup/layoutcode=us",
+      " console-setup/modelcode=pc105",
+      " debconf/frontend=noninteractive",
+      " debian-installer=en_US",
+      " fb=false",
+      " initrd=/install/initrd.gz",
+      " kbd-chooser/method=us",
+      " keyboard-configuration/layout=USA",
+      " keyboard-configuration/variant=USA",
+      " locale=en_US",
+      " netcfg/get_domain=vm",
+      " netcfg/get_hostname=vagrant",
+      " noapic" ,
+      " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg",
+      " -- ",
+      "<enter>"
+    ],
+    "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+    "disk_size": 10140,
+    "vmx_data": {
+      "memsize": "512",
+      "numvcpus": "1"
+    }
+  },
+  {
+    "vm_name": "ubuntu1410",
+    "type": "virtualbox-iso",
+    "http_directory": "http",
+    "iso_url": "{{ user `iso_url` }}",
+    "iso_checksum": "{{ user `iso_checksum` }}",
+    "iso_checksum_type": "sha1",
+    "guest_os_type": "Ubuntu_64",
+    "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+    "virtualbox_version_file": ".vbox_version",
+    "headless": "{{ user `headless` }}",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "ssh_wait_timeout": "10000s",
+    "boot_command": [
+      "<esc><esc><enter><wait>",
+      "/install/vmlinuz noapic ",
+      "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+      "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+      "hostname={{ .Name }} ",
+      "fb=false debconf/frontend=noninteractive ",
+      "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+      "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+      "initrd=/install/initrd.gz -- <enter>"
+    ],
+    "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+    "disk_size": 10140,
+    "vboxmanage": [
+      ["modifyvm", "{{.Name}}", "--memory", "512"],
+      ["modifyvm", "{{.Name}}", "--cpus", "1"]
+    ]
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "environment_vars": [
+      "CM={{user `cm`}}",
+      "CM_VERSION={{user `cm_version`}}",
+      "CLEANUP_PAUSE={{user `cleanup_pause`}}",
+      "UPDATE={{user `update`}}",
+      "http_proxy={{user `http_proxy`}}",
+      "https_proxy={{user `https_proxy`}}",
+      "ftp_proxy={{user `ftp_proxy`}}",
+      "rsync_proxy={{user `rsync_proxy`}}",
+      "no_proxy={{user `no_proxy`}}"
+    ],
+    "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+    "scripts": [
+      "script/update.sh",
+      "script/vagrant.sh",
+      "script/sshd.sh",
+      "script/vmtool.sh",
+      "script/cmtool.sh",
+      "script/minimize.sh",
+      "script/cleanup.sh"
+    ]
+  }],
+  "post-processors": [{
+    "type": "vagrant",
+    "keep_input_artifact": false,
+    "output": "box/{{.Provider}}/ubuntu1410-{{user `cm`}}{{user `cm_version`}}-{{user `version`}}.box"
+  }]
+}

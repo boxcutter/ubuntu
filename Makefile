@@ -19,6 +19,8 @@ UBUNTU1310_SERVER_AMD64 ?= http://releases.ubuntu.com/13.10/ubuntu-13.10-server-
 UBUNTU1310_SERVER_I386 ?= http://releases.ubuntu.com/13.10/ubuntu-13.10-server-i386.iso
 UBUNTU1404_SERVER_AMD64 ?= http://releases.ubuntu.com/14.04/ubuntu-14.04.1-server-amd64.iso
 UBUNTU1404_SERVER_I386 ?= http://releases.ubuntu.com/14.04/ubuntu-14.04.1-server-i386.iso
+UBUNTU1410_SERVER_AMD64 ?= http://releases.ubuntu.com/14.10/ubuntu-14.10-server-amd64.iso
+UBUNTU1410_SERVER_I386 ?= http://releases.ubuntu.com/14.10/ubuntu-14.10-server-i386.iso
 
 # Possible values for CM: (nocm | chef | chefdk | salt | puppet)
 CM ?= nocm
@@ -89,7 +91,7 @@ test-$(1): test-vmware/$(1) test-virtualbox/$(1)
 
 endef
 
-SHORTCUT_TARGETS := ubuntu1004-i386 ubuntu1004 ubuntu1204-desktop ubuntu1204-docker ubuntu1204-i386 ubuntu1204 ubuntu1404-desktop ubuntu1404-docker ubuntu1404-i386 ubuntu1404
+SHORTCUT_TARGETS := ubuntu1004-i386 ubuntu1004 ubuntu1204-desktop ubuntu1204-docker ubuntu1204-i386 ubuntu1204 ubuntu1404-desktop ubuntu1404-docker ubuntu1404-i386 ubuntu1404 ubuntu1410-docker ubuntu1410-i386 ubuntu1410
 $(foreach i,$(SHORTCUT_TARGETS),$(eval $(call SHORTCUT,$(i))))
 
 ###############################################################################
@@ -161,6 +163,24 @@ $(VMWARE_BOX_DIR)/ubuntu1404$(BOX_SUFFIX): ubuntu1404.json $(SOURCES)
 	mkdir -p $(VMWARE_BOX_DIR)
 	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
 
+$(VMWARE_BOX_DIR)/ubuntu1410-docker$(BOX_SUFFIX): ubuntu1410-docker.json $(SOURCES)
+	cd $(dir $<)
+	rm -rf $(VMWARE_OUTPUT)
+	mkdir -p $(VMWARE_BOX_DIR)
+	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1410_SERVER_AMD64)" $<
+
+$(VMWARE_BOX_DIR)/ubuntu1410-i386$(BOX_SUFFIX): ubuntu1410-i386.json $(SOURCES)
+	cd $(dir $<)
+	rm -rf $(VMWARE_OUTPUT)
+	mkdir -p $(VMWARE_BOX_DIR)
+	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1410_SERVER_I386)" $<
+
+$(VMWARE_BOX_DIR)/ubuntu1410$(BOX_SUFFIX): ubuntu1410.json $(SOURCES)
+	cd $(dir $<)
+	rm -rf $(VMWARE_OUTPUT)
+	mkdir -p $(VMWARE_BOX_DIR)
+	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1410_SERVER_AMD64)" $<
+
 # Generic rule - not used currently
 #$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): %.json
 #	cd $(dir $<)
@@ -227,6 +247,24 @@ $(VIRTUALBOX_BOX_DIR)/ubuntu1404$(BOX_SUFFIX): ubuntu1404.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
 	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
+
+$(VIRTUALBOX_BOX_DIR)/ubuntu1410-docker$(BOX_SUFFIX): ubuntu1410-docker.json $(SOURCES)
+	cd $(dir $<)
+	rm -rf $(VIRTUALBOX_OUTPUT)
+	mkdir -p $(VIRTUALBOX_BOX_DIR)
+	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1410_SERVER_AMD64)" $<
+
+$(VIRTUALBOX_BOX_DIR)/ubuntu1410-i386$(BOX_SUFFIX): ubuntu1410-i386.json $(SOURCES)
+	cd $(dir $<)
+	rm -rf $(VIRTUALBOX_OUTPUT)
+	mkdir -p $(VIRTUALBOX_BOX_DIR)
+	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1410_SERVER_I386)" $<
+
+$(VIRTUALBOX_BOX_DIR)/ubuntu1410$(BOX_SUFFIX): ubuntu1410.json $(SOURCES)
+	cd $(dir $<)
+	rm -rf $(VIRTUALBOX_OUTPUT)
+	mkdir -p $(VIRTUALBOX_BOX_DIR)
+	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1410_SERVER_AMD64)" $<
 
 list:
 	@echo "Prepend 'vmware/' to build only vmware target:"

@@ -86,6 +86,37 @@
       ["modifyvm", "{{.Name}}", "--memory", "512"],
       ["modifyvm", "{{.Name}}", "--cpus", "1"]
     ]
+  },
+  {
+    "vm_name": "ubuntu1204-i386",
+    "type": "parallels-iso",
+    "http_directory": "http",
+    "iso_url": "{{ user `iso_url` }}",
+    "iso_checksum": "{{ user `iso_checksum` }}",
+    "iso_checksum_type": "sha1",
+    "guest_os_type": "ubuntu",
+    "parallels_tools_flavor": "lin",
+    "prlctl_version_file": ".prlctl_version",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "ssh_wait_timeout": "10000s",
+    "boot_command": [
+      "<esc><esc><enter><wait>",
+      "/install/vmlinuz noapic ",
+      "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+      "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+      "hostname={{ .Name }} ",
+      "fb=false debconf/frontend=noninteractive ",
+      "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+      "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+      "initrd=/install/initrd.gz -- <enter>"
+    ],
+    "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+    "disk_size": 10140,
+    "prlctl": [
+      ["set", "{{.Name}}", "--memsize", "512"],
+      ["set", "{{.Name}}", "--cpus", "1"]
+    ]
   }],
   "provisioners": [{
     "type": "shell",

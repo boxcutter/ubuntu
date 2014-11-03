@@ -35,3 +35,13 @@ if [[ $PACKER_BUILDER_TYPE =~ virtualbox ]]; then
         ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
     fi
 fi
+
+if [[ $PACKER_BUILDER_TYPE =~ parallels ]]; then
+    echo "==> Installing Parallels tools"
+
+    mount -o loop /home/vagrant/prl-tools-lin.iso /mnt
+    /mnt/install --install-unattended-with-deps
+    umount /mnt
+    rm -rf /home/vagrant/prl-tools-lin.iso
+    rm -f /home/vagrant/.prlctl_version
+fi

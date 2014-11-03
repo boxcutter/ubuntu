@@ -10,16 +10,21 @@ UBUNTU1310_SERVER_AMD64 := $(winry_ubuntu)/ubuntu-13.10-server-amd64.iso
 UBUNTU1310_SERVER_I386 := $(winry_ubuntu)/ubuntu-13.10-server-i386.iso
 UBUNTU1404_SERVER_AMD64 := $(winry_ubuntu)/ubuntu-14.04.1-server-amd64.iso
 UBUNTU1404_SERVER_I386 := $(winry_ubuntu)/ubuntu-14.04.1-server-i386.iso
+UBUNTU1410_SERVER_AMD64 := $(winry_ubuntu)/ubuntu-14.10-server-amd64.iso
+UBUNTU1410_SERVER_I386 := $(winry_ubuntu)/ubuntu-14.10-server-i386.iso
 
 VIRTUALBOX_VERSION := $(shell virtualbox --help | head -n 1 | awk '{print $$NF}')
+PARALLELS_VERSION := $(shell prlctl --version | awk '{print $$3}')
 VMWARE_BOX_FILES := $(wildcard box/vmware/*.box)
 VIRTUALBOX_BOX_FILES := $(wildcard box/virtualbox/*.box)
-VMWARE_S3_BUCKET := s3://box-cutter/ubuntu/vmware9.8.3/
+PARALLELS_BOX_FILES := $(wildcard box/parallels/*.box)
+VMWARE_S3_BUCKET := s3://box-cutter/ubuntu/vmware9.8./
 VIRTUALBOX_S3_BUCKET := s3://box-cutter/ubuntu/virtualbox$(VIRTUALBOX_VERSION)/
+PARALLELS_S3_BUCKET := s3://box-cutter/ubuntu/parallels$(PARALLELS_VERSION)/
 S3_GRANT_ID := id=6efa364c53605afa1f4186b2b23ba97a354e74c7b9238317d9f57bc8f6f6bc5a
 ALLUSERS_ID := uri=http://acs.amazonaws.com/groups/global/AllUsers
 
-upload-s3: upload-s3-vmware upload-s3-virtualbox
+upload-s3: upload-s3-vmware upload-s3-virtualbox upload-s3-parallels
 
 upload-s3-vmware:
 	@for vmware_box_file in $(VMWARE_BOX_FILES) ; do \
@@ -31,7 +36,12 @@ upload-s3-virtualbox:
 		aws s3 cp $$virtualbox_box_file $(VIRTUALBOX_S3_BUCKET) --storage-class REDUCED_REDUNDANCY --grants full=$(S3_GRANT_ID) read=$(ALLUSERS_ID) ; \
 	done
 
-test-vagrantcloud: test-vagrantcloud-vmware test-vagrantcloud-virtualbox
+upload-s3-parallels:
+	@for parallels_box_file in $(PARALLELS_BOX_FILES) ; do \
+		aws s3 cp $$parallels_box_file $(PARALLELS_S3_BUCKET) --storage-class REDUCED_REDUNDANCY --grants full=$(S3_GRANT_ID) read=$(ALLUSERS_ID) ; \
+	done
+
+test-vagrantcloud: test-vagrantcloud-vmware test-vagrantcloud-virtualbox test-vagrantcloud-parallels
 
 test-vagrantcloud-vmware:
 	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
@@ -41,4 +51,9 @@ test-vagrantcloud-vmware:
 test-vagrantcloud-virtualbox:
 	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
 		bin/test-vagrantcloud-box.sh box-cutter/$$shortcut_target virtualbox virtualbox $(CURRENT_DIR)/test/*_spec.rb || exit; \
+	done
+
+test-vagrantcloud-parallels:
+	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
+		bin/test-vagrantcloud-box.sh box-cutter/$$shortcut_target parallels parallels $(CURRENT_DIR)/test/*_spec.rb || exit; \
 	done

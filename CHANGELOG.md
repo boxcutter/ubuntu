@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.8 (2014-11-05)
+
+* Upgraded VMware Tools to 9.8.4 for VMware Fusion 7
+* Added Ubuntu 14.10 templates
+* Bump Docker version to 1.3.1
+* Enable 3D acceleration under VMware Fusion and Workstation
+
 ## 1.0.7 (2014-10-16)
 
 * Upgraded VirtualBox Guest Additions to 4.3.18

@@ -39,11 +39,11 @@ else
 	BOX_SUFFIX := -$(CM)$(CM_VERSION)-$(BOX_VERSION).box
 endif
 # Packer does not allow empty variables, so only pass variables that are defined
+PACKER_VARS_LIST = 'cm=$(CM)' 'headless=$(HEADLESS)' 'update=$(UPDATE)' 'version=$(BOX_VERSION)'
 ifdef CM_VERSION
-	PACKER_VARS := -var 'cm=$(CM)' -var 'cm_version=$(CM_VERSION)' -var 'headless=$(HEADLESS)' -var 'update=$(UPDATE)' -var 'version=$(BOX_VERSION)'
-else
-	PACKER_VARS := -var 'cm=$(CM)' -var 'headless=$(HEADLESS)' -var 'update=$(UPDATE)' -var 'version=$(BOX_VERSION)'
+	PACKER_VARS_LIST += 'cm_version=$(CM_VERSION)'
 endif
+PACKER_VARS := $(addprefix -var , $(PACKER_VARS_LIST))
 ifdef PACKER_DEBUG
 	PACKER := PACKER_LOG=1 packer --debug
 else

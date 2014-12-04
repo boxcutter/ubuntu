@@ -72,6 +72,7 @@ install_puppet()
     DEB_NAME=puppetlabs-release-${DISTRIB_CODENAME}.deb
     wget http://apt.puppetlabs.com/${DEB_NAME}
     dpkg -i ${DEB_NAME}
+    apt-get update
     if [[ ${CM_VERSION:-} == 'latest' ]]; then
       echo "Installing latest Puppet version"
       apt-get install -y puppet

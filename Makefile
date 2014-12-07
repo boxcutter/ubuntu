@@ -55,11 +55,14 @@ endif
 BUILDER_TYPES := vmware virtualbox parallels
 TEMPLATE_FILENAMES := $(wildcard *.json)
 BOX_FILENAMES := $(TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
-BOX_FILES := $(foreach builder, $(BUILDER_TYPES), $(foreach box_filename, $(BOX_FILENAMES), box/$(builder)/$(box_filename)))
 TEST_BOX_FILES := $(foreach builder, $(BUILDER_TYPES), $(foreach box_filename, $(BOX_FILENAMES), test-box/$(builder)/$(box_filename)))
 VMWARE_BOX_DIR := box/vmware
 VIRTUALBOX_BOX_DIR := box/virtualbox
 PARALLELS_BOX_DIR := box/parallels
+VMWARE_BOX_FILES := $(foreach box_filename, $(BOX_FILENAMES), $(VMWARE_BOX_DIR)/$(box_filename))
+VIRTUALBOX_BOX_FILES := $(foreach box_filename, $(BOX_FILENAMES), $(VIRTUALBOX_BOX_DIR)/$(box_filename))
+PARALLELS_BOX_FILES := $(foreach box_filename, $(BOX_FILENAMES), $(PARALLELS_BOX_DIR)/$(box_filename))
+BOX_FILES := $(VMWARE_BOX_FILES) $(VIRTUALBOX_BOX_FILES) $(PARALLELS_BOX_FILES)
 VMWARE_OUTPUT := output-vmware-iso
 VIRTUALBOX_OUTPUT := output-virtualbox-iso
 PARALLELS_OUTPUT := output-parallels-iso
@@ -101,9 +104,17 @@ $(1): vmware/$(1) virtualbox/$(1) parallels/$(1)
 
 test-$(1): test-vmware/$(1) test-virtualbox/$(1) test-parallels/$(1)
 
+s3cp-$(1): s3cp-$(VMWARE_BOX_DIR)/$(1)$(BOX_SUFFIX) s3cp-$(VIRTUALBOX_BOX_DIR)/$(1)$(BOX_SUFFIX) s3cp-$(PARALLELS_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+s3cp-vmware/$(1): s3cp-$(VMWARE_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+s3cp-virtualbox/$(1): s3cp-$(VIRTUALBOX_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+s3cp-parallels/$(1): s3cp-$(PARALLELS_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
 endef
 
-SHORTCUT_TARGETS := ubuntu1004-i386 ubuntu1004 ubuntu1204-desktop ubuntu1204-docker ubuntu1204-i386 ubuntu1204 ubuntu1404-desktop ubuntu1404-docker ubuntu1404-i386 ubuntu1404 ubuntu1410-docker ubuntu1410-i386 ubuntu1410
+SHORTCUT_TARGETS := $(basename $(TEMPLATE_FILENAMES))
 $(foreach i,$(SHORTCUT_TARGETS),$(eval $(call SHORTCUT,$(i))))
 
 ###############################################################################
@@ -426,3 +437,19 @@ ssh-$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): $(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX)
 ssh-$(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX): $(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX)
 	rm -f ~/.ssh/known_hosts
 	bin/ssh-box.sh $< parallels parallels $(CURRENT_DIR)/test/*_spec.rb
+
+S3_STORAGE_CLASS ?= REDUCED_REDUNDANCY
+S3_ALLUSERS_ID ?= uri=http://acs.amazonaws.com/groups/global/AllUsers
+
+s3cp-$(VMWARE_BOX_DIR)/%$(BOX_SUFFIX): $(VMWARE_BOX_DIR)/%$(BOX_SUFFIX)
+	aws s3 cp $< $(VMWARE_S3_BUCKET) --storage-class $(S3_STORAGE_CLASS) --grants full=$(S3_GRANT_ID) read=$(S3_ALLUSERS_ID)
+
+s3cp-$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): $(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX)
+	aws s3 cp $< $(VIRTUALBOX_S3_BUCKET) --storage-class $(S3_STORAGE_CLASS) --grants full=$(S3_GRANT_ID) read=$(S3_ALLUSERS_ID)
+
+s3cp-$(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX): $(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX)
+	aws s3 cp $< $(PARALLELS_S3_BUCKET) --storage-class $(S3_STORAGE_CLASS) --grants full=$(S3_GRANT_ID) read=$(S3_ALLUSERS_ID)
+
+s3cp-vmware: $(addprefix s3cp-,$(VMWARE_BOX_FILES))
+s3cp-virtualbox: $(addprefix s3cp-,$(VIRTUALBOX_BOX_FILES))
+s3cp-parallels: $(addprefix s3cp-,$(PARALLELS_BOX_FILES))

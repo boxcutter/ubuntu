@@ -5,11 +5,6 @@ Vagrant.configure("2") do |config|
     config.vm.define "vagrant-ubuntu1204-desktop"
     config.vm.box = "ubuntu1204-desktop"
  
-    # Berkshelf
-    # config.berkshelf.enabled = true
-
-    config.vm.synced_folder "src/", "/srv/website", disabled: true  
-  
     config.vm.provider :virtualbox do |v, override|
         v.gui = true
         v.customize ["modifyvm", :id, "--memory", 1024]
@@ -23,7 +18,8 @@ Vagrant.configure("2") do |config|
         v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     end
 
-    config.vm.provider :vmware_fusion do |v, override|
+    ["vmware_fusion", "vmware_workstation"].each do |provider|
+      config.vm.provider provider do |v, override|
         v.gui = true
         v.vmx["memsize"] = "1024"
         v.vmx["numvcpus"] = "1"
@@ -33,17 +29,6 @@ Vagrant.configure("2") do |config|
         v.vmx["RemoteDisplay.vnc.port"] = "5900"
         v.vmx["scsi0.virtualDev"] = "lsilogic"
         v.vmx["mks.enable3d"] = "TRUE"
-    end
-
-    config.vm.provider :vmware_workstation do |v, override|
-        v.gui = true
-        v.vmx["memsize"] = "512"
-        v.vmx["numvcpus"] = "1"
-        v.vmx["cpuid.coresPerSocket"] = "1"
-        v.vmx["ethernet0.virtualDev"] = "vmxnet3"
-        v.vmx["RemoteDisplay.vnc.enabled"] = "false"
-        v.vmx["RemoteDisplay.vnc.port"] = "5900"
-        v.vmx["scsi0.virtualDev"] = "lsilogic"
-        v.vmx["mks.enable3d"] = "TRUE"
+      end
     end
 end

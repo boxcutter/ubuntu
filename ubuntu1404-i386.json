@@ -15,7 +15,8 @@
     "rsync_proxy": "{{env `rsync_proxy`}}",
     "no_proxy": "{{env `no_proxy`}}",
     "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.1-server-i386.iso",
-    "iso_checksum": "22c6764a4b9335d7b384a081e0fed104236c99d9"
+    "iso_checksum": "22c6764a4b9335d7b384a081e0fed104236c99d9",
+    "custom_script": "."
   },
   "builders": [{
     "vm_name": "ubuntu1404-i386",
@@ -143,9 +144,10 @@
       "script/vagrant.sh",
       "script/sshd.sh",
       "script/vmtool.sh",
-      "script/cmtool.sh",
       "script/minimize.sh",
-      "script/cleanup.sh"
+      "script/cleanup.sh",
+      "script/cmtool.sh",
+      "{{ user `custom_script` }}"
     ]
   }],
   "post-processors": [{

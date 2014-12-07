@@ -15,7 +15,8 @@
     "rsync_proxy": "{{env `rsync_proxy`}}",
     "no_proxy": "{{env `no_proxy`}}",
     "iso_url": "http://releases.ubuntu.com/14.10/ubuntu-14.10-server-amd64.iso",
-    "iso_checksum": "0c1ebea31c3523cfe9a4ffed8bcf6c7d23dfb97b" 
+    "iso_checksum": "0c1ebea31c3523cfe9a4ffed8bcf6c7d23dfb97b",
+    "custom_script": "."
   },
   "builders": [{
     "vm_name": "ubuntu1410-docker",
@@ -153,9 +154,10 @@
       "script/vagrant.sh",
       "script/sshd.sh",
       "script/vmtool.sh",
-      "script/cmtool.sh",
       "script/docker.sh",
-      "script/cleanup.sh"
+      "script/cleanup.sh",
+      "script/cmtool.sh",
+      "{{ user `custom_script` }}"
     ]
   }],
   "post-processors": [{

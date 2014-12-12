@@ -15,7 +15,8 @@
     "rsync_proxy": "{{env `rsync_proxy`}}",
     "no_proxy": "{{env `no_proxy`}}",
     "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.5-server-i386.iso",
-    "iso_checksum": "a34c224b7fe72a2f5c768be5afee5c53817743fd"
+    "iso_checksum": "a34c224b7fe72a2f5c768be5afee5c53817743fd",
+    "custom_script": "."
   },
   "builders": [{
     "vm_name": "ubuntu1204-i386",
@@ -143,9 +144,10 @@
       "script/vagrant.sh",
       "script/sshd.sh",
       "script/vmtool.sh",
-      "script/cmtool.sh",
       "script/minimize.sh",
-      "script/cleanup.sh"
+      "script/cleanup.sh",
+      "script/cmtool.sh",
+      "{{ user `custom_script` }}"
     ]
   }],
   "post-processors": [{

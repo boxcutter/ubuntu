@@ -10,3 +10,5 @@ tmp
 Makefile.local
 
 .DS_Store
+
+custom.sh

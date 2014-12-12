@@ -46,6 +46,9 @@ PACKER_VARS_LIST = 'cm=$(CM)' 'headless=$(HEADLESS)' 'update=$(UPDATE)' 'version
 ifdef CM_VERSION
 	PACKER_VARS_LIST += 'cm_version=$(CM_VERSION)'
 endif
+ifdef CUSTOM_SCRIPT
+	PACKER_VARS_LIST += 'custom_script=$(CUSTOM_SCRIPT)'
+endif
 PACKER_VARS := $(addprefix -var , $(PACKER_VARS_LIST))
 ifdef PACKER_DEBUG
 	PACKER := PACKER_LOG=1 packer --debug

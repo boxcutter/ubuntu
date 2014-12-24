@@ -22,7 +22,8 @@ PARALLELS_BOX_FILES := $(wildcard box/parallels/*.box)
 VMWARE_S3_BUCKET := s3://box-cutter/ubuntu/vmware$(VMWARE_VERSION)/
 VIRTUALBOX_S3_BUCKET := s3://box-cutter/ubuntu/virtualbox$(VIRTUALBOX_VERSION)/
 PARALLELS_S3_BUCKET := s3://box-cutter/ubuntu/parallels$(PARALLELS_VERSION)/
-S3_GRANT_ID := id=6efa364c53605afa1f4186b2b23ba97a354e74c7b9238317d9f57bc8f6f6bc5a
+S3_GRANT_ID := id=395536e070ed40ca64c173c16c60677d035e12dabd06298ff923f61e20cf2504
+AWS_PROFILE = mischataylor
 
 test-vagrantcloud: test-vagrantcloud-vmware test-vagrantcloud-virtualbox test-vagrantcloud-parallels
 

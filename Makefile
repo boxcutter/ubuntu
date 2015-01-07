@@ -3,9 +3,7 @@ ifneq ("$(wildcard Makefile.local)", "")
 	include Makefile.local
 endif
 
-ifndef PACKER
-	PACKER := packer
-endif
+PACKER ?= packer
 
 PACKER_VERSION = $(shell $(PACKER) --version | sed 's/^.* //g' | sed 's/^.//')
 ifneq (0.5.0, $(word 1, $(sort 0.5.0 $(PACKER_VERSION))))

@@ -1,5 +1,4 @@
 # Packer templates for Ubuntu
-[![Build Status](https://box-cutter.ci.cloudbees.com/buildStatus/icon?job=ubuntu-vm)](https://box-cutter.ci.cloudbees.com/job/ubuntu-vm/)
 
 ### Overview
 
@@ -10,22 +9,22 @@ using Packer.
 
 64-bit boxes:
 
-* [box-cutter/ubuntu1410](https://vagrantcloud.com/box-cutter/ubuntu1410) - Ubuntu Server 14.10 (64-bit), VMware 354MB/VirtualBox 302MB/Parallels 320MB
-* [box-cutter/ubuntu1410-docker](https://vagrantcloud.com/box-cutter/ubuntu1410-docker) - Ubuntu Server 14.10 (64-bit) with Docker preinstalled, VMware 478MB/VirtualBox 454MB/Parallels 457MB
-* [box-cutter/ubuntu1404](https://vagrantcloud.com/box-cutter/ubuntu1404) - Ubuntu Server 14.04.1 (64-bit), VMware 324MB/VirtualBox 288MB/Parallels 302MB
-* [box-cutter/ubuntu1404-desktop](https://vagrantcloud.com/box-cutter/ubuntu1404-desktop) - Ubuntu Desktop 14.04.1 (64-bit), VMware 1.1GB/VirtualBox 1.1GB/Parallels 1.1GB
-* [box-cutter/ubuntu1404-docker](https://vagrantcloud.com/box-cutter/ubuntu1404-docker) - Ubuntu Server 14.04.1 (64-bit) with Docker preinstalled, VMware 432MB/VirtualBox 412MB/Parallels 429MB
-* [box-cutter/ubuntu1204](https://vagrantcloud.com/box-cutter/ubuntu1204) - Ubuntu Server 12.04.5 (64-bit), VMware 284MB, VirtualBox 237MB/Parallels 265MB
-* [box-cutter/ubuntu1204-desktop](https://vagrantcloud.com/box-cutter/ubuntu1204-desktop) - Ubuntu Desktop 12.04.4 (64-bit), VMware 925MB/VirtualBox 815MB/Parallels 957MB
-* [box-cutter/ubuntu1204-docker](https://vagrantcloud.com/box-cutter/ubuntu1204-docker) - Ubuntu Server 12.04.5 (64-bit) with Docker preinstalled, VMware 393MB/VirtualBox 354MB/Parallels 375MB
-* [box-cutter/ubuntu1004](https://vagrantcloud.com/box-cutter/ubuntu1004)  - Ubuntu Server 10.04.4 (64-bit), VMware 216MB/VirtualBox 191MB/Parallels 210MB
+* Ubuntu Server 14.10 (64-bit), VMware 354MB/VirtualBox 302MB/Parallels 320MB
+* Ubuntu Server 14.10 (64-bit) with Docker preinstalled, VMware 478MB/VirtualBox 454MB/Parallels 457MB
+* Ubuntu Server 14.04.1 (64-bit), VMware 324MB/VirtualBox 288MB/Parallels 302MB
+* Ubuntu Desktop 14.04.1 (64-bit), VMware 1.1GB/VirtualBox 1.1GB/Parallels 1.1GB
+* Ubuntu Server 14.04.1 (64-bit) with Docker preinstalled, VMware 432MB/VirtualBox 412MB/Parallels 429MB
+* Ubuntu Server 12.04.5 (64-bit), VMware 284MB, VirtualBox 237MB/Parallels 265MB
+* Ubuntu Desktop 12.04.4 (64-bit), VMware 925MB/VirtualBox 815MB/Parallels 957MB
+* Ubuntu Server 12.04.5 (64-bit) with Docker preinstalled, VMware 393MB/VirtualBox 354MB/Parallels 375MB
+* Ubuntu Server 10.04.4 (64-bit), VMware 216MB/VirtualBox 191MB/Parallels 210MB
 
 32-bit boxes:
 
-* [box-cutter/ubuntu1410-i386](https://vagrantcloud.com/box-cutter/ubuntu1410-i386) - Ubuntu Server 14.10 (32-bit), VMware 353MB/VIrtualBox 314MB/Parallels 319MB
-* [box-cutter/ubuntu1404-i386](https://vagrantcloud.com/box-cutter/ubuntu1404-i386) - Ubuntu Server 14.04.1 (32-bit), VMware 322MB/VirtualBox 284MB/Parallels 298MB
-* [box-cutter/ubuntu1204-i386](https://vagrantcloud.com/box-cutter/ubuntu1204-i386) - Ubuntu Server 12.04.5 (32-bit), VMware 280MB/VirtualBox 226MB/Parallels 257MB
-* [box-cutter/ubuntu1004-i386](https://vagrantcloud.com/box-cutter/ubuntu1004-i386) - Ubuntu Server 10.04.4 (32-bit), VMware 224MB/VirtualBox 167MB/Parallels 207MB
+* Ubuntu Server 14.10 (32-bit), VMware 353MB/VirtualBox 314MB/Parallels 319MB
+* Ubuntu Server 14.04.1 (32-bit), VMware 322MB/VirtualBox 284MB/Parallels 298MB
+* Ubuntu Server 12.04.5 (32-bit), VMware 280MB/VirtualBox 226MB/Parallels 257MB
+* Ubuntu Server 10.04.4 (32-bit), VMware 224MB/VirtualBox 167MB/Parallels 207MB
 
 ## Building the Vagrant boxes
 

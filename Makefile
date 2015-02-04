@@ -3,7 +3,9 @@ ifneq ("$(wildcard Makefile.local)", "")
 	include Makefile.local
 endif
 
-PACKER_VERSION = $(shell packer --version | sed 's/^.* //g' | sed 's/^.//')
+PACKER ?= packer
+
+PACKER_VERSION = $(shell $(PACKER) --version | sed 's/^.* //g' | sed 's/^.//')
 ifneq (0.5.0, $(word 1, $(sort 0.5.0 $(PACKER_VERSION))))
 $(error Packer version less than 0.5.x, please upgrade)
 endif
@@ -51,9 +53,7 @@ ifdef CUSTOM_SCRIPT
 endif
 PACKER_VARS := $(addprefix -var , $(PACKER_VARS_LIST))
 ifdef PACKER_DEBUG
-	PACKER := PACKER_LOG=1 packer --debug
-else
-	PACKER := packer
+	PACKER := PACKER_LOG=1 $(PACKER) --debug
 endif
 BUILDER_TYPES := vmware virtualbox parallels
 TEMPLATE_FILENAMES := $(wildcard *.json)
@@ -297,85 +297,85 @@ $(VIRTUALBOX_BOX_DIR)/ubuntu1410$(BOX_SUFFIX): ubuntu1410.json $(SOURCES)
 #	cd $(dir $<)
 #	rm -rf output-parallels-iso
 #	mkdir -p $(PARALLELS_BOX_DIR)
-#	packer build -only=parallels-iso $(PACKER_VARS) $<
+#	$(PACKER) build -only=parallels-iso $(PACKER_VARS) $<
 
 $(PARALLELS_BOX_DIR)/ubuntu1004-i386$(BOX_SUFFIX): ubuntu1004-i386.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1004_SERVER_I386)" $<
+	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1004_SERVER_I386)" $<
 
 $(PARALLELS_BOX_DIR)/ubuntu1004$(BOX_SUFFIX): ubuntu1004.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1004_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1004_SERVER_AMD64)" $<
 
 $(PARALLELS_BOX_DIR)/ubuntu1204-desktop$(BOX_SUFFIX): ubuntu1204-desktop.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_ALTERNATE_AMD64)" $<
+	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_ALTERNATE_AMD64)" $<
 
 $(PARALLELS_BOX_DIR)/ubuntu1204-docker$(BOX_SUFFIX): ubuntu1204-docker.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_AMD64)" $<
 
 $(PARALLELS_BOX_DIR)/ubuntu1204-i386$(BOX_SUFFIX): ubuntu1204-i386.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_I386)" $<
+	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_I386)" $<
 
 $(PARALLELS_BOX_DIR)/ubuntu1204$(BOX_SUFFIX): ubuntu1204.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1204_SERVER_AMD64)" $<
 
 $(PARALLELS_BOX_DIR)/ubuntu1404-desktop$(BOX_SUFFIX): ubuntu1404-desktop.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
 
 $(PARALLELS_BOX_DIR)/ubuntu1404-docker$(BOX_SUFFIX): ubuntu1404-docker.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
 
 $(PARALLELS_BOX_DIR)/ubuntu1404-i386$(BOX_SUFFIX): ubuntu1404-i386.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_I386)" $<
+	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_I386)" $<
 
 $(PARALLELS_BOX_DIR)/ubuntu1404$(BOX_SUFFIX): ubuntu1404.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1404_SERVER_AMD64)" $<
 
 $(PARALLELS_BOX_DIR)/ubuntu1410$(BOX_SUFFIX): ubuntu1410.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1410_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1410_SERVER_AMD64)" $<
 
 $(PARALLELS_BOX_DIR)/ubuntu1410-docker$(BOX_SUFFIX): ubuntu1410-docker.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1410_SERVER_AMD64)" $<
+	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1410_SERVER_AMD64)" $<
 
 $(PARALLELS_BOX_DIR)/ubuntu1410-i386$(BOX_SUFFIX): ubuntu1410-i386.json $(SOURCES)
 	cd $(dir $<)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1410_SERVER_I386)" $<
+	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(UBUNTU1410_SERVER_I386)" $<
 
 list:
 	@echo "Prepend 'vmware/' to build only vmware target:"
@@ -393,7 +393,7 @@ list:
 validate:
 	@for template_filename in $(TEMPLATE_FILENAMES) ; do \
 		echo Checking $$template_filename ; \
-		packer validate $$template_filename ; \
+		$(PACKER) validate $$template_filename ; \
 	done
 
 

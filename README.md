@@ -130,3 +130,9 @@ This override is commonly used to speed up Packer builds by
 pointing at pre-downloaded ISOs instead of using the default
 download Internet URLs:
 `UBUNTU1404_SERVER_AMD64 := file:///Volumes/Ubuntu/ubuntu-14.04.1-server-amd64.iso`
+
+### Acknowledgments
+
+[SmartyStreets](http://www.smartystreets.com) is providing basebox hosting.
+
+![Powered By SmartyStreets](https://smartystreets.com/resources/images/smartystreets-flat.png)

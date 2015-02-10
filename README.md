@@ -133,6 +133,6 @@ download Internet URLs:
 
 ### Acknowledgments
 
-[SmartyStreets](http://www.smartystreets.com) is providing basebox hosting.
+[SmartyStreets](http://www.smartystreets.com) is providing basebox hosting for the box-cutter project.
 
 ![Powered By SmartyStreets](https://smartystreets.com/resources/images/smartystreets-flat.png)

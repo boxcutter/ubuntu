@@ -9,22 +9,22 @@ using Packer.
 
 64-bit boxes:
 
-* Ubuntu Server 14.10 (64-bit), VMware 354MB/VirtualBox 302MB/Parallels 320MB
-* Ubuntu Server 14.10 (64-bit) with Docker preinstalled, VMware 478MB/VirtualBox 454MB/Parallels 457MB
-* Ubuntu Server 14.04.1 (64-bit), VMware 324MB/VirtualBox 288MB/Parallels 302MB
-* Ubuntu Desktop 14.04.1 (64-bit), VMware 1.1GB/VirtualBox 1.1GB/Parallels 1.1GB
-* Ubuntu Server 14.04.1 (64-bit) with Docker preinstalled, VMware 432MB/VirtualBox 412MB/Parallels 429MB
-* Ubuntu Server 12.04.5 (64-bit), VMware 284MB, VirtualBox 237MB/Parallels 265MB
-* Ubuntu Desktop 12.04.4 (64-bit), VMware 925MB/VirtualBox 815MB/Parallels 957MB
-* Ubuntu Server 12.04.5 (64-bit) with Docker preinstalled, VMware 393MB/VirtualBox 354MB/Parallels 375MB
-* Ubuntu Server 10.04.4 (64-bit), VMware 216MB/VirtualBox 191MB/Parallels 210MB
+* [Ubuntu Server 14.10 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1410), VMware 360MB/VirtualBox 326MB/Parallels 3337MB
+* [Ubuntu Server 14.10 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1410-docker), VMware 502MB/VirtualBox 474MB/Parallels 480MB
+* [Ubuntu Server 14.04.1 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404), VMware 342MB/VirtualBox 296MB/Parallels 319MB
+* [Ubuntu Desktop 14.04.1 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-desktop), VMware 1.19GB/VirtualBox 1.15GB/Parallels 1.17GB
+* [Ubuntu Server 14.04.1 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-docker), VMware 472MB/VirtualBox 429MB/Parallels 452MB
+* [Ubuntu Server 12.04.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204), VMware 306MB, VirtualBox 251MB/Parallels 276MB
+* [Ubuntu Desktop 12.04.4 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-desktop), VMware 968MB/VirtualBox 855MB/Parallels 997MB
+* [Ubuntu Server 12.04.5 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-docker), VMware 417MB/VirtualBox 365MB/Parallels 393MB
+* [Ubuntu Server 10.04.4 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1004), VMware 236MB/VirtualBox 177MB/Parallels 228MB
 
 32-bit boxes:
 
-* Ubuntu Server 14.10 (32-bit), VMware 353MB/VirtualBox 314MB/Parallels 319MB
-* Ubuntu Server 14.04.1 (32-bit), VMware 322MB/VirtualBox 284MB/Parallels 298MB
-* Ubuntu Server 12.04.5 (32-bit), VMware 280MB/VirtualBox 226MB/Parallels 257MB
-* Ubuntu Server 10.04.4 (32-bit), VMware 224MB/VirtualBox 167MB/Parallels 207MB
+* [Ubuntu Server 14.10 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1410-i386), VMware 354MB/VirtualBox 327MB/Parallels 344MB
+* [Ubuntu Server 14.04.1 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-i386), VMware 339MB/VirtualBox 299MB/Parallels 313MB
+* [Ubuntu Server 12.04.5 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-i386), VMware 300MB/VirtualBox 260MB/Parallels 268MB
+* [Ubuntu Server 10.04.4 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1004-i386), VMware 231MB/VirtualBox 156MB/Parallels 215MB
 
 ## Building the Vagrant boxes
 

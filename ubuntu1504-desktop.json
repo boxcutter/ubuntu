@@ -14,18 +14,17 @@
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "rsync_proxy": "{{env `rsync_proxy`}}",
     "no_proxy": "{{env `no_proxy`}}",
-    "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.5-server-amd64.iso",
-    "iso_checksum": "7540ace2d6cdee264432f5ed987236d32edef798",
+    "iso_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/current/vivid-server-amd64.iso",
+    "iso_checksum": ""
     "custom_script": "."
   },
   "builders": [{
-    "vm_name": "ubuntu1204",
+    "vm_name": "ubuntu1504-desktop",
     "type": "vmware-iso",
     "guest_os_type": "ubuntu-64",
     "http_directory": "http",
     "iso_url": "{{ user `iso_url` }}",
-    "iso_checksum": "{{ user `iso_checksum` }}",
-    "iso_checksum_type": "sha1",
+    "iso_checksum_type": "none",
     "ssh_username": "{{ user `ssh_username` }}",
     "ssh_password": "{{ user `ssh_password` }}",
     "ssh_wait_timeout": "10000s",
@@ -48,24 +47,23 @@
       " netcfg/get_domain=vm",
       " netcfg/get_hostname=vagrant",
       " noapic" ,
-      " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg",
+      " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed-1504.cfg",
       " -- ",
       "<enter>"
     ],
     "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
-    "disk_size": 10140,
+    "disk_size": 40960,
     "vmx_data": {
-      "memsize": "512",
+      "memsize": "1024",
       "numvcpus": "1"
     }
   },
   {
-    "vm_name": "ubuntu1204",
+    "vm_name": "ubuntu1504-desktop",
     "type": "virtualbox-iso",
     "http_directory": "http",
     "iso_url": "{{ user `iso_url` }}",
-    "iso_checksum": "{{ user `iso_checksum` }}",
-    "iso_checksum_type": "sha1",
+    "iso_checksum_type": "none",
     "guest_os_type": "Ubuntu_64",
     "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
     "virtualbox_version_file": ".vbox_version",
@@ -85,14 +83,14 @@
       "initrd=/install/initrd.gz -- <enter>"
     ],
     "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
-    "disk_size": 10140,
+    "disk_size": 40960,
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "512"],
       ["modifyvm", "{{.Name}}", "--cpus", "1"]
     ]
   },
   {
-    "vm_name": "ubuntu1204",
+    "vm_name": "ubuntu1504-desktop",
     "type": "parallels-iso",
     "http_directory": "http",
     "iso_url": "{{ user `iso_url` }}",
@@ -116,7 +114,7 @@
       "initrd=/install/initrd.gz -- <enter>"
     ],
     "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
-    "disk_size": 10140,
+    "disk_size": 40960,
     "prlctl": [
       ["set", "{{.Name}}", "--memsize", "512"],
       ["set", "{{.Name}}", "--cpus", "1"]
@@ -141,10 +139,10 @@
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [
       "script/update.sh",
+      "script/desktop.sh",
       "script/vagrant.sh",
       "script/sshd.sh",
       "script/vmtool.sh",
-      "script/minimize.sh",
       "script/cleanup.sh",
       "script/cmtool.sh"
     ]
@@ -152,6 +150,7 @@
   "post-processors": [{
     "type": "vagrant",
     "keep_input_artifact": false,
-    "output": "box/{{.Provider}}/ubuntu1204-{{user `cm`}}{{user `cm_version`}}-{{user `version`}}.box"
+    "vagrantfile_template": "tpl/vagrantfile-ubuntu1504-desktop.tpl",
+    "output": "box/{{.Provider}}/ubuntu1504-desktop-{{user `cm`}}{{user `cm_version`}}-{{user `version`}}.box"
   }]
 }

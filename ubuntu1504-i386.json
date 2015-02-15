@@ -14,18 +14,17 @@
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "rsync_proxy": "{{env `rsync_proxy`}}",
     "no_proxy": "{{env `no_proxy`}}",
-    "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.5-server-amd64.iso",
-    "iso_checksum": "7540ace2d6cdee264432f5ed987236d32edef798",
+    "iso_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/current/vivid-server-i386.iso",
+    "iso_checksum": "",
     "custom_script": "."
   },
   "builders": [{
-    "vm_name": "ubuntu1204",
+    "vm_name": "ubuntu1504-i386",
     "type": "vmware-iso",
-    "guest_os_type": "ubuntu-64",
+    "guest_os_type": "ubuntu",
     "http_directory": "http",
     "iso_url": "{{ user `iso_url` }}",
-    "iso_checksum": "{{ user `iso_checksum` }}",
-    "iso_checksum_type": "sha1",
+    "iso_checksum_type": "none",
     "ssh_username": "{{ user `ssh_username` }}",
     "ssh_password": "{{ user `ssh_password` }}",
     "ssh_wait_timeout": "10000s",
@@ -48,7 +47,7 @@
       " netcfg/get_domain=vm",
       " netcfg/get_hostname=vagrant",
       " noapic" ,
-      " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg",
+      " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed-1504.cfg",
       " -- ",
       "<enter>"
     ],
@@ -60,13 +59,12 @@
     }
   },
   {
-    "vm_name": "ubuntu1204",
+    "vm_name": "ubuntu1504-i386",
     "type": "virtualbox-iso",
     "http_directory": "http",
     "iso_url": "{{ user `iso_url` }}",
-    "iso_checksum": "{{ user `iso_checksum` }}",
-    "iso_checksum_type": "sha1",
-    "guest_os_type": "Ubuntu_64",
+    "iso_checksum_type": "none",
+    "guest_os_type": "Ubuntu",
     "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
     "virtualbox_version_file": ".vbox_version",
     "ssh_username": "{{ user `ssh_username` }}",
@@ -92,7 +90,7 @@
     ]
   },
   {
-    "vm_name": "ubuntu1204",
+    "vm_name": "ubuntu1504-i386",
     "type": "parallels-iso",
     "http_directory": "http",
     "iso_url": "{{ user `iso_url` }}",
@@ -152,6 +150,6 @@
   "post-processors": [{
     "type": "vagrant",
     "keep_input_artifact": false,
-    "output": "box/{{.Provider}}/ubuntu1204-{{user `cm`}}{{user `cm_version`}}-{{user `version`}}.box"
+    "output": "box/{{.Provider}}/ubuntu1504-i386-{{user `cm`}}{{user `cm_version`}}-{{user `version`}}.box"
   }]
 }

@@ -72,7 +72,7 @@
     "ssh_username": "{{ user `ssh_username` }}",
     "ssh_password": "{{ user `ssh_password` }}",
     "ssh_wait_timeout": "10000s",
-    "headless": "{{ user `headless` }}",    
+    "headless": "{{ user `headless` }}",
     "boot_command": [
       "<esc><esc><enter><wait>",
       "/install/vmlinuz noapic ",
@@ -146,8 +146,7 @@
       "script/sshd.sh",
       "script/vmtool.sh",
       "script/cleanup.sh",
-      "script/cmtool.sh",
-      "{{ user `custom_script` }}"
+      "script/cmtool.sh"
     ]
   }],
   "post-processors": [{

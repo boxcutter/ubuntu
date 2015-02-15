@@ -59,7 +59,7 @@ The tests are written in [Serverspec](http://serverspec.org) and require the
 `vagrant-serverspec` plugin to be installed with:
 
     vagrant plugin install vagrant-serverspec
-    
+
 The `Makefile` has individual targets for each box type with the prefix
 `test-*` should you wish to run tests individually for each box.  For example:
 
@@ -71,7 +71,7 @@ do exploratory testing.  For example, to do exploratory testing
 on the VirtualBox training environmnet, run the following command:
 
     make ssh-box/virtualbox/ubuntu1404-nocm.box
-    
+
 Upon logout `make ssh-*` will automatically de-register the box as well.
 
 ### Makefile.local override
@@ -125,6 +125,8 @@ For Ubuntu, the ISO path variables are:
 * UBUNTU1404_SERVER_I386
 * UBUNTU1410_SERVER_AMD64
 * UBUNTU1410_SERVER_I386
+* UBUNTU1504_SERVER_AMD64
+* UBUNTU1504_SERVER_I386
 
 This override is commonly used to speed up Packer builds by
 pointing at pre-downloaded ISOs instead of using the default

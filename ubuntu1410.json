@@ -156,8 +156,7 @@
       "script/vmtool.sh",
       "script/minimize.sh",
       "script/cleanup.sh",
-      "script/cmtool.sh",
-      "{{ user `custom_script` }}"
+      "script/cmtool.sh"
     ]
   }],
   "post-processors": [{

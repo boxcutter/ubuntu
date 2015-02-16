@@ -14,8 +14,8 @@
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "rsync_proxy": "{{env `rsync_proxy`}}",
     "no_proxy": "{{env `no_proxy`}}",
-    "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.5-alternate-amd64.iso",
-    "iso_checksum": "b8c2e054b2a398cf02f268fcc1966b29c6dc007e",
+    "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.4-alternate-amd64.iso",
+    "iso_checksum": "73a758a2353f21e3016be8135411342a605bccac",
     "custom_script": "."
   },
   "builders": [{

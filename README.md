@@ -36,10 +36,21 @@ be installed as an additional preqrequisite.
 
 A GNU Make `Makefile` drives the process via the following targets:
 
-    make        # Build all the box types (VirtualBox & VMware)
+    make        # Build all available box types
     make test   # Run tests against all the boxes
-    make list   # Print out individual targets
+    make list   # Print out the list of all available boxes
     make clean  # Clean up build detritus
+
+To build one particular box, e.g. `ubuntu1404`,
+for just one provider, e.g. VirtualBox,
+first run `make list` subcommand:
+
+    make list
+
+This command prints the list of available boxes.
+Then you can build one particular box for choosen provider:
+
+    make virtualbox/ubuntu1404
 
 ### Proxy Settings
 

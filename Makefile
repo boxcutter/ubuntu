@@ -73,7 +73,6 @@ endif
 BUILDER_TYPES ?= vmware virtualbox parallels
 TEMPLATE_FILENAMES := $(wildcard *.json)
 BOX_FILENAMES := $(TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
-TEST_BOX_FILES := $(foreach builder, $(BUILDER_TYPES), $(foreach box_filename, $(BOX_FILENAMES), test-box/$(builder)/$(box_filename)))
 VMWARE_BOX_DIR ?= box/vmware
 VIRTUALBOX_BOX_DIR ?= box/virtualbox
 PARALLELS_BOX_DIR ?= box/parallels
@@ -104,8 +103,6 @@ SOURCES := $(wildcard script/*.sh) $(wildcard floppy/*.*) $(wildcard http/*.cfg)
 	validate
 
 all: $(BOX_FILES)
-
-test: $(TEST_BOX_FILES)
 
 ###############################################################################
 # Target shortcuts
@@ -257,6 +254,11 @@ test-$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): $(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX)
 test-$(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX): $(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX)
 	rm -f ~/.ssh/known_hosts
 	bin/test-box.sh $< parallels parallels $(CURRENT_DIR)/test/*_spec.rb
+
+test: test-vmware test-virtualbox test-parallels
+test-vmware: $(addprefix test-,$(VMWARE_BOX_FILES))
+test-virtualbox: $(addprefix test-,$(VIRTUALBOX_BOX_FILES))
+test-parallels: $(addprefix test-,$(PARALLELS_BOX_FILES))
 
 ssh-$(VMWARE_BOX_DIR)/%$(BOX_SUFFIX): $(VMWARE_BOX_DIR)/%$(BOX_SUFFIX)
 	rm -f ~/.ssh/known_hosts

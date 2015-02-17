@@ -15,7 +15,7 @@
     "rsync_proxy": "{{env `rsync_proxy`}}",
     "no_proxy": "{{env `no_proxy`}}",
     "iso_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/current/vivid-server-amd64.iso",
-    "iso_checksum": ""
+    "iso_checksum": "",
     "custom_script": "."
   },
   "builders": [{

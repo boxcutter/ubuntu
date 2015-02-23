@@ -5,27 +5,6 @@ endif
 
 PACKER ?= packer
 
-PACKER_VERSION = $(shell $(PACKER) --version | sed 's/^.* //g' | sed 's/^.//')
-ifneq (0.5.0, $(word 1, $(sort 0.5.0 $(PACKER_VERSION))))
-$(error Packer version less than 0.5.x, please upgrade)
-endif
-
-UBUNTU1004_SERVER_AMD64 ?= http://releases.ubuntu.com/10.04.4/ubuntu-10.04.4-server-amd64.iso
-UBUNTU1004_SERVER_I386 ?= http://releases.ubuntu.com/10.04.4/ubuntu-10.04.4-server-i386.iso
-UBUNTU1204_SERVER_AMD64 ?= http://releases.ubuntu.com/12.04/ubuntu-12.04.5-server-amd64.iso
-UBUNTU1204_SERVER_I386 ?= http://releases.ubuntu.com/12.04/ubuntu-12.04.5-server-i386.iso
-UBUNTU1204_ALTERNATE_AMD64 ?= http://releases.ubuntu.com/12.04/ubuntu-12.04.4-alternate-amd64.iso
-UBUNTU1304_SERVER_AMD64 ?= http://releases.ubuntu.com/13.04/ubuntu-13.04-server-amd64.iso
-UBUNTU1304_SERVER_I386 ?= http://releases.ubuntu.com/13.04/ubuntu-13.04-server-i386.iso
-UBUNTU1310_SERVER_AMD64 ?= http://releases.ubuntu.com/13.10/ubuntu-13.10-server-amd64.iso
-UBUNTU1310_SERVER_I386 ?= http://releases.ubuntu.com/13.10/ubuntu-13.10-server-i386.iso
-UBUNTU1404_SERVER_AMD64 ?= http://releases.ubuntu.com/14.04/ubuntu-14.04.1-server-amd64.iso
-UBUNTU1404_SERVER_I386 ?= http://releases.ubuntu.com/14.04/ubuntu-14.04.1-server-i386.iso
-UBUNTU1410_SERVER_AMD64 ?= http://releases.ubuntu.com/14.10/ubuntu-14.10-server-amd64.iso
-UBUNTU1410_SERVER_I386 ?= http://releases.ubuntu.com/14.10/ubuntu-14.10-server-i386.iso
-UBUNTU1504_SERVER_AMD64 ?= http://cdimage.ubuntu.com/ubuntu-server/daily/current/vivid-server-amd64.iso
-UBUNTU1504_SERVER_I386 ?= http://cdimage.ubuntu.com/ubuntu-server/daily/current/vivid-server-i386.iso
-
 # Possible values for CM: (nocm | chef | chefdk | salt | puppet)
 CM ?= nocm
 # Possible values for CM_VERSION: (latest | x.y.z | x.y)
@@ -56,6 +35,9 @@ endif
 ifdef INSTALL_VAGRANT_KEY
 	PACKER_VARS_LIST += 'install_vagrant_key=$(INSTALL_VAGRANT_KEY)'
 endif
+ifdef ISO_PATH
+	PACKER_VARS_LIST += 'iso_path=$(ISO_PATH)'
+endif
 ifdef SSH_PASSWORD
 	PACKER_VARS_LIST += 'ssh_password=$(SSH_PASSWORD)'
 endif
@@ -68,7 +50,9 @@ endif
 
 PACKER_VARS := $(addprefix -var , $(PACKER_VARS_LIST))
 ifdef PACKER_DEBUG
-	PACKER := PACKER_LOG=1 $(PACKER) --debug
+	PACKER_CMD := PACKER_LOG=1 $(PACKER) --debug
+else
+	PAcKER_CMD := $(PACKER)
 endif
 BUILDER_TYPES ?= vmware virtualbox parallels
 TEMPLATE_FILENAMES := $(wildcard *.json)
@@ -149,63 +133,20 @@ $(foreach i,$(SHORTCUT_TARGETS),$(eval $(call SHORTCUT,$(i))))
 
 ###############################################################################
 
-define BUILDBOX
-
-$(VMWARE_BOX_DIR)/$(1)$(BOX_SUFFIX): $(1).json $(SOURCES)
-	cd $(dir $(VMWARE_BOX_DIR))
+$(VMWARE_BOX_DIR)/%$(BOX_SUFFIX): %.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(2)" $(1).json
+	$(PACKER_CMD) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) $<
 
-$(VIRTUALBOX_BOX_DIR)/$(1)$(BOX_SUFFIX): $(1).json $(SOURCES)
-	cd $(dir $(VIRTUALBOX_BOX_DIR))
+$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): %.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(2)" $(1).json
+	$(PACKER_CMD) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) $<
 
-$(PARALLELS_BOX_DIR)/$(1)$(BOX_SUFFIX): $(1).json $(SOURCES)
-	cd $(dir $(PARALLELS_BOX_DIR))
+$(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX): %.json $(SOURCES)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	$(PACKER) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(2)" $(1).json
-
-endef
-
-$(eval $(call BUILDBOX,ubuntu1004-i386,$(UBUNTU1004_SERVER_I386)))
-
-$(eval $(call BUILDBOX,ubuntu1004,$(UBUNTU1004_SERVER_AMD64)))
-
-$(eval $(call BUILDBOX,ubuntu1204-desktop,$(UBUNTU1204_ALTERNATE_AMD64)))
-
-$(eval $(call BUILDBOX,ubuntu1204-docker,$(UBUNTU1204_SERVER_AMD64)))
-
-$(eval $(call BUILDBOX,ubuntu1204-i386,$(UBUNTU1204_SERVER_I386)))
-
-$(eval $(call BUILDBOX,ubuntu1204,$(UBUNTU1204_SERVER_AMD64)))
-
-$(eval $(call BUILDBOX,ubuntu1404-desktop,$(UBUNTU1404_SERVER_AMD64)))
-
-$(eval $(call BUILDBOX,ubuntu1404-docker,$(UBUNTU1404_SERVER_AMD64)))
-
-$(eval $(call BUILDBOX,ubuntu1404-i386,$(UBUNTU1404_SERVER_I386)))
-
-$(eval $(call BUILDBOX,ubuntu1404,$(UBUNTU1404_SERVER_AMD64)))
-
-$(eval $(call BUILDBOX,ubuntu1410-desktop,$(UBUNTU1404_SERVER_AMD64)))
-
-$(eval $(call BUILDBOX,ubuntu1410-docker,$(UBUNTU1410_SERVER_AMD64)))
-
-$(eval $(call BUILDBOX,ubuntu1410-i386,$(UBUNTU1410_SERVER_I386)))
-
-$(eval $(call BUILDBOX,ubuntu1410,$(UBUNTU1410_SERVER_AMD64)))
-
-$(eval $(call BUILDBOX,ubuntu1504-desktop,$(UBUNTU1404_SERVER_AMD64)))
-
-$(eval $(call BUILDBOX,ubuntu1504-docker,$(UBUNTU1504_SERVER_AMD64)))
-
-$(eval $(call BUILDBOX,ubuntu1504-i386,$(UBUNTU1504_SERVER_I386)))
-
-$(eval $(call BUILDBOX,ubuntu1504,$(UBUNTU1504_SERVER_AMD64)))
+	$(PACKER_CMD) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) $<
 
 list:
 	@echo "Prepend 'vmware/' to build only vmware target:"

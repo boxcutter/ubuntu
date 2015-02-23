@@ -1,43 +1,14 @@
-winry_ubuntu := /Volumes/Storage/software/ubuntu
-UBUNTU1004_SERVER_AMD64 := $(winry_ubuntu)/ubuntu-10.04.4-server-amd64.iso
-UBUNTU1004_SERVER_I386 := $(winry_ubuntu)/ubuntu-10.04.4-server-i386.iso
-UBUNTU1204_SERVER_AMD64 := $(winry_ubuntu)/ubuntu-12.04.5-server-amd64.iso
-UBUNTU1204_SERVER_I386 := $(winry_ubuntu)/ubuntu-12.04.5-server-i386.iso
-UBUNTU1204_ALTERNATE_AMD64 := $(winry_ubuntu)/ubuntu-12.04.4-alternate-amd64.iso
-UBUNTU1304_SERVER_AMD64 := $(winry_ubuntu)/ubuntu-13.04-server-amd64.iso
-UBUNTU1304_SERVER_I386 := $(winry_ubuntu)/ubuntu-13.04-server-i386.iso
-UBUNTU1310_SERVER_AMD64 := $(winry_ubuntu)/ubuntu-13.10-server-amd64.iso
-UBUNTU1310_SERVER_I386 := $(winry_ubuntu)/ubuntu-13.10-server-i386.iso
-UBUNTU1404_SERVER_AMD64 := $(winry_ubuntu)/ubuntu-14.04.1-server-amd64.iso
-UBUNTU1404_SERVER_I386 := $(winry_ubuntu)/ubuntu-14.04.1-server-i386.iso
-UBUNTU1410_SERVER_AMD64 := $(winry_ubuntu)/ubuntu-14.10-server-amd64.iso
-UBUNTU1410_SERVER_I386 := $(winry_ubuntu)/ubuntu-14.10-server-i386.iso
+PACKER := /usr/local/packer/packer
+ISO_PATH := /Volumes/Thunder/software/ubuntu
 
 VIRTUALBOX_VERSION := $(shell virtualbox --help | head -n 1 | awk '{print $$NF}')
 PARALLELS_VERSION := $(shell prlctl --version | awk '{print $$3}')
-VMWARE_VERSION := 9.9.0
+VMWARE_VERSION := 9.9.2
 VMWARE_BOX_FILES := $(wildcard box/vmware/*.box)
 VIRTUALBOX_BOX_FILES := $(wildcard box/virtualbox/*.box)
 PARALLELS_BOX_FILES := $(wildcard box/parallels/*.box)
-VMWARE_S3_BUCKET := s3://box-cutter/ubuntu/vmware$(VMWARE_VERSION)/
-VIRTUALBOX_S3_BUCKET := s3://box-cutter/ubuntu/virtualbox$(VIRTUALBOX_VERSION)/
-PARALLELS_S3_BUCKET := s3://box-cutter/ubuntu/parallels$(PARALLELS_VERSION)/
-S3_GRANT_ID := id=395536e070ed40ca64c173c16c60677d035e12dabd06298ff923f61e20cf2504
-AWS_PROFILE = mischataylor
-
-test-vagrantcloud: test-vagrantcloud-vmware test-vagrantcloud-virtualbox test-vagrantcloud-parallels
-
-test-vagrantcloud-vmware:
-	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
-		bin/test-vagrantcloud-box.sh box-cutter/$$shortcut_target vmware_fusion vmware_desktop $(CURRENT_DIR)/test/*_spec.rb || exit; \
-	done
-
-test-vagrantcloud-virtualbox:
-	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
-		bin/test-vagrantcloud-box.sh box-cutter/$$shortcut_target virtualbox virtualbox $(CURRENT_DIR)/test/*_spec.rb || exit; \
-	done
-
-test-vagrantcloud-parallels:
-	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
-		bin/test-vagrantcloud-box.sh box-cutter/$$shortcut_target parallels parallels $(CURRENT_DIR)/test/*_spec.rb || exit; \
-	done
+VMWARE_S3_BUCKET := s3://smartystreets-boxcutter/ubuntu/vmware$(VMWARE_VERSION)/
+VIRTUALBOX_S3_BUCKET := s3://smartystreets-boxcutter/ubuntu/virtualbox$(VIRTUALBOX_VERSION)/
+PARALLELS_S3_BUCKET := s3://smartystreets-boxcutter/ubuntu/parallels$(PARALLELS_VERSION)/
+S3_GRANT_ID := id=120985f7542bdcc1f07bb3e2fc74f0e53a03f9a05e4267a3c8d38d27933c7a94
+AWS_PROFILE = smartystreets

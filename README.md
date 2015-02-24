@@ -10,9 +10,8 @@ using Packer.
 64-bit boxes:
 
 * [Ubuntu Server 15.04 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1504)
-* [Ubuntu Server 15.04 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1504-docker)
-* [Ubuntu Server 15.04 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1504)
 * [Ubuntu Desktop 15.04 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1504-desktop)
+* [Ubuntu Server 15.04 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1504-docker)
 * [Ubuntu Server 14.10 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1410)
 * [Ubuntu Server 14.10 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1410-docker)
 * [Ubuntu Server 14.04.2 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404)

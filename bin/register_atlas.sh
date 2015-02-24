@@ -124,7 +124,7 @@ fi
 status=$(jq -r .status < ${COMM_FILE_DIR}/version_result.json)
 
 echo 'publishing provider'
-BOXCUTTER_BASE_URL=http://cdn.boxcutter.io/centos
+BOXCUTTER_BASE_URL=http://cdn.boxcutter.io/ubuntu
 if [[ -e ${VMWARE_BOX_FILE} ]]; then
     PROVIDER_URL=${BOXCUTTER_BASE_URL}/vmware${VMWARE_VERSION}/${BOX_NAME}${BOX_SUFFIX}
     PROVIDER=vmware_desktop

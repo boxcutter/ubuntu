@@ -45,13 +45,12 @@ current() {
 tag() {
     echo "tagged: ${CURRENT_VERSION}"
     git fetch --all > /dev/null
-    git tag -a -m "Version ${NEXT_VERSION}" ${NEXT_VERSION}
+    git tag -a -m "Version ${CURRENT_VERSION} pushed to Atlas" ${CURRENT_VERSION}
     git push --tags || true
 }
 
 write_version() {
     NEXT_VERSION=${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}
-    echo "Creating and pushing tags"
     echo "Writing files: VERSION"
     echo ${NEXT_VERSION} > VERSION
     git fetch --all > /dev/null

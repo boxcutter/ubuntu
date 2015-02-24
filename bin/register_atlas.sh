@@ -52,13 +52,13 @@ case ${PRETTY_VERSION} in
     PRETTY_VERSION="14.10 Utopic Unicorn"
     ;;
 14.04)
-    PRETTY_VERSION="14.04 LTS Trusty Tahr"
+    PRETTY_VERSION="14.04.1 LTS Trusty Tahr"
     ;;
 12.04)
-    PRETTY_VERSION="12.04 LTS Precise Pangolin"
+    PRETTY_VERSION="12.04.5 LTS Precise Pangolin"
     ;;
 10.04)
-    PRETTY_VERSION="10.04 LTS Lucid Lynx"
+    PRETTY_VERSION="10.04.4 LTS Lucid Lynx"
     ;;
 esac
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.13 (2014-02-22)
+
+* Upgrade Ubuntu 14.04.1 to Ubuntu 14.04.2
+* Upgrade Parallels tools to 10.1.4
+* Upgradte VirtualBox Guest Additions to 4.3.22
+* Upgrade VMware Tools to 9.9.2 for VMware Fusion 7.1.1
+
 ## 1.0.11 (2014-12-23)
 
 * Upgrade Parallels Tools to 10.1.2

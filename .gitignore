@@ -8,6 +8,7 @@ tmp
 .vagrant/
 *.swp
 Makefile.local
+.tmpatlas/
 
 .DS_Store
 

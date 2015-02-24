@@ -60,7 +60,7 @@ BOX_FILENAMES := $(TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 VMWARE_BOX_DIR ?= box/vmware
 VIRTUALBOX_BOX_DIR ?= box/virtualbox
 PARALLELS_BOX_DIR ?= box/parallels
-VMWARE_TEMPLATE_FILENAMES = $(filter-out ubuntu1504-docker.json ubuntu1504-i386.json ubuntu1504.json,$(TEMPLATE_FILENAMES))
+VMWARE_TEMPLATE_FILENAMES = $(filter-out ubuntu1504-docker.json ubuntu1504-i386.json ubuntu1504-desktop.json ubuntu1504.json,$(TEMPLATE_FILENAMES))
 VMWARE_BOX_FILENAMES := $(VMWARE_TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 VMWARE_BOX_FILES := $(foreach box_filename, $(VMWARE_BOX_FILENAMES), $(VMWARE_BOX_DIR)/$(box_filename))
 VIRTUALBOX_BOX_FILES := $(foreach box_filename, $(BOX_FILENAMES), $(VIRTUALBOX_BOX_DIR)/$(box_filename))

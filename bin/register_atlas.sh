@@ -132,9 +132,8 @@ if [[ -e ${VMWARE_BOX_FILE} ]]; then
     curl -X POST ${ATLAS_URI}/${BOX_NAME}/version/${VERSION}/providers -d "${token_param}" -d provider[name]="${PROVIDER}" -d provider[url]="${PROVIDER_URL}" > ${COMM_FILE_DIR}/provider_result.json
 fi
 if [[ -e ${VIRTUALBOX_BOX_FILE} ]]; then
-    echo ${PROVIDER_URL}
-    PROVIDER_URL=${BOXCUTTER_BASE_URL}/virtualbox${VIRTUALBOX_VERSION}/${BOX_NAME}${BOX_SUFFIX}
     PROVIDER=virtualbox
+    PROVIDER_URL=${BOXCUTTER_BASE_URL}/virtualbox${VIRTUALBOX_VERSION}/${BOX_NAME}${BOX_SUFFIX}
     echo ${PROVIDER_URL}
     curl -X POST ${ATLAS_URI}/${BOX_NAME}/version/${VERSION}/providers -d "${token_param}" -d provider[name]="${PROVIDER}" -d provider[url]="${PROVIDER_URL}" > ${COMM_FILE_DIR}/provider_result.json
 fi

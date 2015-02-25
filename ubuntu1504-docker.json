@@ -58,6 +58,7 @@
       "disk_size": 10140,
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Ubuntu_64",
+      "hard_drive_interface": "sata",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
       "iso_checksum_type": "none",

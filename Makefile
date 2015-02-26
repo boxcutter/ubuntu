@@ -253,6 +253,11 @@ s3cp-parallels: $(addprefix s3cp-,$(PARALLELS_BOX_FILES))
 
 ATLAS_NAME ?= boxcutter
 
+test-atlas: test-atlas-vmware test-atlas-virtualbox test-atlas-parallels
+test-atlas-vmware: $(addprefix test-atlas-,$(VMWARE_BOX_FILES))
+test-atlas-virtualbox: $(addprefix test-atlas-,$(VIRTUALBOX_BOX_FILES))
+test-atlas-parallels: $(addprefix test-atlas-,$(PARALLELS_BOX_FILES))
+
 test-atlas-$(VMWARE_BOX_DIR)%$(BOX_SUFFIX):
 	bin/test-vagrantcloud-box.sh boxcutter$* vmware_fusion vmware_desktop $(CURRENT_DIR)/test/*_spec.rb
 	bin/test-vagrantcloud-box.sh box-cutter$* vmware_fusion vmware_desktop $(CURRENT_DIR)/test/*_spec.rb
@@ -269,6 +274,8 @@ test-atlas: test-atlas-vmware test-atlas-virtualbox test-atlas-parallels
 test-atlas-vmware: $(addprefix test-atlas-,$(VMWARE_BOX_FILES))
 test-atlas-virtualbox: $(addprefix test-atlas-,$(VIRTUALBOX_BOX_FILES))
 test-atlas-parallels: $(addprefix test-atlas-,$(PARALLELS_BOX_FILES))
+
+register-atlas: $(addprefix register-atlas-,$(basename $(TEMPLATE_FILENAMES)))
 
 register-atlas/%$(BOX_SUFFIX):
 	bin/register_atlas.sh $* $(BOX_SUFFIX) $(BOX_VERSION)

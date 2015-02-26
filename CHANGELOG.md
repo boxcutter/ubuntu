@@ -1,10 +1,10 @@
 # Changelog
 
-## 1.0.14 (2014-02-26)
+## 1.0.14 (2015-02-26)
 
 * Use the SATA HDD controller for faster disk IO speeds on VirtualBox
 
-## 1.0.13 (2014-02-22)
+## 1.0.13 (2015-02-22)
 
 * Upgrade Ubuntu 14.04.1 to Ubuntu 14.04.2
 * Upgrade Parallels tools to 10.1.4

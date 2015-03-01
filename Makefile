@@ -38,6 +38,9 @@ endif
 ifdef ISO_PATH
 	PACKER_VARS_LIST += 'iso_path=$(ISO_PATH)'
 endif
+ifdef SSH_FULLNAME
+	PACKER_VARS_LIST += 'ssh_fullname=$(SSH_FULLNAME)'
+endif
 ifdef SSH_PASSWORD
 	PACKER_VARS_LIST += 'ssh_password=$(SSH_PASSWORD)'
 endif

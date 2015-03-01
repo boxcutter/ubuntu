@@ -1,5 +1,7 @@
 #!/bin/bash -eux
 
+SSH_USER=${SSH_USERNAME:-vagrant}
+
 CLEANUP_PAUSE=${CLEANUP_PAUSE:-0}
 echo "==> Pausing for ${CLEANUP_PAUSE} seconds..."
 sleep ${CLEANUP_PAUSE}
@@ -36,7 +38,7 @@ dpkg --get-selections | grep -v deinstall
 # Remove Bash history
 unset HISTFILE
 rm -f /root/.bash_history
-rm -f /home/vagrant/.bash_history
+rm -f /home/${SSH_USER}/.bash_history
 
 # Clean up log files
 find /var/log -type f | while read f; do echo -ne '' > $f; done;

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 UBUNTU_MAJOR_VERSION=$(lsb_release -rs | cut -f1 -d .)
+SSH_USER=${SSH_USERNAME:-vagrant}
 
 docker_package_install() {
     # Add the Docker repository to your apt sources list.
@@ -70,7 +71,7 @@ give_docker_non_root_access() {
 
     # Add the connected "${USER}" to the docker group.
     gpasswd -a ${USER} docker
-    gpasswd -a vagrant docker
+    gpasswd -a ${SSH_USER} docker
 
     # Restart the Docker daemon
     #service docker restart

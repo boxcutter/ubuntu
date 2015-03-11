@@ -45,3 +45,7 @@ if [[ $PACKER_BUILDER_TYPE =~ parallels ]]; then
     rm -rf /home/vagrant/prl-tools-lin.iso
     rm -f /home/vagrant/.prlctl_version
 fi
+
+echo "==> Removing packages needed for building guest tools"
+apt-get -y remove linux-headers-$(uname -r) build-essential perl
+apt-get -y autoremove

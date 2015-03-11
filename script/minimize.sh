@@ -43,8 +43,6 @@ echo "==> Removing man pages"
 rm -rf /usr/share/man/*
 echo "==> Removing APT files"
 find /var/lib/apt -type f | xargs rm -f
-echo "==> Removing anything in /usr/src"
-rm -rf /usr/src/*
 echo "==> Removing any docs"
 rm -rf /usr/share/doc/*
 echo "==> Removing caches"

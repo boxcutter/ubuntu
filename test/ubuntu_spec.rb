@@ -4,8 +4,9 @@ describe 'box' do
   it 'should have a root user' do
     expect(user 'root').to exist
   end
-  
-  it 'should have a vagrant user' do
-    expect(user 'vagrant').to exist
+
+  has_docker = command('command -v docker').exit_status == 0
+  it 'should make vagrant a member of the docker group', :if => has_docker do
+    expect(user 'vagrant').to belong_to_group 'docker'
   end
 end

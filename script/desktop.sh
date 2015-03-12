@@ -1,8 +1,10 @@
 #!/bin/bash
 
+SSH_USER=${SSH_USERNAME:-vagrant}
+
 configure_ubuntu1204_autologin()
 {
-    USERNAME=vagrant
+    USERNAME=${SSH_USER}
     LIGHTDM_CONFIG=/etc/lightdm/lightdm.conf
 
     echo "==> Configuring lightdm autologin"
@@ -26,7 +28,7 @@ elif [[ $DISTRIB_RELEASE == 14.04 ]]; then
 #    apt-get install -y gnome-terminal
     apt-get install -y ubuntu-desktop
 
-    USERNAME=vagrant
+    USERNAME=${SSH_USER}
     LIGHTDM_CONFIG=/etc/lightdm/lightdm.conf
     GDM_CUSTOM_CONFIG=/etc/gdm/custom.conf
 
@@ -34,7 +36,7 @@ elif [[ $DISTRIB_RELEASE == 14.04 ]]; then
     echo "[daemon]" >> $GDM_CUSTOM_CONFIG
     echo "# Enabling automatic login" >> $GDM_CUSTOM_CONFIG
     echo "AutomaticLoginEnable=True" >> $GDM_CUSTOM_CONFIG
-    echo "AutomaticLoginEnable=vagrant" >> $GDM_CUSTOM_CONFIG
+    echo "AutomaticLoginEnable=${USERNAME}" >> $GDM_CUSTOM_CONFIG
     
     echo "==> Configuring lightdm autologin"
     #if [ -f $LIGHTDM_CONFIG ]; then

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.15 (2015-03-12)
+
+* Upgrade Virtual Box Guest Additions to 4.3.24
+* Fix issues with upgrading Parallels tools
+
 ## 1.0.14 (2015-02-26)
 
 * Use the SATA HDD controller for faster disk IO speeds on VirtualBox
@@ -8,7 +13,7 @@
 
 * Upgrade Ubuntu 14.04.1 to Ubuntu 14.04.2
 * Upgrade Parallels tools to 10.1.4
-* Upgradte VirtualBox Guest Additions to 4.3.22
+* Upgrade VirtualBox Guest Additions to 4.3.22
 * Upgrade VMware Tools to 9.9.2 for VMware Fusion 7.1.1
 
 ## 1.0.11 (2014-12-23)

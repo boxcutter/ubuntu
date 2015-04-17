@@ -105,6 +105,10 @@ install_ansible()
 #
 
 case "${CM}" in
+  'ansible')
+    install_ansible
+    ;;
+
   'chef')
     install_chef
     ;;

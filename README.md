@@ -112,6 +112,7 @@ the output of `make list` accordingly.
 Possible values for the CM variable are:
 
 * `nocm` - No configuration management tool
+* `ansible` - Install Ansible
 * `chef` - Install Chef
 * `chefdk` - Install Chef Development Kit
 * `puppet` - Install Puppet

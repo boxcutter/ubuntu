@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.17 (2015-05-05)
+
+* Ubuntu 15.04 released, switch to release ISOs instead of daily ISOs
+* Upgrade Parallels Tools to 10.2.0
+
 ## 1.0.16 (2015-03-20)
 
 * Upgrade Virtual Box Guest Additions to 4.3.26

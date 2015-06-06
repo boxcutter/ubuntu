@@ -20,7 +20,6 @@ using Packer.
 * [Ubuntu Server 12.04.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204)
 * [Ubuntu Desktop 12.04.4 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-desktop)
 * [Ubuntu Server 12.04.5 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-docker)
-* [Ubuntu Server 10.04.4 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1004)
 
 32-bit boxes:
 
@@ -28,7 +27,6 @@ using Packer.
 * [Ubuntu Server 14.10 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1410-i386)
 * [Ubuntu Server 14.04.1 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-i386)
 * [Ubuntu Server 12.04.5 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-i386)
-* [Ubuntu Server 10.04.4 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1004-i386)
 
 ## Building the Vagrant boxes
 

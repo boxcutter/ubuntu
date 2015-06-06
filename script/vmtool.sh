@@ -6,20 +6,18 @@ if [[ $PACKER_BUILDER_TYPE =~ vmware ]]; then
     echo "==> Installing VMware Tools"
     # Assuming the following packages are installed
     # apt-get install -y linux-headers-$(uname -r) build-essential perl
-    apt-get install -y git
 
     cd /tmp
     mkdir -p /mnt/cdrom
-    mount -o loop /home/${SSH_USER}/linux.iso /mnt/cdrom
+    mount -o loop /home/vagrant/linux.iso /mnt/cdrom
+    tar zxf /mnt/cdrom/VMwareTools-*.tar.gz -C /tmp/
 
-    git clone https://github.com/rasa/vmware-tools-patches.git
-    vmware-tools-patches/untar-and-patch.sh /mnt/cdrom/VMwareTools-*.tar.gz
-    vmware-tools-distrib/vmware-install.pl -d
+    /tmp/vmware-tools-distrib/vmware-install.pl -d
 
-    rm /home/${SSH_USER}/linux.iso
+    rm /home/vagrant/linux.iso
     umount /mnt/cdrom
     rmdir /mnt/cdrom
-    rm -rf /tmp/VMwareTools-* /tmp/vmware-tool-patches /tmp/vmware-tools-distrib
+    rm -rf /tmp/VMwareTools-*
 fi
 
 if [[ $PACKER_BUILDER_TYPE =~ virtualbox ]]; then

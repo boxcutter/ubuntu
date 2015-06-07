@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.19 (2015-06-07)
+
+* Add Ubuntu 15.04 images for VMware
+
 ## 1.0.18 (2015-06-06)
 
 * Removed 10.04 images - Ubuntu 10.04 stopped getting updates April 2015

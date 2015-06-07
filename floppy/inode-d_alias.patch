@@ -1,0 +1,27 @@
+--- /tmp/inode.c.orig	2015-06-07 03:47:22.961644831 +0000
++++ inode.c	2015-06-07 03:49:22.728356403 +0000
+@@ -1922,7 +1922,12 @@
+                            p,
+ #endif
+                            &inode->i_dentry,
++#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 13, 0)
+                            d_alias) {
++#else
++                           d_u.d_alias) {
++#endif
++
+          int dcount = hgfs_d_count(dentry);
+          if (dcount) {
+             LOG(4, ("Found %s %d \n", dentry->d_name.name, dcount));
+@@ -1975,7 +1980,11 @@
+       /* Find a dentry with valid d_count. Refer bug 587879. */
+       list_for_each(pos, &inode->i_dentry) {
+          int dcount;
++#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 13, 0)
+          struct dentry *dentry = list_entry(pos, struct dentry, d_alias);
++#else
++         struct dentry *dentry = list_entry(pos, struct dentry, d_u.d_alias);
++#endif
+          dcount = hgfs_d_count(dentry);
+          if (dcount) {
+             LOG(4, ("Found %s %d \n", (dentry)->d_name.name, dcount));

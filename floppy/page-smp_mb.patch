@@ -1,0 +1,20 @@
+--- page.c.orig	2015-06-07 04:40:37.648429928 +0000
++++ page.c	2015-06-07 04:42:16.576430206 +0000
+@@ -1678,9 +1678,17 @@
+       LOG(6, (KERN_WARNING "VMware Hgfs: %s: Invalid unlock attempted\n", __func__));
+       return;
+    }
++#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 18, 0)
+    smp_mb__before_clear_bit();
++#else
++   smp_mb__before_atomic();
++#endif
+    clear_bit(PG_BUSY, &req->wb_flags);
++#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 18, 0)
+    smp_mb__after_clear_bit();
++#else
++   smp_mb__after_atomic();
++#endif
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 13)
+    wake_up_bit(&req->wb_flags, PG_BUSY);
+ #else

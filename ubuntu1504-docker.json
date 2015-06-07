@@ -27,6 +27,11 @@
         "<enter>"
       ],
       "disk_size": 10140,
+      "floppy_files": [
+        "floppy/vmhgfs-f_dentry-kernel-3.19-tools-9.9.2.patch",
+        "floppy/inode-d_alias.patch",
+        "floppy/page-smp_mb.patch"
+      ],
       "guest_os_type": "ubuntu-64",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",

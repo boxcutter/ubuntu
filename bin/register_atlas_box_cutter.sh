@@ -57,6 +57,9 @@ get_short_description() {
     RAW_VERSION=${RAW_VERSION%-desktop}
     PRETTY_VERSION=${RAW_VERSION:0:2}.${RAW_VERSION:2}
     case ${PRETTY_VERSION} in
+    15.10)
+        PRETTY_VERSION="15.10 Wily Werewolf Development Build"
+        ;;
     15.04)
         PRETTY_VERSION="15.04 Vivid Vervet"
         ;;
@@ -102,6 +105,9 @@ create_description() {
     RAW_VERSION=${RAW_VERSION%-desktop}
     PRETTY_VERSION=${RAW_VERSION:0:2}.${RAW_VERSION:2}
     case ${PRETTY_VERSION} in
+    15.10)
+        PRETTY_VERSION="15.10 Wily Werewolf Development Build"
+        ;;
     15.04)
         PRETTY_VERSION="15.04 Vivid Vervet"
         ;;

@@ -26,7 +26,7 @@
         " -- ",
         "<enter>"
       ],
-      "disk_size": 10140,
+      "disk_size": 65536,
       "floppy_files": [
         "floppy/vmhgfs-f_dentry-kernel-3.19-tools-9.9.2.patch",
         "floppy/inode-d_alias.patch",
@@ -69,7 +69,7 @@
         "passwd/username={{ user `ssh_username` }} ",
         "initrd=/install/initrd.gz -- <enter>"
       ],
-      "disk_size": 10140,
+      "disk_size": 65536,
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Ubuntu_64",
       "hard_drive_interface": "sata",
@@ -129,7 +129,7 @@
         " -- ",
         "<enter>"
       ],
-      "disk_size": 10140,
+      "disk_size": 65536,
       "guest_os_type": "ubuntu",
       "http_directory": "http",
       "iso_checksum": "{{ user `iso_checksum` }}",

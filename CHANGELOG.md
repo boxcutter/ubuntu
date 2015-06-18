@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.20 (2015-06-18)
+
+* Increase lazy-allocated disk size for server images to 64GB
+* Increase lazy-allocated disk size for desktop images to 127GB
+
 ## 1.0.19 (2015-06-07)
 
 * Add Ubuntu 15.04 images for VMware

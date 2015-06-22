@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.21 (2015-06-22)
+
+* Upgrade VMware tools to 9.9.3 for VMware Fusion 7.1.2
+
 ## 1.0.20 (2015-06-18)
 
 * Increase lazy-allocated disk size for server images to 64GB

@@ -22,7 +22,7 @@ if [[ $DISTRIB_RELEASE == 12.04 ]]; then
 
     configure_ubuntu1204_autologin
 
-elif [[ $DISTRIB_RELEASE == 14.04 ]]; then
+elif [[ $DISTRIB_RELEASE == 14.04 || $DISTRIB_RELEASE == 15.04 ]]; then
     echo "==> Installing ubunutu-desktop"
 #    apt-get install -y --no-install-recommends ubuntu-desktop
 #    apt-get install -y gnome-terminal

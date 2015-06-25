@@ -201,7 +201,7 @@
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
-    "install_vagrant_key": true,
+    "install_vagrant_key": "true",
     "iso_checksum": "3bfa6eac84d527380d0cc52db9092cde127f161e",
     "iso_name": "ubuntu-14.04.2-server-amd64.iso",
     "iso_path": "iso",

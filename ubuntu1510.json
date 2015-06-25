@@ -201,7 +201,7 @@
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
-    "install_vagrant_key": true,
+    "install_vagrant_key": "true",
     "iso_path": "",
     "iso_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/current/wily-server-amd64.iso",
     "no_proxy": "{{env `no_proxy`}}",

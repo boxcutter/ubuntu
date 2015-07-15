@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.0 (2015-07-15)
+
+* Upgrade VirtualBox guest additions to 5.0.0
+
+## 1.1.0 (2015-06-24)
+
+* Templates revised for Packer 0.8.x
+
 ## 1.0.22 (2015-06-23)
 
 * Disable the release upgrader

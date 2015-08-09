@@ -71,11 +71,11 @@
       "disk_size": 65536,
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Ubuntu",
+      "hard_drive_interface": "sata",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
       "iso_checksum": "{{ user `iso_checksum` }}",
       "iso_checksum_type": "none",
-      "iso_interface": "sata",
       "iso_urls": [
         "{{ user `iso_url` }}"
       ],

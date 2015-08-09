@@ -158,7 +158,6 @@
       "environment_vars": [
         "CM={{user `cm`}}",
         "CM_VERSION={{user `cm_version`}}",
-        "CM_PC_VERSION={{user `cm_pc_version`}}",
         "CLEANUP_PAUSE={{user `cleanup_pause`}}",
         "UPDATE={{user `update`}}",
         "INSTALL_VAGRANT_KEY={{user `install_vagrant_key`}}",
@@ -187,7 +186,6 @@
     "cleanup_pause": "",
     "cm": "nocm",
     "cm_version": "",
-    "cm_pc_version": "",
     "custom_script": ".",
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "headless": "",

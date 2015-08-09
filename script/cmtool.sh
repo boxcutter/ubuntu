@@ -9,9 +9,8 @@
 #   'chefdk'             -- build a box with Chef Development Kit
 #   'salt'               -- build a box with Salt
 #   'puppet'             -- build a box with Puppet
-#   'puppet_collections' -- build a box with Puppet Collections
 #
-# Values for CM_VERSION can be (when CM is ansible|chef|chefdk|salt|puppet|puppet_collections):
+# Values for CM_VERSION can be (when CM is ansible|chef|chefdk|salt|puppet):
 #   'x.y.z'              -- build a box with version x.y.z of Chef
 #   'x.y'                -- build a box with version x.y of Salt
 #   'x.y.z-apuppetlabsb' -- build a box with package version of Puppet
@@ -70,7 +69,9 @@ install_salt()
 install_puppet()
 {
     echo "==> Installing Puppet"
-    DEB_NAME=puppetlabs-release-$(/usr/bin/lsb_release -cs).deb
+    . /etc/lsb-release
+
+    DEB_NAME=puppetlabs-release-${DISTRIB_CODENAME}.deb
     wget http://apt.puppetlabs.com/${DEB_NAME}
     dpkg -i ${DEB_NAME}
     apt-get update
@@ -99,25 +100,6 @@ install_ansible()
     apt-get install -y ansible
 }
 
-install_puppet_collections()
-{
-    echo "==> Installing Puppet Collections ${CM_PC_VERSION}"
-    DEB_RELEASE=$(/usr/bin/lsb_release -cs)
-    DEB_NAME="puppetlabs-release-${CM_PC_VERSION}-${DEB_RELEASE}.deb"
-    wget http://apt.puppetlabs.com/${DEB_NAME}
-    dpkg -i ${DEB_NAME}
-    apt-get update
-    if [[ ${CM_VERSION:-} == 'latest' ]]; then
-      echo "==> Installing latest puppet-agent version"
-      apt-get install -y puppet-agent
-    else
-      echo "==> Installing puppet-agent version $CM_VERSION"
-      apt-get install -y puppet-agent=$CM_VERSION$DEB_RELEASE
-    fi
-
-    rm -f ${DEB_NAME}
-}
-
 #
 # Main script
 #
@@ -141,10 +123,6 @@ case "${CM}" in
 
   'puppet')
     install_puppet
-    ;;
-
-  'puppet_collections')
-    install_puppet_collections
     ;;
 
   *)

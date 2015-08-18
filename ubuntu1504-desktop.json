@@ -57,7 +57,7 @@
       "boot_command": [
         "<esc><esc><enter><wait>",
         "/install/vmlinuz noapic ",
-        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+        "file=/floppy/preseed.cfg ",
         "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
         "hostname={{ user `hostname` }} ",
         "fb=false debconf/frontend=noninteractive ",
@@ -70,11 +70,13 @@
         "initrd=/install/initrd.gz -- <enter>"
       ],
       "disk_size": 130048,
+      "floppy_files": [
+        "http/preseed.cfg"
+      ],
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Ubuntu_64",
       "hard_drive_interface": "sata",
       "headless": "{{ user `headless` }}",
-      "http_directory": "http",
       "iso_checksum": "{{ user `iso_checksum` }}",
       "iso_checksum_type": "sha1",
       "iso_urls": [

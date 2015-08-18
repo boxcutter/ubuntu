@@ -52,7 +52,7 @@
       "boot_command": [
         "<esc><esc><enter><wait>",
         "/install/vmlinuz noapic ",
-        "file=/floppy/presee.cfg ",
+        "file=/floppy/preseed.cfg ",
         "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
         "hostname={{ user `hostname` }} ",
         "fb=false debconf/frontend=noninteractive ",

@@ -71,7 +71,7 @@
       ],
       "disk_size": 65536,
       "floppy_files": [
-        "http:/preseed.cfg"
+        "http/preseed.cfg"
       ],
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Ubuntu_64",

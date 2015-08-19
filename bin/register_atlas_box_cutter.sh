@@ -67,7 +67,7 @@ get_short_description() {
         PRETTY_VERSION="14.10 Utopic Unicorn"
         ;;
     14.04)
-        PRETTY_VERSION="14.04.2 LTS Trusty Tahr"
+        PRETTY_VERSION="14.04.3 LTS Trusty Tahr"
         ;;
     12.04)
         PRETTY_VERSION="12.04.5 LTS Precise Pangolin"

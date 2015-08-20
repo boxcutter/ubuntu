@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.1 (2015-08-19)
+
+* Upgrade VirtualBox guest additions to 5.0.2
+* Upgrade Ubuntu 14.04 to 14.04.3 LTS
+* Add "iso_interface": "sata" back as it is supported again in Packer 0.8.2
+* Upgrade Parallels tools to 10.2.2
+
 ## 2.0.0 (2015-07-15)
 
 * Upgrade VirtualBox guest additions to 5.0.0

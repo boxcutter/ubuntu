@@ -44,7 +44,7 @@ if [[ $PACKER_BUILDER_TYPE =~ vmware ]]; then
         fi
     fi
 
-    /tmp/vmware-tools-distrib/vmware-install.pl -d
+    /tmp/vmware-tools-distrib/vmware-install.pl --force-install
 
     rm /home/vagrant/linux.iso
     umount /mnt/cdrom

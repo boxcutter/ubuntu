@@ -2,13 +2,10 @@ PACKER := /usr/local/packer/packer
 ISO_PATH := /Volumes/Thunder/software/ubuntu
 
 VIRTUALBOX_VERSION := $(shell virtualbox --help | head -n 1 | awk '{print $$NF}')
-PARALLELS_VERSION := $(shell prlctl --version | awk '{print $$3}')
 VMWARE_VERSION := 9.9.3
 VMWARE_BOX_FILES := $(wildcard box/vmware/*.box)
 VIRTUALBOX_BOX_FILES := $(wildcard box/virtualbox/*.box)
-PARALLELS_BOX_FILES := $(wildcard box/parallels/*.box)
 VMWARE_S3_BUCKET := s3://smartystreets-boxcutter/ubuntu/vmware$(VMWARE_VERSION)/
 VIRTUALBOX_S3_BUCKET := s3://smartystreets-boxcutter/ubuntu/virtualbox$(VIRTUALBOX_VERSION)/
-PARALLELS_S3_BUCKET := s3://smartystreets-boxcutter/ubuntu/parallels$(PARALLELS_VERSION)/
 S3_GRANT_ID := id=120985f7542bdcc1f07bb3e2fc74f0e53a03f9a05e4267a3c8d38d27933c7a94
 AWS_PROFILE = smartystreets

@@ -9,7 +9,7 @@ if [[ $PACKER_BUILDER_TYPE =~ vmware ]]; then
 
     cd /tmp
     mkdir -p /mnt/cdrom
-    mount -o loop /home/vagrant/linux.iso /mnt/cdrom
+    mount -o loop /home/${SSH_USER}/linux.iso /mnt/cdrom
     tar zxf /mnt/cdrom/VMwareTools-*.tar.gz -C /tmp/
 
     if [[ -f /mnt/cdrom/VMwareTools-9.9.2-2496486.tar.gz ]]
@@ -46,7 +46,7 @@ if [[ $PACKER_BUILDER_TYPE =~ vmware ]]; then
 
     /tmp/vmware-tools-distrib/vmware-install.pl --force-install
 
-    rm /home/vagrant/linux.iso
+    rm /home/${SSH_USER}/linux.iso
     umount /mnt/cdrom
     rmdir /mnt/cdrom
     rm -rf /tmp/VMwareTools-*

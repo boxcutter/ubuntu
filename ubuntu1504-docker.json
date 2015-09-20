@@ -77,7 +77,8 @@
       "guest_os_type": "Ubuntu_64",
       "hard_drive_interface": "sata",
       "headless": "{{ user `headless` }}",
-      "iso_checksum_type": "none",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum_type": "sha1",
       "iso_urls": [
         "{{ user `iso_path` }}/{{ user `iso_name` }}",
         "{{ user `iso_url` }}"
@@ -133,7 +134,8 @@
         "script/update.sh",
         "script/vagrant.sh",
         "script/sshd.sh",
-        "script/vmtool.sh",
+        "script/vmware.sh",
+        "script/virtualbox.sh",
         "script/docker.sh",
         "script/cleanup.sh",
         "script/cmtool.sh"

@@ -1,24 +1,28 @@
 #!/bin/bash
 
-SSH_USER=${SSH_USERNAME:-vagrant}
+SSH_USERNAME=${SSH_USERNAME:-vagrant}
 
 UBUNTU_MAJOR_VERSION=$(lsb_release -rs | cut -f1 -d .)
 
 docker_package_install() {
-    # Add the Docker repository to your apt sources list.
-    echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
-    # Add the Docker repository GPG key
-    curl -s https://get.docker.io/gpg | apt-key add -
-
     # Update your sources
     apt-get update
 
+    # Get the latest docker package
+    curl -sSL https://get.docker.com/gpg | sudo apt-key add -
+
     # Install Docker
-    apt-get install -y lxc-docker
+    curl -sSL https://get.docker.com/ | sh
 
     # Enable memory and swap accounting
     sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"/' /etc/default/grub
     update-grub
+
+    # Docker package does not current configure daemon to start on boot
+    # for Ubuntu 15.04 and up
+    if [[ "${UBUNTU_MAJOR_VERSION}" -gt "14" ]]; then
+      sudo systemctl enable docker
+    fi
 
     # reboot
     echo "Rebooting the machine..."
@@ -72,10 +76,7 @@ give_docker_non_root_access() {
 
     # Add the connected "${USER}" to the docker group.
     gpasswd -a ${USER} docker
-    gpasswd -a ${SSH_USER} docker
-
-    # Restart the Docker daemon
-    #service docker restart
+    gpasswd -a ${SSH_USERNAME} docker
 }
 
 give_docker_non_root_access

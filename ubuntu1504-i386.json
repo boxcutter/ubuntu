@@ -136,9 +136,9 @@
         "script/sshd.sh",
         "script/vmware.sh",
         "script/virtualbox.sh",
+        "script/cmtool.sh",
         "script/minimize.sh",
-        "script/cleanup.sh",
-        "script/cmtool.sh"
+        "script/cleanup.sh"
       ],
       "type": "shell"
     }

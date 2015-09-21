@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.3 (2015-09-22)
+
+* Upgrade VirtualBox guest additions to 5.0.4
+* Fix issue with Docker not installing on Ubuntu 15.04 by using latest install
+* Remove Parallels provider
+
 ## 2.0.2 (2015-08-26)
 
 * Upgrade VMware tools to 10.0.0 for VMware Fusion 8

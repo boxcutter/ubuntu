@@ -22,6 +22,11 @@ if [ "$INSTALL_VAGRANT_KEY" = "true" ] || [ "$INSTALL_VAGRANT_KEY" = "1" ]; then
     echo "==> Giving ${SSH_USER} sudo powers"
     echo "${SSH_USER}        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 
+    # Fix stdin not being a tty
+    if grep -q -E "^mesg n$" /root/.profile && sed -i "s/^mesg n$/tty -s \\&\\& mesg n/g" /root/.profile; then
+      echo "==> Fixed stdin not being a tty."
+    fi
+
     echo "==> Installing vagrant key"
     mkdir $SSH_USER_HOME/.ssh
     chmod 700 $SSH_USER_HOME/.ssh

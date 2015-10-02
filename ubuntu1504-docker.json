@@ -138,6 +138,7 @@
         "script/virtualbox.sh",
         "script/docker.sh",
         "script/cmtool.sh",
+        "script/motd.sh",
         "script/cleanup.sh"
       ],
       "type": "shell"

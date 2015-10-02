@@ -132,6 +132,7 @@
         "script/vmware.sh",
         "script/virtualbox.sh",
         "script/cmtool.sh",
+        "script/motd.sh",
         "script/minimize.sh",
         "script/cleanup.sh"
       ],

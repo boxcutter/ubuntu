@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.4 (2015-10-02)
+
+* Add an motd banner
+* Fix stdin is not a tty error
+
 ## 2.0.3 (2015-09-22)
 
 * Upgrade VirtualBox guest additions to 5.0.4

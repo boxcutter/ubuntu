@@ -62,7 +62,7 @@ TEMPLATE_FILENAMES := $(wildcard *.json)
 BOX_FILENAMES := $(TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 VMWARE_BOX_DIR ?= box/vmware
 VIRTUALBOX_BOX_DIR ?= box/virtualbox
-VMWARE_TEMPLATE_FILENAMES = $(filter-out ubuntu1504-desktop.json ubuntu1510-i386.json ubuntu1510.json,$(TEMPLATE_FILENAMES))
+VMWARE_TEMPLATE_FILENAMES = $(filter-out ubuntu1510-i386.json ubuntu1510.json,$(TEMPLATE_FILENAMES))
 VMWARE_BOX_FILENAMES := $(VMWARE_TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 VMWARE_BOX_FILES := $(foreach box_filename, $(VMWARE_BOX_FILENAMES), $(VMWARE_BOX_DIR)/$(box_filename))
 VIRTUALBOX_TEMPLATE_FILENAMES = $(filter-out ubuntu1510-i386.json ubuntu1510.json,$(TEMPLATE_FILENAMES))

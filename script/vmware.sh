@@ -31,4 +31,7 @@ if [[ $PACKER_BUILDER_TYPE =~ vmware ]]; then
     umount /mnt/cdrom
     rmdir /mnt/cdrom
     rm -rf /tmp/VMwareTools-*
+
+    VMWARE_TOOLBOX_CMD_VERSION=$(vmware-toolbox-cmd -v)
+    echo "==> Installed VMware Tools ${VMWARE_TOOLBOX_CMD_VERSION}" 
 fi

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.6 (2015-10-22)
+
+* Upgrade VirtualBox guest additions to 5.0.8
+* Removed Ubuntu1410 templates - end of life July 23, 2015
+* Upgrade to Docker 1.8.3
+
 ## 2.0.5 (2015-10-03)
 
 * Upgrade VirtualBox guest additions to 5.0.6

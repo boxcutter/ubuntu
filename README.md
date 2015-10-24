@@ -52,9 +52,9 @@ parameter.  For example, to build Ubuntu 15.04 for VirtualBox:
 
 The boxcutter templates currently support the following desktop virtualization strings:
 
-* parallels-iso - Parallels desktop virtualization (Requires the Pro Edition - Desktop edition won't work)
-* virtualbox-iso - VirtualBox desktop virtualization
-* vmware-iso - VMware Fusion or VMware Workstation desktop virtualization
+* `parallels-iso` - [Parallels](http://www.parallels.com/products/desktop/whats-new/) desktop virtualization (Requires the Pro Edition - Desktop edition won't work)
+* `virtualbox-iso` - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) desktop virtualization
+* `vmware-iso` - [VMware Fusion](https://www.vmware.com/products/fusion) or [VMware Workstation](https://www.vmware.com/products/workstation) desktop virtualization
 
 ## Building the Vagrant boxes with the Makefile
 

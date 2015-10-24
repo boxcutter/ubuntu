@@ -27,7 +27,7 @@ using Packer.
 * [Ubuntu Server 14.04.1 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-i386)
 * [Ubuntu Server 12.04.5 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-i386)
 
-## Building the Vagrant boxes
+## Building the Vagrant boxes with Packer
 
 To build all the boxes, you will need VirtualBox, VMware Fusion and
 Parallels installed.
@@ -35,6 +35,28 @@ Parallels installed.
 Parallels requires that the
 [Parallels Virtualization SDK for Mac](http://www.parallels.com/downloads/desktop)
 be installed as an additional preqrequisite.
+
+We make use of JSON files containing user variables to build specific versions of Ubuntu.
+You tell `packer` to use a specific user variable file via the `-var-file=` command line
+option.  This will override the default options on the core `ubuntu.json` packer template,
+which builds Ubuntu 14.04 by default.
+
+For example, to build Ubuntu 15.04, use the following:
+
+    $ packer build -var-file=ubuntu1504.json ubuntu.json
+    
+If you want to make boxes for a specific desktop virtualization platform, use the `-only`
+parameter.  For example, to build Ubuntu 15.04 for VirtualBox:
+
+    $ packer build -only=virtualbox-iso -var-file=ubuntu1504.json ubuntu.json
+
+The boxcutter templates currently support the following desktop virtualization strings:
+
+* parallels-iso - Parallels desktop virtualization (Requires the Pro Edition - Desktop edition won't work)
+* virtualbox-iso - VirtualBox desktop virtualization
+* vmware-iso - VMware Fusion or VMware Workstation desktop virtualization
+
+## Building the Vagrant boxes with the Makefile
 
 A GNU Make `Makefile` drives the process via the following targets:
 

@@ -10,7 +10,6 @@ using Packer.
 64-bit boxes:
 
 * [Ubuntu Server 15.04 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1504)
-* [Ubuntu Desktop 15.04 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1504-desktop)
 * [Ubuntu Server 15.04 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1504-docker)
 * [Ubuntu Server 14.10 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1410)
 * [Ubuntu Server 14.10 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1410-docker)
@@ -30,7 +29,12 @@ using Packer.
 
 ## Building the Vagrant boxes
 
-To build all the boxes, you will need VirtualBox and VMware Fusion installed.
+To build all the boxes, you will need VirtualBox, VMware Fusion and
+Parallels installed.
+
+Parallels requires that the
+[Parallels Virtualization SDK for Mac](http://www.parallels.com/downloads/desktop)
+be installed as an additional preqrequisite.
 
 A GNU Make `Makefile` drives the process via the following targets:
 
@@ -152,7 +156,14 @@ Set `INSTALL_VAGRANT_KEY := false`, the default is true.
 8. Push to your fork and submit a pull request.
 9. Once submitted, a full `make test` run will be performed against your change in the build farm.  You will be notified if the test suite fails.
 
+### Would you like to help out more?
+
+Contact moujan@annawake.com 
+
 ### Acknowledgments
+
+[Paralels](http://www.parallels.com/) provides a Business Edition license of
+their software to run on the basebox build farm.
 
 [SmartyStreets](http://www.smartystreets.com) is providing basebox hosting for the box-cutter project.
 

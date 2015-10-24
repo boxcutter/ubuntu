@@ -65,7 +65,8 @@ A GNU Make `Makefile` drives a complete basebox creation pipeline with the follo
 * `assure` - Verify that the basebox `*.box` file produced function correctly
 * `deliver` - Upload `*.box` files to [Artifactory](https://www.jfrog.com/confluence/display/RTF/Vagrant+Repositories), [Atlas](https://atlas.hashicorp.com/) or an [S3 bucket](https://aws.amazon.com/s3/)
 
-A GNU Make `Makefile` drives the process via the following targets:
+The pipeline is driven via the following targets, making it easy for you to include them
+in your favourite CI tool:
 
     make build   # Build all available box types
     make assure  # Run tests against all the boxes

@@ -165,7 +165,7 @@ Contact moujan@annawake.com
 [Parallels](http://www.parallels.com/) provides a Business Edition license of
 their software to run on the basebox build farm.
 
-<img src="http://www.parallels.com/fileadmin/images/corporate/brand-assets/images/logo-knockout-on-red.jpg" width="64">
+<img src="http://www.parallels.com/fileadmin/images/corporate/brand-assets/images/logo-knockout-on-red.jpg" width="80">
 
 [SmartyStreets](http://www.smartystreets.com) is providing basebox hosting for the box-cutter project.
 

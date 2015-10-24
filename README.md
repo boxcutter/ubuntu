@@ -59,6 +59,12 @@ The boxcutter templates currently support the following desktop virtualization s
 
 ## Building the Vagrant boxes with the Makefile
 
+A GNU Make `Makefile` drives a complete basebox creation pipeline with the following stages:
+
+* `build` - Create basebox `*.box` files
+* `assure` - Verify that the basebox `*.box` file produced function correctly
+* `deliver` - Upload `*.box` files to [Artifactory](https://www.jfrog.com/confluence/display/RTF/Vagrant+Repositories), [Atlas](https://atlas.hashicorp.com/) or an [S3 bucket](https://aws.amazon.com/s3/)
+
 A GNU Make `Makefile` drives the process via the following targets:
 
     make        # Build all available box types

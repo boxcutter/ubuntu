@@ -3,7 +3,7 @@
 ### Overview
 
 This repository contains templates for Ubuntu that can create Vagrant boxes
-using Packer.
+using [Packer](https://packer.io/).
 
 ## Current Boxes
 
@@ -29,8 +29,9 @@ using Packer.
 
 ## Building the Vagrant boxes with Packer
 
-To build all the boxes, you will need VirtualBox, VMware Fusion and
-Parallels installed.
+To build all the boxes, you will need [VirtualBox](https://www.virtualbox.org/wiki/Downloads), 
+[VMware Fusion](https://www.vmware.com/products/fusion)/[VMware Workstation](https://www.vmware.com/products/workstation) and
+[Parallels](http://www.parallels.com/products/desktop/whats-new/) installed.
 
 Parallels requires that the
 [Parallels Virtualization SDK for Mac](http://www.parallels.com/downloads/desktop)

@@ -182,6 +182,7 @@
         "script/virtualbox.sh",
         "script/cmtool.sh",
         "script/motd.sh",
+        "custom-script.sh",
         "script/minimize.sh",
         "script/cleanup.sh"
       ],

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ ! "$DESKTOP" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+  exit
+fi
+
 SSH_USER=${SSH_USERNAME:-vagrant}
 
 configure_ubuntu1204_autologin()

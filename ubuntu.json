@@ -154,7 +154,8 @@
     {
       "keep_input_artifact": false,
       "output": "box/{{.Provider}}/{{user `vm_name`}}-{{user `cm`}}{{user `cm_version`}}-{{user `version`}}.box",
-      "type": "vagrant"
+      "type": "vagrant",
+      "vagrantfile_template": "{{ user `vagrantfile_tempalte` }}"
     }
   ],
   "provisioners": [
@@ -222,6 +223,7 @@
     "ssh_password": "vagrant",
     "ssh_username": "vagrant",
     "update": "false",
+    "vagrantfile_template": "",
     "version": "0.1.0",
     "virtualbox_guest_os_type": "Ubuntu_64",
     "vm_name": "ubuntu1404",

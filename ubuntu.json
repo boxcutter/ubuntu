@@ -147,7 +147,7 @@
       "ssh_username": "{{ user `ssh_username` }}",
       "ssh_wait_timeout": "10000s",
       "type": "parallels-iso",
-      "vm_name": "ubuntu1404"
+      "vm_name": "{{ user `vm_name` }}"
     }
   ],
   "post-processors": [
@@ -163,6 +163,8 @@
         "CM={{user `cm`}}",
         "CM_VERSION={{user `cm_version`}}",
         "CLEANUP_PAUSE={{user `cleanup_pause`}}",
+        "DESKTOP={{user `desktop`}}",
+        "DOCKER={{user `docker`}}",
         "UPDATE={{user `update`}}",
         "INSTALL_VAGRANT_KEY={{user `install_vagrant_key`}}",
         "SSH_USERNAME={{user `ssh_username`}}",
@@ -176,10 +178,12 @@
       "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
         "script/update.sh",
+        "script/desktop.sh",
         "script/vagrant.sh",
         "script/sshd.sh",
         "script/vmware.sh",
         "script/virtualbox.sh",
+        "script/docker.sh",
         "script/cmtool.sh",
         "script/motd.sh",
         "custom-script.sh",
@@ -195,7 +199,9 @@
     "cm_version": "",
     "cpus": "1",
     "custom_script": ".",
+    "desktop": "false",
     "disk_size": "65536",
+    "docker": "false",
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",

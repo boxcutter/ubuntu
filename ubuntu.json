@@ -184,6 +184,7 @@
         "script/sshd.sh",
         "script/vmware.sh",
         "script/virtualbox.sh",
+        "script/parallels.sh",
         "script/docker.sh",
         "script/cmtool.sh",
         "script/motd.sh",

@@ -155,7 +155,7 @@
       "keep_input_artifact": false,
       "output": "box/{{.Provider}}/{{user `vm_name`}}-{{user `cm`}}{{user `cm_version`}}-{{user `version`}}.box",
       "type": "vagrant",
-      "vagrantfile_template": "{{ user `vagrantfile_tempalte` }}"
+      "vagrantfile_template": "{{ user `vagrantfile_template` }}"
     }
   ],
   "provisioners": [

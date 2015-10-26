@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.7 (2015-10-25)
+
+* Add Parallels 11.0.2 templates
+* Switch to using a single template for all boxes and var-files for parameters
+
 ## 2.0.6 (2015-10-22)
 
 * Upgrade VirtualBox guest additions to 5.0.8

@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+set -o errexit -o nounset -o pipefail
+
+if [ "${DEBUG:=false}" = "true" ]; then
+  set -o xtrace
+fi
+
+usage() {
+  echo "usage: $(basename $0) BOX_PATH [vmware|virtualbox|parallels]"
+  echo
+  echo "Temporarily register a vagrant box to login to it"
+}
+
+args() {
+  if [ $# -lt 2 ]; then
+    usage
+    exit 0
+  fi
+
+  if [[ ! $2 =~ ^(vmware|virtualbox|parallels)$ ]]; then
+    echo "$(basename $0): illegal platform $2"
+    echo "Valid platforms: vmware|virtualbox|parallels"
+    usage
+    exit 1
+  fi
+
+  box_path=$1
+  box_provider=$2
+  vagrant_provider=${3:-${box_provider}}
+  if [ "$box_provider" = "vmware" ]; then
+    box_provider=vmware_desktop
+    if [[ $OSTYPE =~ darwin ]]; then
+      vagrant_provider=vmware_fusion
+    else
+      vagrant_provider=vmware_workstation
+    fi
+  fi
+}
+
+# main
+args "$@"
+
+box_filename=$(basename "${box_path}")
+box_name=${box_filename%.*}
+tmp_path=/tmp/boxtest
+
+rm -rf ${tmp_path}
+
+vagrant box remove ${box_name} --provider ${box_provider} || true
+vagrant box add ${box_name} ${box_path}
+mkdir -p ${tmp_path}
+
+pushd ${tmp_path}
+vagrant init ${box_name}
+VAGRANT_LOG=warn vagrant up --provider ${vagrant_provider}
+vagrant ssh
+# vagrant won't actually tear down the VM
+sleep 10
+vagrant destroy -f
+popd
+
+vagrant box remove ${box_name} --provider ${box_provider}

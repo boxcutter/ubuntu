@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+set -o errexit -o nounset -o pipefail
+
+if [ "${DEBUG:=false}" = "true" ]; then
+  set -o xtrace
+fi
+
+usage() {
+  echo "usage: $(basename $0) BOX_PATH [vmware|virtualbox|parallels]"
+  echo
+  echo "Run automated tests against a local *.box file"
+}
+
+args() {
+  if [ $# -lt 2 ]; then
+    usage
+    exit 0
+  fi
+
+  if [[ ! $2 =~ ^(vmware|virtualbox|parallels)$ ]]; then
+    echo "$(basename $0): illegal platform $2"
+    echo "Valid platforms: vmware|virtualbox|parallels"
+    usage
+    exit 1
+  fi
+
+  box_path=$1
+  box_provider=$2
+  vagrant_provider=${3:-${box_provider}}
+  if [ "$box_provider" = "vmware" ]; then
+    box_provider=vmware_desktop
+    if [[ $OSTYPE =~ darwin ]]; then
+      vagrant_provider=vmware_fusion
+    else
+      vagrant_provider=vmware_workstation
+    fi
+  fi
+  SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+  test_src_path=${SCRIPT_DIR}/../test/*_spec.rb
+}
+
+create_vagrantfile_linux() {
+  vagrant plugin list | grep vagrant-serverspec && echo "vagrant-serverspec installed" || vagrant plugin install vagrant-serverspec
+  cat << EOF > ${tmp_path}/Vagrantfile
+Vagrant.configure('2') do |config|
+config.vm.box = '$box_name'
+
+config.vm.provision :serverspec do |spec|
+spec.pattern = '${test_src_path}'
+end
+end
+EOF
+}
+
+# main
+
+args "$@"
+
+box_filename=$(basename "${box_path}")
+box_name=${box_filename%.*}
+tmp_path=/tmp/boxtest
+
+rm -rf ${tmp_path}
+
+vagrant box remove ${box_name} --provider ${box_provider} 2>/dev/null || true
+vagrant box add ${box_name} ${box_path}
+mkdir -p ${tmp_path}
+
+pushd ${tmp_path}
+create_vagrantfile_linux
+VAGRANT_LOG=warn vagrant up --provider ${vagrant_provider}
+vagrant destroy -f
+popd
+
+vagrant box remove ${box_name} --provider ${box_provider}

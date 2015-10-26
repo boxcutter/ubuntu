@@ -79,6 +79,7 @@ get_short_description() {
 
     VIRTUALBOX_VERSION=$(VirtualBox --help | head -n 1 | awk '{print $NF}')
     VMWARE_VERSION=10.0.0
+    PARALLELS_VERSION=$(prlctl --version | awk '{print $3}')
     SHORT_DESCRIPTION="Ubuntu${EDITION_STRING} ${PRETTY_VERSION} (${BIT_STRING})${DOCKER_STRING}"
 }
 
@@ -125,11 +126,15 @@ create_description() {
     esac
 
     VIRTUALBOX_VERSION=$(VirtualBox --help | head -n 1 | awk '{print $NF}')
+    PARALLELS_VERSION=$(prlctl --version | awk '{print $3}')
     VMWARE_VERSION=10.0.0
 
     VMWARE_BOX_FILE=box/vmware/${BOX_NAME}${BOX_SUFFIX}
     VIRTUALBOX_BOX_FILE=box/virtualbox/${BOX_NAME}${BOX_SUFFIX}
-    DESCRIPTION="Ubuntu${EDITION_STRING} ${PRETTY_VERSION} (${BIT_STRING})${DOCKER_STRING}, "
+    PARALLELS_BOX_FILE=box/parallels/${BOX_NAME}${BOX_SUFFIX}
+    DESCRIPTION="Ubuntu${EDITION_STRING} ${PRETTY_VERSION} (${BIT_STRING})${DOCKER_STRING}
+
+"
     if [[ -e ${VMWARE_BOX_FILE} ]]; then
         FILESIZE=$(du -k -h "${VMWARE_BOX_FILE}" | cut -f1)
         DESCRIPTION=${DESCRIPTION}"VMWare ${FILESIZE}B/"
@@ -137,6 +142,10 @@ create_description() {
     if [[ -e ${VIRTUALBOX_BOX_FILE} ]]; then
         FILESIZE=$(du -k -h "${VIRTUALBOX_BOX_FILE}" | cut -f1)
         DESCRIPTION=${DESCRIPTION}"VirtualBox ${FILESIZE}B/"
+    fi
+    if [[ -e ${PARALLELS_BOX_FILE} ]]; then
+        FILESIZE=$(du -k -h "${PARALLELS_BOX_FILE}" | cut -f1)
+        DESCRIPTION=${DESCRIPTION}"Parallels ${FILESIZE}B/"
     fi
     DESCRIPTION=${DESCRIPTION%?}
 
@@ -149,6 +158,11 @@ VMware Tools ${VMWARE_VERSION}"
         DESCRIPTION="${DESCRIPTION}
 
 VirtualBox Guest Additions ${VIRTUALBOX_VERSION}"
+    fi
+    if [[ -e ${PARALLELS_BOX_FILE} ]]; then
+        DESCRIPTION="${DESCRIPTION}
+
+Parallels Tools ${PARALLELS_VERSION}"
     fi
 
     VERSION_JSON=$(
@@ -218,6 +232,11 @@ main() {
     if [[ -e ${VIRTUALBOX_BOX_FILE} ]]; then
         PROVIDER=virtualbox
         PROVIDER_URL=${BOXCUTTER_BASE_URL}/virtualbox${VIRTUALBOX_VERSION}/${BOX_NAME}${BOX_SUFFIX}
+        publish_provider
+    fi
+    if [[ -e ${PARALLELS_BOX_FILE} ]]; then
+        PROVIDER=parallels
+        PROVIDER_URL=${BOXCUTTER_BASE_URL}/parallels${PARALLELS_VERSION}/${BOX_NAME}${BOX_SUFFIX}
         publish_provider
     fi
 

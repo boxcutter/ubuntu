@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+set -o errexit -o nounset -o pipefail
+
+if [ "${DEBUG:=false}" = "true" ]; then
+  set -o xtrace
+fi
+
+usage() {
+  echo "usage: $(basename $0) [-h/--help] command [arguments...]"
+  echo
+  echo "Available commands are:"
+  echo "    build  Generate a box image file"
+  echo "    ssh    Run vagrant ssh against a box image name"
+  echo "    test   Run serverspec tests against a box image name"
+}
+
+args() {
+  if [ $# -lt 1 ]; then
+    usage
+    exit 0
+  fi
+
+  if [[ ! $1 =~ ^(build|ssh|test)$ ]]; then
+    echo "$(basename $0): illegal option $1"
+    usage
+    exit 1
+  fi
+
+  command=$1
+  case $command in
+  "" | "-h" | "--help")
+    usage
+    ;;
+  *)
+    shift
+    ;;
+  esac
+  $command "$@"
+}
+
+ssh() {
+  bin/ssh-box "$@"
+}
+
+test() {
+  bin/test-box "$@"
+}
+
+build() {
+  bin/build-box "$@"  
+}
+
+# main
+args "$@"

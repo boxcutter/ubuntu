@@ -6,7 +6,7 @@ if [ "${DEBUG:=false}" = "true" ]; then
 fi
 
 usage() {
-  echo "usage: $(basename $0) VAR_LIST_FILE [PLATFORM] [PACKER_TEMPLATE]"
+  echo "usage: $(basename $0) VAR_LIST_FILE [vmware|virtualbox|parallels] [PACKER_TEMPLATE]"
   echo
   echo "Build a box"
 }
@@ -26,8 +26,21 @@ args() {
     fi
   fi
   only=${2:-}
+  if [[ ! $only =~ ^(vmware|virtualbox|parallels)$ ]]; then
+    echo "$(basename $0): illegal platform $2"
+    echo "Valid platforms: vmware|virtualbox|parallels"
+    usage
+    exit 1
+  fi
+  if [[ "${only}" = "vmware" ]]; then
+    only=vmware-iso
+  elif [[ "${only}" = "virtualbox" ]]; then
+    only=virtualbox-iso
+  elif [[ "${only}" = "parallels" ]]; then
+    only=parallels-iso
+  fi
   if [ -n "${only}" ]; then
-    only="-only=$2"      
+    only="-only=${only}"      
   fi
   packer_template=${3:-ubuntu.json}
 }
@@ -36,4 +49,4 @@ args() {
 args "$@"
 
 version=$(cat VERSION)
-packer build ${only} -var-file=${var_file} -var 'version=${version}' ${packer_template}
+packer build ${only} -var-file=${var_file} -var "version=${version}" ${packer_template}

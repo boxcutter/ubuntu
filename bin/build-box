@@ -26,11 +26,13 @@ args() {
     fi
   fi
   only=${2:-}
-  if [[ ! $only =~ ^(vmware|virtualbox|parallels)$ ]]; then
-    echo "$(basename $0): illegal platform $2"
-    echo "Valid platforms: vmware|virtualbox|parallels"
-    usage
-    exit 1
+  if [[ -n ${only} ]]; then
+    if [[ ! $only =~ ^(vmware|virtualbox|parallels)$ ]]; then
+      echo "$(basename $0): illegal platform $2"
+      echo "Valid platforms: vmware|virtualbox|parallels"
+      usage
+      exit 1
+    fi
   fi
   if [[ "${only}" = "vmware" ]]; then
     only=vmware-iso

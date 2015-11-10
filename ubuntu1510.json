@@ -1,4 +1,5 @@
 {
+  "_comment": "Build with `packer build ubuntu1510.json`",
   "builders": [
     {
       "boot_command": [

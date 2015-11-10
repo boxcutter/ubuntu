@@ -2,8 +2,7 @@
 
 ### Overview
 
-This repository contains templates for Ubuntu that can create Vagrant boxes
-using [Packer](https://packer.io/).
+This repository contains [Packer](https://packer.io/) templates for creating Ubuntu Vagrant boxes.
 
 ## Current Boxes
 

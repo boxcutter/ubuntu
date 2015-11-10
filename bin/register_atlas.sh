@@ -58,7 +58,7 @@ get_short_description() {
     PRETTY_VERSION=${RAW_VERSION:0:2}.${RAW_VERSION:2}
     case ${PRETTY_VERSION} in
     15.10)
-        PRETTY_VERSION="15.10 Wily Werewolf Development Build"
+        PRETTY_VERSION="15.10 Wily Werewolf"
         ;;
     15.04)
         PRETTY_VERSION="15.04 Vivid Vervet"
@@ -106,7 +106,7 @@ create_description() {
     PRETTY_VERSION=${RAW_VERSION:0:2}.${RAW_VERSION:2}
     case ${PRETTY_VERSION} in
     15.10)
-        PRETTY_VERSION="15.10 Wily Werewolf Development Build"
+        PRETTY_VERSION="15.10 Wily Werewolf"
         ;;
     15.04)
         PRETTY_VERSION="15.04 Vivid Vervet"

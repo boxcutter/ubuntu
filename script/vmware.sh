@@ -34,4 +34,12 @@ if [[ $PACKER_BUILDER_TYPE =~ vmware ]]; then
 
     VMWARE_TOOLBOX_CMD_VERSION=$(vmware-toolbox-cmd -v)
     echo "==> Installed VMware Tools ${VMWARE_TOOLBOX_CMD_VERSION}" 
+
+    echo "==> Checking version of Ubuntu"
+    . /etc/lsb-release
+    if [[ $DISTRIB_RELEASE == 15.10 ]]; then
+      echo "==> Applying workaround for Ubuntu 15.10"
+      sed -i.orig 's/^Exec=.*/Exec=env VMWARE_USE_SHIPPED_LIBS=1 \/usr\/bin\/vmare-user/' /etc/vmware-tools/vmware-user.desktop
+      cat /etc/vmware-tools/vmware-user.desktop
+    fi
 fi

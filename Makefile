@@ -14,7 +14,7 @@ else
 	BOX_SUFFIX := -$(CM)$(CM_VERSION)-$(BOX_VERSION).box
 endif
 
-TEMPLATE_FILENAMES := $(filter-out ubuntu.json,$(wildcard *.json))
+TEMPLATE_FILENAMES := $(filter-out ubuntu.json ubuntu1510.json,$(wildcard *.json))
 BOX_NAMES := $(basename $(TEMPLATE_FILENAMES))
 BOX_FILENAMES := $(TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 VMWARE_BOX_DIR ?= box/vmware
@@ -33,6 +33,15 @@ BOX_FILES := $(VMWARE_BOX_FILES) $(VIRTUALBOX_BOX_FILES) $(PARALLELS_BOX_FILES)
 
 box/vmware/%$(BOX_SUFFIX) box/virtualbox/%$(BOX_SUFFIX) box/parallels/%$(BOX_SUFFIX): %.json
 	bin/box build $<
+
+box/vmware/ubuntu1510$(BOX_SUFFIX): ubuntu1510.json
+	packer build -only=vmware-iso -var "version=$(BOX_VERSION)" $<
+
+box/virtualbox/ubuntu1510$(BOX_SUFFIX): ubuntu1510.json
+	packer build -only=virtualbox-iso -var "version=$(BOX_VERSION)" $<
+
+box/parallels/ubuntu1510$(BOX_SUFFIX): ubuntu1510.json
+	packer build -only=parallels-iso -var "version=$(BOX_VERSION)" $<
 
 .PHONY: all clean assure deliver assure_atlas assure_atlas_vmware assure_atlas_virtualbox assure_atlas_parallels
 

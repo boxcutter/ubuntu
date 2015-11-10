@@ -8,6 +8,7 @@ This repository contains [Packer](https://packer.io/) templates for creating Ubu
 
 64-bit boxes:
 
+* [Ubuntu Server 15.10 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1510)
 * [Ubuntu Server 15.04 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1504)
 * [Ubuntu Server 15.04 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1504-docker)
 * [Ubuntu Server 14.10 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1410)

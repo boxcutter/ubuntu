@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.8 (2015-11-12)
+
+* Upgrade VirtualBox guest additions to 5.0.10
+* Upgrade VMware guest tools to 10.0.1 for VMware Fusion 8.0.2
+
 ## 2.0.7 (2015-10-25)
 
 * Add Parallels 11.0.2 templates

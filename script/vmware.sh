@@ -24,7 +24,7 @@ if [[ $PACKER_BUILDER_TYPE =~ vmware ]]; then
     if [ "${VMWARE_TOOLS_MAJOR_VERSION}" -lt "10" ]; then
         /tmp/vmware-tools-distrib/vmware-install.pl -d
     else
-        /tmp/vmware-tools-distrib/vmware-install.pl --force-install
+        /tmp/vmware-tools-distrib/vmware-install.pl -f
     fi
 
     rm /home/${SSH_USERNAME}/linux.iso

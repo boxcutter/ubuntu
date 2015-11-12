@@ -86,7 +86,7 @@ assure_atlas_virtualbox:
 	done
 
 assure_atlas_parallels:
-	@for box_name in $(BOX_NAME) ; do \
+	@for box_name in $(BOX_NAMES) ; do \
 		echo Checking $$box_name ; \
 		bin/test-vagrantcloud-box box-cutter/$$box_name parallels ; \
 		bin/test-vagrantcloud-box boxcutter/$$box_name parallels ; \

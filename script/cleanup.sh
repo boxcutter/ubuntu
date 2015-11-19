@@ -2,10 +2,6 @@
 
 SSH_USER=${SSH_USERNAME:-vagrant}
 
-CLEANUP_PAUSE=${CLEANUP_PAUSE:-0}
-echo "==> Pausing for ${CLEANUP_PAUSE} seconds..."
-sleep ${CLEANUP_PAUSE}
-
 # Make sure udev does not block our network - http://6.ptmc.org/?p=164
 echo "==> Cleaning up udev rules"
 rm -rf /dev/.udev/
@@ -35,6 +31,8 @@ apt-get -y autoclean
 echo "==> Installed packages"
 dpkg --get-selections | grep -v deinstall
 
+DISK_USAGE_BEFORE_CLEANUP=$(df -h)
+
 # Remove Bash history
 unset HISTFILE
 rm -f /root/.bash_history
@@ -60,10 +58,33 @@ let count--
 dd if=/dev/zero of=/boot/whitespace bs=1024 count=$count
 rm /boot/whitespace
 
+echo '==> Clear out swap and disable until reboot'
+set +e
+swapuuid=$(/sbin/blkid -o value -l -s UUID -t TYPE=swap)
+case "$?" in
+    2|0) ;;
+    *) exit 1 ;;
+esac
+set -e
+if [ "x${swapuuid}" != "x" ]; then
+    # Whiteout the swap partition to reduce box size
+    # Swap is disabled till reboot
+    swappart=$(readlink -f /dev/disk/by-uuid/$swapuuid)
+    /sbin/swapoff "${swappart}"
+    dd if=/dev/zero of="${swappart}" bs=1M || echo "dd exit code $? is suppressed"
+    /sbin/mkswap -U "${swapuuid}" "${swappart}"
+fi
+
 # Zero out the free space to save space in the final image
-dd if=/dev/zero of=/EMPTY bs=1M
+dd if=/dev/zero of=/EMPTY bs=1M  || echo "dd exit code $? is suppressed"
 rm -f /EMPTY
 
 # Make sure we wait until all the data is written to disk, otherwise
 # Packer might quite too early before the large files are deleted
 sync
+
+echo "==> Disk usage before cleanup"
+echo ${DISK_USAGE_BEFORE_CLEANUP}
+
+echo "==> Disk usage after cleanup"
+df -h

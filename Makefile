@@ -60,7 +60,7 @@ assure_vmware: $(VMWARE_BOX_FILES)
 assure_virtualbox: $(VIRTUALBOX_BOX_FILES)
 	@for virtualbox_box_file in $(VIRTUALBOX_BOX_FILES) ; do \
 		echo Checking $$virtualbox_box_file ; \
-		bin/box test $$virtualb_box_file virtualbox ; \
+		bin/box test $$virtualbox_box_file virtualbox ; \
 	done
 
 assure_parallels: $(PARALLELS_BOX_FILES)

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.9 (2015-11-19)
+
+* Make images smaller by delaying creation of the swap partition
+* Upgrade Parallels tools to 11.1.0
+* Upgrade to Docker 1.9.0
+
 ## 2.0.8 (2015-11-12)
 
 * Upgrade VirtualBox guest additions to 5.0.10

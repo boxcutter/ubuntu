@@ -98,41 +98,37 @@ process, should you be using a proxy:
 
 ### Tests
 
-The tests are written in [Serverspec](http://serverspec.org) and require the
-`vagrant-serverspec` plugin to be installed with:
+Automated tests are written in [Serverspec](http://serverspec.org) and require
+the `vagrant-serverspec` plugin to be installed with:
 
     vagrant plugin install vagrant-serverspec
 
-The `Makefile` has individual targets for each box type with the prefix
-`test-*` should you wish to run tests individually for each box.  For example:
+The `bin/box` script has subcommands for running both the automated tests
+and for performing exploratory testing.
 
-    make test-box/virtualbox/ubuntu1404-nocm.box
+Use the `bin/box test` subcommand to run the automated Serverspec tests.
+For example to execute the tests for the Ubuntu 14.04 box on VirtualBox, use
+the following:
 
-Similarly there are targets with the prefix `ssh-*` for registering a
-newly-built box with vagrant and for logging in using just one command to
-do exploratory testing.  For example, to do exploratory testing
-on the VirtualBox training environmnet, run the following command:
+    bin/box test ubuntu1404 virtualbox
 
-    make ssh-box/virtualbox/ubuntu1404-nocm.box
+Similarly, to perform exploratory testing on the VirtualBox image via ssh,
+run the following command:
 
-Upon logout `make ssh-*` will automatically de-register the box as well.
+    bin/box ssh ubuntu1404 virtualbox
 
-### Makefile.local override
+### Variable overrides
 
-You can create a `Makefile.local` file alongside the `Makefile` to override
-some of the default settings.  The variables can that can be currently
+There are several variables that can be used to override some of the default
+settings in the box build process. The variables can that can be currently
 used are:
 
-* CM
-* CM_VERSION
-* \<iso_path\>
-* UPDATE
-
-`Makefile.local` is most commonly used to override the default configuration
-management tool, for example with Chef:
-
-    # Makefile.local
-    CM := chef
+* cm
+* cm_version
+* cpus
+* disk_size
+* memory
+* update
 
 Changing the value of the `CM` variable changes the target suffixes for
 the output of `make list` accordingly.

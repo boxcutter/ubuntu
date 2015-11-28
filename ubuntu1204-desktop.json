@@ -4,11 +4,11 @@
   "cpus": "1",
   "desktop": "true",
   "disk_size": "130048",
-  "iso_checksum": "73a758a2353f21e3016be8135411342a605bccac",
+  "iso_checksum": "b8c2e054b2a398cf02f268fcc1966b29c6dc007e",
   "iso_checksum_type": "sha1",
-  "iso_name": "ubuntu-12.04.4-alternate-amd64.iso",
-  "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.4-alternate-amd64.iso",
+  "iso_name": "ubuntu-12.04.5-alternate-amd64.iso",
+  "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.5-alternate-amd64.iso",
   "memory": "1024",
-  "preseed" : "preseed-desktop.cfg",
+  "preseed" : "preseed-1204-desktop.cfg",
   "vagrantfile_template": "tpl/vagrantfile-ubuntu1204-desktop.tpl"
 }

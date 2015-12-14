@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.11 (2015-12-12)
+
+* Upgrade VMware guest tools to 10.0.5 for VMware Fusion 8.1.0
+
 ## 2.0.10 (2015-11-28)
 
 * Upgrade ubuntu1204-desktop to 12.04.5

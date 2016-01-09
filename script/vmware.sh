@@ -22,7 +22,7 @@ if [[ $PACKER_BUILDER_TYPE =~ vmware ]]; then
     tar zxf /mnt/cdrom/VMwareTools-*.tar.gz -C /tmp/
     VMWARE_TOOLS_MAJOR_VERSION=$(echo ${VMWARE_TOOLS_VERSION} | cut -d '.' -f 1)
     if [ "${VMWARE_TOOLS_MAJOR_VERSION}" -lt "10" ]; then
-        /tmp/vmware-tools-distrib/vmware-install.pl -d
+        /tmp/vmware-tools-distrib/vmware-install.pl --default EULA_AGREED=yes
     else
         /tmp/vmware-tools-distrib/vmware-install.pl -f
     fi

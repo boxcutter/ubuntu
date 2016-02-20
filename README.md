@@ -9,22 +9,16 @@ This repository contains [Packer](https://packer.io/) templates for creating Ubu
 64-bit boxes:
 
 * [Ubuntu Server 15.10 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1510)
-* [Ubuntu Server 15.04 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1504)
-* [Ubuntu Server 15.04 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1504-docker)
-* [Ubuntu Server 14.10 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1410)
-* [Ubuntu Server 14.10 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1410-docker)
-* [Ubuntu Server 14.04.3 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404)
-* [Ubuntu Desktop 14.04.3 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-desktop)
-* [Ubuntu Server 14.04.3 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-docker)
+* [Ubuntu Server 14.04.4 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404)
+* [Ubuntu Desktop 14.04.4 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-desktop)
+* [Ubuntu Server 14.04.4 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-docker)
 * [Ubuntu Server 12.04.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204)
-* [Ubuntu Desktop 12.04.4 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-desktop)
+* [Ubuntu Desktop 12.04.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-desktop)
 * [Ubuntu Server 12.04.5 (64-bit) with Docker preinstalled](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-docker)
 
 32-bit boxes:
 
-* [Ubuntu Server 15.04 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1504-i386)
-* [Ubuntu Server 14.10 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1410-i386)
-* [Ubuntu Server 14.04.3 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-i386)
+* [Ubuntu Server 14.04.4 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-i386)
 * [Ubuntu Server 12.04.5 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-i386)
 
 ## Building the Vagrant boxes with Packer

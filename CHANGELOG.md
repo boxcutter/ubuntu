@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.14 (2015-02-19)
+
+* Upgrade to Ubuntu 14.04.4, except on VMware because hgfs isn't working
+* Upgrade VirtualBox guest additions to 5.0.14
+* Upgrade Parallels tools to 11.1.3
+* Upgrade Docker to 1.10.1
+
 ## 2.0.13 (2015-01-07)
 
 * Upgrade Parallels tools to 11.1.2

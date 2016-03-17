@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.15 (2015-02-16)
+
+* Upgrade VirtualBox guest additions to 5.0.16
+
 ## 2.0.14 (2015-02-19)
 
 * Upgrade to Ubuntu 14.04.4, except on VMware because hgfs isn't working

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.16 (2015-02-16)
+
+* Add Ubuntu 16.04 beta box
+
 ## 2.0.15 (2015-02-16)
 
 * Upgrade VirtualBox guest additions to 5.0.16

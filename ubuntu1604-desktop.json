@@ -1,0 +1,8 @@
+{
+  "_comment": "Build with `packer build -var-file=ubuntu1604-desktop.json ubuntu1604.json`",
+  "vm_name": "ubuntu1604-desktop",
+  "desktop": "true",
+  "memory": "1024",
+  "preseed": "preseed.cfg",
+  "vagrantfile_template": "tpl/vagrantfile-ubuntu1604-desktop.tpl"
+}

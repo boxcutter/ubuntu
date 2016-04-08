@@ -26,10 +26,8 @@ if [[ $DISTRIB_RELEASE == 12.04 ]]; then
 
     configure_ubuntu1204_autologin
 
-elif [[ $DISTRIB_RELEASE == 14.04 || $DISTRIB_RELEASE == 15.04 ]]; then
+elif [[ $DISTRIB_RELEASE == 14.04 || $DISTRIB_RELEASE == 15.04 || $DISTRIB_RELEASE == 16.04 ]]; then
     echo "==> Installing ubunutu-desktop"
-#    apt-get install -y --no-install-recommends ubuntu-desktop
-#    apt-get install -y gnome-terminal
     apt-get install -y ubuntu-desktop
 
     USERNAME=${SSH_USER}
@@ -41,10 +39,8 @@ elif [[ $DISTRIB_RELEASE == 14.04 || $DISTRIB_RELEASE == 15.04 ]]; then
     echo "# Enabling automatic login" >> $GDM_CUSTOM_CONFIG
     echo "AutomaticLoginEnable=True" >> $GDM_CUSTOM_CONFIG
     echo "AutomaticLoginEnable=${USERNAME}" >> $GDM_CUSTOM_CONFIG
-    
+
     echo "==> Configuring lightdm autologin"
-    #if [ -f $LIGHTDM_CONFIG ]; then
-        echo "[SeatDefaults]" >> $LIGHTDM_CONFIG
-        echo "autologin-user=${USERNAME}" >> $LIGHTDM_CONFIG
-    #fi
+    echo "[SeatDefaults]" >> $LIGHTDM_CONFIG
+    echo "autologin-user=${USERNAME}" >> $LIGHTDM_CONFIG
 fi

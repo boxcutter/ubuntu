@@ -192,6 +192,7 @@
         "script/parallels.sh",
         "script/docker.sh",
         "script/cmtool.sh",
+        "script/locale.sh",
         "script/motd.sh",
         "custom-script.sh",
         "script/minimize.sh",
@@ -236,4 +237,3 @@
     "vmware_guest_os_type": "ubuntu-64"
   }
 }
-

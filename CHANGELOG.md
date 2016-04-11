@@ -1,21 +1,21 @@
 # Changelog
 
-## 2.0.16 (2015-02-16)
+## 2.0.16 (2016-04-06)
 
 * Add Ubuntu 16.04 beta box
 
-## 2.0.15 (2015-02-16)
+## 2.0.15 (2016-03-16)
 
 * Upgrade VirtualBox guest additions to 5.0.16
 
-## 2.0.14 (2015-02-19)
+## 2.0.14 (2016-02-19)
 
 * Upgrade to Ubuntu 14.04.4, except on VMware because hgfs isn't working
 * Upgrade VirtualBox guest additions to 5.0.14
 * Upgrade Parallels tools to 11.1.3
 * Upgrade Docker to 1.10.1
 
-## 2.0.13 (2015-01-07)
+## 2.0.13 (2016-01-07)
 
 * Upgrade Parallels tools to 11.1.2
 

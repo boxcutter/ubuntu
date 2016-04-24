@@ -52,7 +52,7 @@
     },
     {
       "boot_command": [
-        "<esc><esc><enter><wait>",
+        "{{ user `boot_keysequence_emptycmdline` }}",
         "/install/vmlinuz noapic ",
         "file=/floppy/{{ user `preseed` }} ",
         "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
@@ -197,6 +197,7 @@
     }
   ],
   "variables": {
+    "boot_keysequence_emptycmdline": "<esc><esc><enter><wait>",
     "cleanup_pause": "",
     "cm": "nocm",
     "cm_version": "",

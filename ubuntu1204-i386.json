@@ -11,5 +11,6 @@
   "preseed" : "preseed.cfg",
   "vmware_guest_os_type": "ubuntu",
   "virtualbox_guest_os_type": "Ubuntu",
-  "parallels_guest_os_type": "ubuntu"
+  "parallels_guest_os_type": "ubuntu",
+  "boot_command_prefix": "<esc><esc><enter><wait>"
 }

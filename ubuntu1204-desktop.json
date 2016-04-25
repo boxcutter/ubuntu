@@ -10,5 +10,6 @@
   "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.5-alternate-amd64.iso",
   "memory": "1024",
   "preseed" : "preseed-1204-desktop.cfg",
-  "vagrantfile_template": "tpl/vagrantfile-ubuntu1204-desktop.tpl"
+  "vagrantfile_template": "tpl/vagrantfile-ubuntu1204-desktop.tpl",
+  "boot_command_prefix": "<esc><esc><enter><wait>"
 }

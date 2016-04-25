@@ -10,5 +10,6 @@
   "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.4-server-amd64.iso",
   "memory": "1024",
   "preseed": "preseed.cfg",
-  "vagrantfile_template": "tpl/vagrantfile-ubuntu1404-desktop.tpl"
+  "vagrantfile_template": "tpl/vagrantfile-ubuntu1404-desktop.tpl",
+  "boot_command_prefix": "<esc><esc><enter><wait>"
 }

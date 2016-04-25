@@ -1,7 +1,13 @@
 {
-  "_comment": "Build with `packer build -var-file=ubuntu1604-desktop.json ubuntu1604.json`",
+  "_comment": "Build with `packer build -var-file=ubuntu1604-desktop.json ubuntu.json`",
   "vm_name": "ubuntu1604-desktop",
   "desktop": "true",
+  "cpus": "1",
+  "disk_size": "130048",
+  "iso_checksum": "70db69379816b91eb01559212ae474a36ecec9ef",
+  "iso_checksum_type": "sha1",
+  "iso_name": "ubuntu-16.04-server-amd64.iso",
+  "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04-server-amd64.iso",
   "memory": "1024",
   "preseed": "preseed.cfg",
   "vagrantfile_template": "tpl/vagrantfile-ubuntu1604-desktop.tpl"

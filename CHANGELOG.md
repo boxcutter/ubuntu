@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.17 (2016-04-24)
+
+* Add Ubuntu 16.04 release box
+* Upgrade VirtualBox guest additions to 5.0.18
+* Unified template definitions
+
 ## 2.0.16 (2016-04-06)
 
 * Add Ubuntu 16.04 beta box

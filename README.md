@@ -8,6 +8,7 @@ This repository contains [Packer](https://packer.io/) templates for creating Ubu
 
 64-bit boxes:
 
+* [Ubuntu Server 16.04 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1604)
 * [Ubuntu Server 15.10 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1510)
 * [Ubuntu Server 14.04.4 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404)
 * [Ubuntu Desktop 14.04.4 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-desktop)
@@ -31,19 +32,22 @@ Parallels requires that the
 [Parallels Virtualization SDK for Mac](http://www.parallels.com/downloads/desktop)
 be installed as an additional preqrequisite.
 
+VMware Fusion boxes require this patch when running version 8.1.0 to enable port forwarding:
+https://blogs.vmware.com/teamfusion/2016/01/workaround-of-nat-port-forwarding-issue-in-fusion-8-1.html
+
 We make use of JSON files containing user variables to build specific versions of Ubuntu.
 You tell `packer` to use a specific user variable file via the `-var-file=` command line
 option.  This will override the default options on the core `ubuntu.json` packer template,
-which builds Ubuntu 14.04 by default.
+which builds Ubuntu 16.04 by default.
 
-For example, to build Ubuntu 15.04, use the following:
+For example, to build Ubuntu 16.04, use the following:
 
-    $ packer build -var-file=ubuntu1504.json ubuntu.json
+    $ packer build -var-file=ubuntu1604.json ubuntu.json
     
 If you want to make boxes for a specific desktop virtualization platform, use the `-only`
-parameter.  For example, to build Ubuntu 15.04 for VirtualBox:
+parameter.  For example, to build Ubuntu 16.04 for VirtualBox:
 
-    $ packer build -only=virtualbox-iso -var-file=ubuntu1504.json ubuntu.json
+    $ packer build -only=virtualbox-iso -var-file=ubuntu1604.json ubuntu.json
 
 The boxcutter templates currently support the following desktop virtualization strings:
 
@@ -54,13 +58,13 @@ The boxcutter templates currently support the following desktop virtualization s
 ## Building the Vagrant boxes with the box script
 
 We've also provided a wrapper script `bin/box` for ease of use, so alternatively, you can use
-the following to build Ubuntu 15.04 for all providers:
+the following to build Ubuntu 16.04 for all providers:
 
-    $ bin/box build ubuntu1504
+    $ bin/box build ubuntu1604
 
-Or if you just want to build Ubuntu 15.04 for VirtualBox:
+Or if you just want to build Ubuntu 16.04 for VirtualBox:
 
-    $ bin/box build ubuntu1504 virtualbox
+    $ bin/box build ubuntu1604 virtualbox
 
 ## Building the Vagrant boxes with the Makefile
 
@@ -104,12 +108,12 @@ Use the `bin/box test` subcommand to run the automated Serverspec tests.
 For example to execute the tests for the Ubuntu 14.04 box on VirtualBox, use
 the following:
 
-    bin/box test ubuntu1404 virtualbox
+    bin/box test ubuntu1604 virtualbox
 
 Similarly, to perform exploratory testing on the VirtualBox image via ssh,
 run the following command:
 
-    bin/box ssh ubuntu1404 virtualbox
+    bin/box ssh ubuntu1604 virtualbox
 
 ### Variable overrides
 
@@ -139,7 +143,7 @@ Possible values for the CM variable are:
 You can also specify a variable `CM_VERSION`, if supported by the
 configuration management tool, to override the default of `latest`.
 The value of `CM_VERSION` should have the form `x.y` or `x.y.z`,
-such as `CM_VERSION := 11.12.4`
+such as `CM_VERSION := 12.9.32`
 
 The variable `HEADLESS` can be set to run Packer in headless mode.
 Set `HEADLESS := true`, the default is false.

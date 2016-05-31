@@ -178,6 +178,7 @@
         "script/parallels.sh",
         "script/docker.sh",
         "script/cmtool.sh",
+        "script/locale.sh",
         "script/motd.sh",
         "custom-script.sh",
         "script/minimize.sh",

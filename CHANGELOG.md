@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.18 (2016-06-05)
+
+* Install open-vm-tools when kernel 4.1 or greater is present, now that
+  vagrant-vmware-fusion 4.0.9 plugin supports open-vm-tools
+* Upgrade VirtualBox guest additions to 5.0.20
+* Upgrade Parallels tools to 11.2.0
+* Upgrade VMware tools to 10.0.6 for VMware Fusion 8.1.1
+
 ## 2.0.17 (2016-04-24)
 
 * Add Ubuntu 16.04 release box

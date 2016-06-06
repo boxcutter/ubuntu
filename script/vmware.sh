@@ -56,7 +56,7 @@ function use_shipped_libs {
 
 if [[ $PACKER_BUILDER_TYPE =~ vmware ]]; then
     KERNEL_VERSION=$(uname -r | cut -d. -f1-2)
-    echo "==> Kernel version #{KERNEL_VERSION}"
+    echo "==> Kernel version ${KERNEL_VERSION}"
     MAJOR_VERSION=$(echo ${KERNEL_VERSION} | cut -d '.' -f1)
     MINOR_VERSION=$(echo ${KERNEL_VERSION} | cut -d '.' -f2)
     if [ "${MAJOR_VERSION}" -ge "4" ] && [ "${MINOR_VERSION}" -ge "1" ]; then

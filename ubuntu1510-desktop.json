@@ -1,0 +1,14 @@
+{
+  "_comment": "Build with `packer build -var-file=ubuntu1510-desktop.json ubuntu1510.json`",
+  "vm_name": "ubuntu1510-desktop",
+  "desktop": "true",
+  "cpus": "1",
+  "disk_size": "130048",
+  "iso_checksum": "478446f33e336a98d5868c0b353d0d347e8a7262",
+  "iso_checksum_type": "sha1",
+  "iso_name": "ubuntu-15.10-server-amd64.iso",
+  "iso_url": "http://releases.ubuntu.com/15.10/ubuntu-15.10-server-amd64.iso",
+  "memory": "1024",
+  "preseed": "preseed-1504.cfg",
+  "vagrantfile_template": "tpl/vagrantfile-ubuntu1504-desktop.tpl"
+}

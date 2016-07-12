@@ -4,6 +4,9 @@
 echo "==> Disabling the release upgrader"
 sed -i.bak 's/^Prompt=.*$/Prompt=never/' /etc/update-manager/release-upgrades
 
+echo "==> Checking version of Ubuntu"
+. /etc/lsb-release
+
 # Disable unattended upgrades which are enabled in 16.04 by default, see issue #73
 if [[ $DISTRIB_RELEASE == 16.04 ]]; then
     echo "==> Disabling unattended upgrades"

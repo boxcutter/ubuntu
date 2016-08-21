@@ -44,3 +44,6 @@ elif [[ $DISTRIB_RELEASE == 14.04 || $DISTRIB_RELEASE == 15.04 || $DISTRIB_RELEA
     echo "[SeatDefaults]" >> $LIGHTDM_CONFIG
     echo "autologin-user=${USERNAME}" >> $LIGHTDM_CONFIG
 fi
+
+echo "==> Disabling screen blanking"
+xset -dpms s off s noblank s 0 0 s noexpose

@@ -2,6 +2,7 @@
   "_comment": "Build with `packer build -var-file=ubuntu1604-desktop.json ubuntu.json`",
   "vm_name": "ubuntu1604-desktop",
   "desktop": "true",
+  "locale": "en_US.UTF-8",
   "cpus": "1",
   "disk_size": "130048",
   "iso_checksum": "70db69379816b91eb01559212ae474a36ecec9ef",

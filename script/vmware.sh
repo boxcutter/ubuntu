@@ -61,7 +61,15 @@ if [[ $PACKER_BUILDER_TYPE =~ vmware ]]; then
     MINOR_VERSION=$(echo ${KERNEL_VERSION} | cut -d '.' -f2)
     if [ "${MAJOR_VERSION}" -ge "4" ] && [ "${MINOR_VERSION}" -ge "1" ]; then
       # open-vm-tools supports shared folders on kernel 4.1 or greater
-      install_open_vm_tools
+      . /etc/lsb-release
+      if [[ $DISTRIB_RELEASE == 14.04 ]]; then
+        install_vmware_tools
+        # Ensure that VMWare Tools recompiles kernel modules
+        # when we update the linux images
+        echo "answer AUTO_KMODS_ENABLED yes" >> /etc/vmware-tools/locations
+      else 
+        install_open_vm_tools
+      fi
     else
       install_vmware_tools
     fi 

@@ -66,10 +66,12 @@ vagrant box remove ${box_name} --provider ${box_provider} 2>/dev/null || true
 vagrant box add ${box_name} ${box_path}
 mkdir -p ${tmp_path}
 
+ret=0
 pushd ${tmp_path}
 create_vagrantfile_linux
-VAGRANT_LOG=warn vagrant up --provider ${vagrant_provider}
+VAGRANT_LOG=warn vagrant up --provider ${vagrant_provider} || ret=1
 vagrant destroy -f
 popd
 
 vagrant box remove ${box_name} --provider ${box_provider}
+exit $ret

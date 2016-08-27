@@ -1,0 +1,12 @@
+{
+  "_comment": "Build with `packer build -var-file=ubuntu1610.json ubuntu.json`",
+  "vm_name": "ubuntu1610",
+  "cpus": "1",
+  "disk_size": "65536",
+  "iso_checksum": "",
+  "iso_checksum_type": "none",
+  "iso_name": "yakkety-server-amd64.iso",
+  "iso_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/current/yakkety-server-amd64.iso",
+  "memory": "512",
+  "preseed" : "preseed.cfg"
+}

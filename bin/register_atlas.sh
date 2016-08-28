@@ -71,7 +71,7 @@ get_short_description() {
         PRETTY_VERSION="16.10 Yakkety Yak (development branch)"
         ;;
     16.04)
-        PRETTY_VERSION="16.04 Xenial Xerus"
+        PRETTY_VERSION="16.04.1 Xenial Xerus"
         ;;
     15.10)
         PRETTY_VERSION="15.10 Wily Werewolf"
@@ -83,7 +83,7 @@ get_short_description() {
         PRETTY_VERSION="14.10 Utopic Unicorn"
         ;;
     14.04)
-        PRETTY_VERSION="14.04.4 LTS Trusty Tahr"
+        PRETTY_VERSION="14.04.5 LTS Trusty Tahr"
         ;;
     12.04)
         PRETTY_VERSION="12.04.5 LTS Precise Pangolin"
@@ -125,7 +125,7 @@ create_description() {
         PRETTY_VERSION="16.10 Yakkety Yak (development branch)"
         ;;
     16.04)
-        PRETTY_VERSION="16.04 Xenial Xerus"
+        PRETTY_VERSION="16.04.1 Xenial Xerus"
         ;;
     15.10)
         PRETTY_VERSION="15.10 Wily Werewolf"
@@ -137,7 +137,7 @@ create_description() {
         PRETTY_VERSION="14.10 Utopic Unicorn"
         ;;
     14.04)
-        PRETTY_VERSION="14.04.4 LTS Trusty Tahr"
+        PRETTY_VERSION="14.04.5 LTS Trusty Tahr"
         ;;
     12.04)
         PRETTY_VERSION="12.04.5 LTS Precise Pangolin"

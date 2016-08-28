@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.20 (2016-08-27)
+
+* Update 16.04 images to 16.04.1 release
+
 ## 2.0.19 (2016-08-27)
 
 * Add Ubuntu 16.10 (development branch) template

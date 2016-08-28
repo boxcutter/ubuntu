@@ -33,7 +33,7 @@ be installed as an additional preqrequisite.
 VMware Fusion boxes require this patch when running version 8.1.0 to enable port forwarding:
 https://blogs.vmware.com/teamfusion/2016/01/workaround-of-nat-port-forwarding-issue-in-fusion-8-1.html
 
-VMware Fusion 8.1.1 comes with the path.
+VMware Fusion 8.1.1 comes with the patch.
 
 We make use of JSON files containing user variables to build specific versions of Ubuntu.
 You tell `packer` to use a specific user variable file via the `-var-file=` command line

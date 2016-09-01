@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.21 (2016-08-31)
+
+* Include extra tools useful for headless operation, like tmux
+
 ## 2.0.20 (2016-08-27)
 
 * Update 16.04 images to 16.04.1 release

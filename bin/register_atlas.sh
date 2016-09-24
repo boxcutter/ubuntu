@@ -95,7 +95,7 @@ get_short_description() {
 
     VIRTUALBOX_VERSION=$(VirtualBox --help | head -n 1 | awk '{print $NF}')
     PARALLELS_VERSION=$(prlctl --version | awk '{print $3}')
-    VMWARE_VERSION=10.0.6
+    VMWARE_VERSION=10.0.10
     SHORT_DESCRIPTION="Ubuntu${EDITION_STRING} ${PRETTY_VERSION} (${BIT_STRING})${DOCKER_STRING}"
 }
 
@@ -149,7 +149,7 @@ create_description() {
 
     VIRTUALBOX_VERSION=$(VirtualBox --help | head -n 1 | awk '{print $NF}')
     PARALLELS_VERSION=$(prlctl --version | awk '{print $3}')
-    VMWARE_VERSION=10.0.6
+    VMWARE_VERSION=10.0.10
 
     VMWARE_BOX_FILE=box/vmware/${BOX_NAME}${BOX_SUFFIX}
     VIRTUALBOX_BOX_FILE=box/virtualbox/${BOX_NAME}${BOX_SUFFIX}

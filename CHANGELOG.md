@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.22 (2016-09-23)
+
+* Upgrade VMware tools to 10.0.10 for VMware Fusion 8.5.0
+* Upgrade to Parallels 12
+* Upgrade Parallels tools to 12.0.2
+
 ## 2.0.21 (2016-08-31)
 
 * Include extra tools useful for headless operation, like tmux

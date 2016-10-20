@@ -148,6 +148,11 @@ The variable `INSTALL_VAGRANT_KEY` can be set to turn off installation of the
 default insecure vagrant key when the image is being used outside of vagrant.
 Set `INSTALL_VAGRANT_KEY := false`, the default is true.
 
+The variable `CUSTOM_SCRIPT` can be used to specify a custom script
+to be executed. You can add it to the `script/custom` directory (content
+is ignored by Git).
+The default is `custom-script.sh` which does nothing.
+
 ## Contributing
 
 

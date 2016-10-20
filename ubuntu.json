@@ -174,7 +174,7 @@
         "script/virtualbox.sh",
         "script/parallels.sh",
         "script/motd.sh",
-        "custom-script.sh",
+        "{{user `custom_script`}}",
         "script/minimize.sh",
         "script/cleanup.sh"
       ],
@@ -185,7 +185,7 @@
     "boot_command_prefix": "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
     "cleanup_pause": "",
     "cpus": "1",
-    "custom_script": ".",
+    "custom_script": "custom-script.sh",
     "desktop": "false",
     "disk_size": "65536",
     "ftp_proxy": "{{env `ftp_proxy`}}",

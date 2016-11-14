@@ -3,10 +3,11 @@
   "vm_name": "ubuntu1610",
   "cpus": "1",
   "disk_size": "65536",
-  "iso_checksum": "",
-  "iso_checksum_type": "none",
-  "iso_name": "yakkety-server-amd64.iso",
-  "iso_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/current/yakkety-server-amd64.iso",
+  "iso_checksum": "72b0d421da77f1e0c549b4efe6fc6c184e9909d6792f0d1e59b56d63e9705659",
+  "iso_checksum_type": "sha256",
+  "iso_name": "ubuntu-16.10-server-amd64.iso",
+  "iso_url": "http://releases.ubuntu.com/16.10/ubuntu-16.10-server-amd64.iso",
   "memory": "512",
-  "preseed" : "preseed.cfg"
+  "preseed" : "preseed.cfg",
+  "boot_command_prefix": "<esc><esc><enter><wait>"
 }

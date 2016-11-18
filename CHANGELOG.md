@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.24 (2016-11-17)
+
+* Add Ubuntu 16.10 box
+* Add flexible custom script support
+* Upgrade VMware tools to 10.0.10.3275 for VMware Fusion 8.5.1
+* Upgrade Parallels tools to 12.10
+* Upgrade VirtualBox Guest Additions to 5.1.8
+
 ## 2.0.23 (2016-10-05)
 
 * Upgrade VirtualBox guest additions to 5.1.6

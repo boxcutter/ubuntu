@@ -1,11 +1,18 @@
 # Changelog
 
+## 2.0.25 (2016-11-29)
+
+* Cleanup Kernels version 3.x and 4.x to save space
+* Add ubuntu1610-desktop template
+* Upgrade Parallels tools to 12.1.1
+* Upgrade VirtualBox Guest Additions to 5.1.10
+
 ## 2.0.24 (2016-11-17)
 
 * Add Ubuntu 16.10 box
 * Add flexible custom script support
 * Upgrade VMware tools to 10.0.10.3275 for VMware Fusion 8.5.1
-* Upgrade Parallels tools to 12.10
+* Upgrade Parallels tools to 12.1.0
 * Upgrade VirtualBox Guest Additions to 5.1.8
 
 ## 2.0.23 (2016-10-05)

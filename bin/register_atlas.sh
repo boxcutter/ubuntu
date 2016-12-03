@@ -68,7 +68,7 @@ get_short_description() {
     PRETTY_VERSION=${RAW_VERSION:0:2}.${RAW_VERSION:2}
     case ${PRETTY_VERSION} in
     16.10)
-        PRETTY_VERSION="16.10 Yakkety Yak (development branch)"
+        PRETTY_VERSION="16.10 Yakkety Yak"
         ;;
     16.04)
         PRETTY_VERSION="16.04.1 Xenial Xerus"
@@ -122,7 +122,7 @@ create_description() {
     PRETTY_VERSION=${RAW_VERSION:0:2}.${RAW_VERSION:2}
     case ${PRETTY_VERSION} in
     16.10)
-        PRETTY_VERSION="16.10 Yakkety Yak (development branch)"
+        PRETTY_VERSION="16.10 Yakkety Yak"
         ;;
     16.04)
         PRETTY_VERSION="16.04.1 Xenial Xerus"

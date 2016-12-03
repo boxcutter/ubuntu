@@ -32,6 +32,7 @@
         "{{ user `iso_url` }}"
       ],
       "output_directory": "output-{{ user `vm_name` }}-vmware-iso",
+      "post_shutdown_delay": "1m",
       "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_username": "{{ user `ssh_username` }}",
@@ -77,6 +78,7 @@
         "{{ user `iso_url` }}"
       ],
       "output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
+      "post_shutdown_delay": "1m",
       "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_username": "{{ user `ssh_username` }}",
@@ -124,6 +126,7 @@
       ],
       "output_directory": "output-{{ user `vm_name` }}-parallels-iso",
       "parallels_tools_flavor": "lin",
+      "post_shutdown_delay": "1m",
       "prlctl": [
         [
           "set", "{{.Name}}", "--memsize", "{{ user `memory` }}"

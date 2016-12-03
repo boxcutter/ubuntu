@@ -42,13 +42,16 @@ args "$@"
 
 box_filename=$(basename "${box_path}")
 box_name=${box_filename%.*}
-tmp_path=/tmp/boxtest
 
-rm -rf ${tmp_path}
+tmp_file=boxcutter-test-${box_name}
+tmp_path=$(mktemp -d -t ${tmp_file} 2>/dev/null || mktemp -d -t ${tmp_file}.XXXXXX)
+cleanup() {
+  rm -rf ${tmp_path}
+}
+trap cleanup EXIT
 
 vagrant box remove ${box_name} --provider ${box_provider} || true
 vagrant box add ${box_name} ${box_path}
-mkdir -p ${tmp_path}
 
 pushd ${tmp_path}
 vagrant init ${box_name}

@@ -85,6 +85,9 @@
       "type": "virtualbox-iso",
       "vboxmanage": [
         [
+          "modifyvm", "{{.Name}}", "--nictype1", "virtio"
+        ],
+        [
           "modifyvm", "{{.Name}}", "--memory", "{{ user `memory` }}"
         ],
         [

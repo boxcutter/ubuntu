@@ -1,7 +1,6 @@
 #!/bin/bash -eux
 
 SSH_USER=${SSH_USERNAME:-vagrant}
-DISK_USAGE_BEFORE_CLEANUP=$(df -h)
 
 # Make sure udev does not block our network - http://6.ptmc.org/?p=164
 echo "==> Cleaning up udev rules"
@@ -35,6 +34,9 @@ fi
 # Add delay to prevent "vagrant reload" from failing
 echo "pre-up sleep 2" >> /etc/network/interfaces
 
+echo "==> Cleaning up tmp"
+rm -rf /tmp/*
+
 # Cleanup apt cache
 apt-get -y autoremove --purge
 apt-get -y clean
@@ -43,8 +45,7 @@ apt-get -y autoclean
 echo "==> Installed packages"
 dpkg --get-selections | grep -v deinstall
 
-echo "==> Cleaning up tmp"
-rm -rf /tmp/*
+DISK_USAGE_BEFORE_CLEANUP=$(df -h)
 
 # Remove Bash history
 unset HISTFILE
@@ -59,13 +60,17 @@ echo "==> Clearing last login information"
 >/var/log/wtmp
 >/var/log/btmp
 
-# Whiteout filesystems
-for fs in $(df -h | tail -n +2 | awk '!/^vagrant/ { print $6 }'); do
-    count=$(df --sync -kP $fs | tail -n1  | awk -F ' ' '{print $4}')
-    let count--
-    dd if=/dev/zero of=$fs/whitespace bs=1024 count=$count
-    rm -f $fs/whitespace
-done
+# Whiteout root
+count=$(df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}')
+let count--
+dd if=/dev/zero of=/tmp/whitespace bs=1024 count=$count
+rm /tmp/whitespace
+
+# Whiteout /boot
+count=$(df --sync -kP /boot | tail -n1 | awk -F ' ' '{print $4}')
+let count--
+dd if=/dev/zero of=/boot/whitespace bs=1024 count=$count
+rm /boot/whitespace
 
 echo '==> Clear out swap and disable until reboot'
 set +e
@@ -85,17 +90,15 @@ if [ "x${swapuuid}" != "x" ]; then
 fi
 
 # Zero out the free space to save space in the final image
-for fs in $(df -h | tail -n +2 | awk '!/^vagrant/ { print $6 }'); do
-    dd if=/dev/zero of=$fs/EMPTY bs=1M || echo "dd exit code $? is suppressed"
-    rm -f $fs/EMPTY
-done
+dd if=/dev/zero of=/EMPTY bs=1M  || echo "dd exit code $? is suppressed"
+rm -f /EMPTY
 
 # Make sure we wait until all the data is written to disk, otherwise
 # Packer might quite too early before the large files are deleted
 sync
 
 echo "==> Disk usage before cleanup"
-echo "${DISK_USAGE_BEFORE_CLEANUP}"
+echo ${DISK_USAGE_BEFORE_CLEANUP}
 
 echo "==> Disk usage after cleanup"
 df -h

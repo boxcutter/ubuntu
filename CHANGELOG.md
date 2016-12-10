@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.26 (2016-12-10)
+
+* Use virtio on Virtualbox for better network performance
+
 ## 2.0.25 (2016-11-29)
 
 * Cleanup Kernels version 3.x and 4.x to save space

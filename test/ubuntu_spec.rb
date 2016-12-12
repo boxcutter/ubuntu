@@ -15,3 +15,7 @@ describe 'box' do
       .to match(/Prompt=never/)
   end
 end
+
+describe command('man man') do
+  its(:exit_status) { should eq 0 }
+end

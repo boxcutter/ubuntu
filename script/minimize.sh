@@ -46,8 +46,6 @@ while [ -n "$(deborphan --guess-all --libdevel)" ]; do
 done
 apt-get -y purge deborphan dialog
 
-echo "==> Removing man pages"
-rm -rf /usr/share/man/*
 echo "==> Removing APT files"
 find /var/lib/apt -type f | xargs rm -f
 echo "==> Removing any docs"

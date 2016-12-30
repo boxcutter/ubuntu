@@ -6,12 +6,12 @@
         "{{ user `boot_command_prefix` }}",
         "/install/vmlinuz noapic ",
         "file=/floppy/{{ user `preseed` }} ",
-        "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
+        "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method={{ user `kbd_chooser_method`}} ",
         "hostname={{ user `hostname` }} ",
         "grub-installer/bootdev=/dev/sda<wait> ",
         "fb=false debconf/frontend=noninteractive ",
-        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
-        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout={{ user `keyboard_configuration_layout`}} ",
+        "keyboard-configuration/variant={{ user `keyboard_configuration_variant`}} console-setup/ask_detect=false ",
         "passwd/user-fullname={{ user `ssh_fullname` }} ",
         "passwd/user-password={{ user `ssh_password` }} ",
         "passwd/user-password-again={{ user `ssh_password` }} ",
@@ -203,6 +203,9 @@
     "iso_path": "/Volumes/Storage/software/ubuntu",
     "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04-server-amd64.iso",
     "locale": "en_US",
+    "kbd_chooser_method": "us",
+    "keyboard_configuration_layout": "USA",
+    "keyboard_configuration_variant": "USA",
     "memory": "512",
     "no_proxy": "{{env `no_proxy`}}",
     "parallels_guest_os_type": "ubuntu",
@@ -220,4 +223,3 @@
     "vmware_guest_os_type": "ubuntu-64"
   }
 }
-

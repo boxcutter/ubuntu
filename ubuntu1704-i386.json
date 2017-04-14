@@ -1,0 +1,13 @@
+{
+  "_comment": "Build with `packer build -var-file=ubuntu1704-i386.json ubuntu.json`",
+  "vm_name": "ubuntu1704-i386",
+  "cpus": "1",
+  "disk_size": "65536",
+  "iso_checksum": "dd7879be4e2f9f31672f6e7681ecafeccfac294afd8ca1b04b78bc37fb44291c",
+  "iso_checksum_type": "sha256",
+  "iso_name": "ubuntu-17.04-server-i386.iso",
+  "iso_url": "http://releases.ubuntu.com/17.04/ubuntu-17.04-server-i386.iso",
+  "memory": "512",
+  "preseed" : "preseed.cfg",
+  "boot_command_prefix": "<esc><esc><enter><wait>"
+}

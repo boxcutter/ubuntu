@@ -1,5 +1,7 @@
 # Changelog
 
+* Update 16.04 images to 16.04.2 release
+
 ## 2.0.26 (2016-12-10)
 
 * Use virtio on Virtualbox for better network performance

@@ -9,5 +9,8 @@
   "iso_url": "http://releases.ubuntu.com/16.10/ubuntu-16.10-server-i386.iso",
   "memory": "512",
   "preseed" : "preseed.cfg",
-  "boot_command_prefix": "<esc><esc><enter><wait>"
+  "boot_command_prefix": "<esc><esc><enter><wait>",
+  "vmware_guest_os_type": "ubuntu",
+  "virtualbox_guest_os_type": "Ubuntu",
+  "parallels_guest_os_type": "ubuntu"
 }

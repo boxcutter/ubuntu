@@ -10,8 +10,8 @@ This repository contains [Packer](https://packer.io/) templates for creating Ubu
 
 * [Ubuntu Server 16.10 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1610)
 * [Ubuntu Desktop 16.10 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1610-desktop)
-* [Ubuntu Server 16.04.1 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1604)
-* [Ubuntu Desktop 16.04.1 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1604-desktop)
+* [Ubuntu Server 16.04.2 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1604)
+* [Ubuntu Desktop 16.04.2 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1604-desktop)
 * [Ubuntu Server 14.04.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404)
 * [Ubuntu Desktop 14.04.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-desktop)
 * [Ubuntu Server 12.04.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204)
@@ -20,7 +20,7 @@ This repository contains [Packer](https://packer.io/) templates for creating Ubu
 32-bit boxes:
 
 * [Ubuntu Server 16.10 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1610-i386)
-* [Ubuntu Server 16.04.1 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1604-i386)
+* [Ubuntu Server 16.04.2 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1604-i386)
 * [Ubuntu Server 14.04.5 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-i386)
 * [Ubuntu Server 12.04.5 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-i386)
 

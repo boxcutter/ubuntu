@@ -74,7 +74,7 @@ get_short_description() {
         PRETTY_VERSION="16.10 Yakkety Yak"
         ;;
     16.04)
-        PRETTY_VERSION="16.04.1 Xenial Xerus"
+        PRETTY_VERSION="16.04.3 Xenial Xerus"
         ;;
     15.10)
         PRETTY_VERSION="15.10 Wily Werewolf"
@@ -128,7 +128,7 @@ create_description() {
         PRETTY_VERSION="16.10 Yakkety Yak"
         ;;
     16.04)
-        PRETTY_VERSION="16.04.1 Xenial Xerus"
+        PRETTY_VERSION="16.04.3 Xenial Xerus"
         ;;
     15.10)
         PRETTY_VERSION="15.10 Wily Werewolf"

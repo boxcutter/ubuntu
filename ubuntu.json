@@ -146,9 +146,9 @@
     },
     {
       "boot_command": [
-        "{{ user `boot_command_prefix` }}",
-        "/install/vmlinuz noapic ",
-        "file=/floppy/hyperv-{{ user `preseed` }} ",
+        "<esc><wait>",
+        "linux /install/vmlinuz ",
+        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/hyperv-{{ user `preseed` }} ",
         "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
         "hostname={{ user `hostname` }} ",
         "grub-installer/bootdev=/dev/sda<wait> ",
@@ -159,14 +159,14 @@
         "passwd/user-password={{ user `ssh_password` }} ",
         "passwd/user-password-again={{ user `ssh_password` }} ",
         "passwd/username={{ user `ssh_username` }} ",
-        "initrd=/install/initrd.gz -- <enter>"
+        "<enter>",
+        "initrd /install/initrd.gz<enter>",
+        "boot<enter>"
       ],
       "cpu": "{{ user `cpus` }}",
       "disk_size": "{{ user `disk_size` }}",
-      "floppy_files": [
-        "http/hyperv-{{ user `preseed` }}"
-      ],
-      "generation": 1,
+      "enable_secure_boot": false,
+      "generation": 2,
       "guest_additions_mode": "disable",
       "http_directory": "http",
       "iso_checksum": "{{ user `iso_checksum` }}",

@@ -42,7 +42,8 @@
       "vmx_data": {
         "memsize": "{{ user `memory` }}",
         "numvcpus": "{{ user `cpus` }}"
-      }
+      },
+      "vmx_remove_ethernet_interfaces": true
     },
     {
       "boot_command": [
@@ -50,7 +51,7 @@
         "/install/vmlinuz noapic ",
         "initrd=/install/initrd.gz ",
         "file=/floppy/{{ user `preseed` }} ",
-        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+        "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
         "hostname={{ user `hostname` }} ",
         "grub-installer/bootdev=/dev/sda<wait> ",
         "fb=false debconf/frontend=noninteractive ",
@@ -102,7 +103,7 @@
         "{{ user `boot_command_prefix` }}",
         "/install/vmlinuz noapic ",
         "file=/floppy/{{ user `preseed` }} ",
-        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+        "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
         "hostname={{ user `hostname` }} ",
         "grub-installer/bootdev=/dev/sda<wait> ",
         "fb=false debconf/frontend=noninteractive ",

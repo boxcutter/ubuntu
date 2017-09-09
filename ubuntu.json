@@ -40,6 +40,7 @@
       "type": "vmware-iso",
       "vm_name": "{{ user `vm_name` }}",
       "vmx_data": {
+        "ethernet0.pciSlotNumber": "32",
         "memsize": "{{ user `memory` }}",
         "numvcpus": "{{ user `cpus` }}"
       },

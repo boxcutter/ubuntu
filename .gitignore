@@ -9,6 +9,7 @@ tmp
 *.swp
 Makefile.local
 .tmpatlas/
+iso/
 
 .DS_Store
 .bundle/

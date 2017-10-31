@@ -21,7 +21,7 @@ args() {
   if [ ! -f ${var_file} ]; then
     var_file="${var_file}.json"
     if [ ! -f ${var_file} ]; then
-      echo "$(basename $0): Invalid template file ${var_list_template}"
+      echo "$(basename $0): Invalid template file ${var_file}"
       exit 127
     fi
   fi

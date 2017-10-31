@@ -40,9 +40,11 @@
       "type": "vmware-iso",
       "vm_name": "{{ user `vm_name` }}",
       "vmx_data": {
+        "ethernet0.pciSlotNumber": "32",
         "memsize": "{{ user `memory` }}",
         "numvcpus": "{{ user `cpus` }}"
-      }
+      },
+      "vmx_remove_ethernet_interfaces": true
     },
     {
       "boot_command": [
@@ -50,7 +52,7 @@
         "/install/vmlinuz noapic ",
         "initrd=/install/initrd.gz ",
         "file=/floppy/{{ user `preseed` }} ",
-        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+        "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
         "hostname={{ user `hostname` }} ",
         "grub-installer/bootdev=/dev/sda<wait> ",
         "fb=false debconf/frontend=noninteractive ",
@@ -102,7 +104,7 @@
         "{{ user `boot_command_prefix` }}",
         "/install/vmlinuz noapic ",
         "file=/floppy/{{ user `preseed` }} ",
-        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+        "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
         "hostname={{ user `hostname` }} ",
         "grub-installer/bootdev=/dev/sda<wait> ",
         "fb=false debconf/frontend=noninteractive ",
@@ -112,7 +114,7 @@
         "passwd/user-password={{ user `ssh_password` }} ",
         "passwd/user-password-again={{ user `ssh_password` }} ",
         "passwd/username={{ user `ssh_username` }} ",
-        "initrd=/install/initrd.gz -- <wait><enter>" 
+        "initrd=/install/initrd.gz -- <wait><enter>"
       ],
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
@@ -182,7 +184,8 @@
         "script/minimize.sh",
         "script/cleanup.sh"
       ],
-      "type": "shell"
+      "type": "shell",
+      "expect_disconnect": "true"
     }
   ],
   "variables": {
@@ -220,4 +223,3 @@
     "vmware_guest_os_type": "ubuntu-64"
   }
 }
-

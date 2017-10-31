@@ -6,23 +6,7 @@ This repository contains [Packer](https://packer.io/) templates for creating Ubu
 
 ## Current Boxes
 
-64-bit boxes:
-
-* [Ubuntu Server 16.10 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1610)
-* [Ubuntu Desktop 16.10 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1610-desktop)
-* [Ubuntu Server 16.04.1 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1604)
-* [Ubuntu Desktop 16.04.1 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1604-desktop)
-* [Ubuntu Server 14.04.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404)
-* [Ubuntu Desktop 14.04.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-desktop)
-* [Ubuntu Server 12.04.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204)
-* [Ubuntu Desktop 12.04.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-desktop)
-
-32-bit boxes:
-
-* [Ubuntu Server 16.10 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1610-i386)
-* [Ubuntu Server 16.04.1 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1604-i386)
-* [Ubuntu Server 14.04.5 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-i386)
-* [Ubuntu Server 12.04.5 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1204-i386)
+We no longer provide pre-built binaries for these templates.
 
 ## Building the Vagrant boxes with Packer
 
@@ -171,11 +155,11 @@ Contact moujan@annawake.com
 
 ### Acknowledgments
 
-[Parallels](http://www.parallels.com/) provides a Business Edition license of
+[Parallels](http://www.parallels.com/) provided a Business Edition license of
 their software to run on the basebox build farm.
 
 <img src="http://www.parallels.com/fileadmin/images/corporate/brand-assets/images/logo-knockout-on-red.jpg" width="80">
 
-[SmartyStreets](http://www.smartystreets.com) is providing basebox hosting for the box-cutter project.
+[SmartyStreets](http://www.smartystreets.com) provided basebox hosting for the box-cutter project since 2015 - thank you for your support!
 
-![Powered By SmartyStreets](https://smartystreets.com/resources/images/smartystreets-flat.png)
+<img src="https://d79i1fxsrar4t.cloudfront.net/images/brand/smartystreets.65887aa3.png" width="320">

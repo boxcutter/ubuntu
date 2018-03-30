@@ -27,8 +27,13 @@ if [[ $DISTRIB_RELEASE == 12.04 ]]; then
     configure_ubuntu1204_autologin
 
 elif [[ $DISTRIB_RELEASE == 14.04 || $DISTRIB_RELEASE == 15.04 || $DISTRIB_RELEASE == 16.04 || $DISTRIB_RELEASE == 16.10 || $DISTRIB_RELEASE == 17.04 ]]; then
+
+
     echo "==> Installing ubuntu-desktop"
-    apt-get install -y ubuntu-desktop
+    # fix: driver issue
+    apt-get install -y lubuntu-desktop
+    apt-get prune -y update-notifier-common
+    apt-get install -y update-notifier-common
 
     USERNAME=${SSH_USER}
     LIGHTDM_CONFIG=/etc/lightdm/lightdm.conf
@@ -59,4 +64,3 @@ NODPMS_CONFIG=/etc/xdg/autostart/nodpms.desktop
     echo "Comment[en_US]=" >> $NODPMS_CONFIG
     echo "Comment=" >> $NODPMS_CONFIG
 fi
-

@@ -31,9 +31,8 @@ elif [[ $DISTRIB_RELEASE == 14.04 || $DISTRIB_RELEASE == 15.04 || $DISTRIB_RELEA
 
     echo "==> Installing ubuntu-desktop"
     # fix: driver issue
-    apt-get install -y lubuntu-desktop
-    apt-get prune -y update-notifier-common
     apt-get install -y update-notifier-common
+    apt-get install -y lubuntu-desktop
 
     USERNAME=${SSH_USER}
     LIGHTDM_CONFIG=/etc/lightdm/lightdm.conf

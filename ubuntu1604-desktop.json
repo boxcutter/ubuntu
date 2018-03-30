@@ -3,7 +3,7 @@
   "vm_name": "ubuntu1604-desktop",
   "desktop": "true",
   "locale": "en_US.UTF-8",
-  "cpus": "1",
+  "cpus": "2",
   "disk_size": "130048",
   "iso_checksum": "ee834fbeb94cc55972b38caafa2029c29625e2e8",
   "iso_checksum_type": "sha1",

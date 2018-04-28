@@ -5,6 +5,7 @@
       "boot_command": [
         "{{ user `boot_command_prefix` }}",
         "/install/vmlinuz noapic ",
+        "initrd=/install/initrd.gz ",
         "file=/floppy/{{ user `preseed` }} ",
         "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
         "hostname={{ user `hostname` }} ",
@@ -16,7 +17,7 @@
         "passwd/user-password={{ user `ssh_password` }} ",
         "passwd/user-password-again={{ user `ssh_password` }} ",
         "passwd/username={{ user `ssh_username` }} ",
-        "initrd=/install/initrd.gz -- <enter>"
+        "-- <enter>"
       ],
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
@@ -103,6 +104,7 @@
       "boot_command": [
         "{{ user `boot_command_prefix` }}",
         "/install/vmlinuz noapic ",
+        "initrd=/install/initrd.gz ",
         "file=/floppy/{{ user `preseed` }} ",
         "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
         "hostname={{ user `hostname` }} ",
@@ -114,7 +116,7 @@
         "passwd/user-password={{ user `ssh_password` }} ",
         "passwd/user-password-again={{ user `ssh_password` }} ",
         "passwd/username={{ user `ssh_username` }} ",
-        "initrd=/install/initrd.gz -- <wait><enter>"
+        "-- <wait><enter>"
       ],
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [

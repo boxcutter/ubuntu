@@ -1,0 +1,13 @@
+{
+  "_comment": "Build with `packer build -var-file=ubuntu1804.json ubuntu.json`",
+  "vm_name": "ubuntu1804",
+  "cpus": "1",
+  "disk_size": "65536",
+  "iso_checksum": "a7f5c7b0cdd0e9560d78f1e47660e066353bb8a79eb78d1fc3f4ea62a07e6cbc",
+  "iso_checksum_type": "sha256",
+  "iso_name": "ubuntu-18.04-server-amd64.iso",
+  "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04-server-amd64.iso",
+  "memory": "512",
+  "preseed" : "preseed.cfg",
+  "boot_command_prefix": "<esc><esc><enter><wait>"
+}

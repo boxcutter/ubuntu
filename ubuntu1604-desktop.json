@@ -5,11 +5,11 @@
   "locale": "en_US.UTF-8",
   "cpus": "2",
   "disk_size": "130048",
-  "iso_checksum": "ee834fbeb94cc55972b38caafa2029c29625e2e8",
+  "iso_checksum": "c9145abdc41011b2fc9b32b9d96175020760e284",
   "iso_checksum_type": "sha1",
-  "iso_name": "ubuntu-16.04.4-server-amd64.iso",
-  "iso_url": "http://releases.ubuntu.com/16.04.4/ubuntu-16.04.4-server-amd64.iso?_ga=2.249838405.27733128.1522405235-1447420026.1520972587",
-  "memory": "4096",
+  "iso_name": "ubuntu-16.04.4-desktop-amd64.iso",
+  "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.4-desktop-amd64.iso",
+  "memory": "1024",
   "preseed": "preseed-desktop.cfg",
   "vagrantfile_template": "tpl/vagrantfile-ubuntu1604-desktop.tpl"
 }

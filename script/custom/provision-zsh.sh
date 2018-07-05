@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-
+# PLEASE ENABLE THIS IF YOU WANT ZSH IN THE UBUNTU.JSON
 echo "Configuring ZSH..."
 apt-get purge -y update-notifier-common
 apt-get install -y update-notifier-common

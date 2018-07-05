@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# TODO: fix this: remove desktop and add cleanupscripts
 if [[ ! "$DESKTOP" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
   exit
 fi

@@ -179,7 +179,6 @@
         "script/desktop.sh",
         "script/vagrant.sh",
         "script/sshd.sh",
-        "script/custom/provision-zsh.sh",
         "script/custom/provision_nmap.sh",
         "script/custom/provision-jdk.sh",
         "script/custom/provision-node.sh",

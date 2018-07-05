@@ -4,7 +4,7 @@ echo "provisioning docker"
 # apt-get install -y \
 #     linux-image-extra-$(uname -r) \
 #     linux-image-extra-virtual
-
+sleep 60
 echo "provisioning docker (apt, ca-cert, curl, software props)"
 # Allow apt to use repo over HTTPS
 apt-get install -y \

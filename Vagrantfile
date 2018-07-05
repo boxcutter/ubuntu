@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
     config.vm.define "vagrant-ubuntu1604-desktop"
-    config.vm.box = "box/virtualbox/ubuntu1604-desktop-0.2.0.box"
+    config.vm.box = "box/virtualbox/ubuntu1604-desktop-0.2.2.box"
 
     config.vm.provider :virtualbox do |v, override|
         v.gui = true

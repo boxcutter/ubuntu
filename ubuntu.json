@@ -149,14 +149,20 @@
       "vm_name": "{{ user `vm_name` }}"
     }
   ],
-  "post-processors": [
+  "post-processors": [[
     {
+      "type": "vagrant",
       "keep_input_artifact": false,
       "output": "box/{{.Provider}}/{{user `vm_name`}}-{{user `version`}}.box",
-      "type": "vagrant",
       "vagrantfile_template": "{{ user `vagrantfile_template` }}"
+    },
+    {
+      "type": "vagrant-cloud",
+      "access_token": "{{user `vagrant_cloud_token`}}",
+      "box_tag": "commjoen/training",
+      "version":"{{user `version`}}"
     }
-  ],
+  ]],
   "provisioners": [
     {
       "environment_vars": [
@@ -176,7 +182,6 @@
       "scripts": [
         "script/custom/create_folders.sh",
         "script/update.sh",
-        "script/desktop.sh",
         "script/vagrant.sh",
         "script/sshd.sh",
         "script/custom/provision_nmap.sh",
@@ -227,9 +232,10 @@
     "ssh_username": "vagrant",
     "update": "false",
     "vagrantfile_template": "",
-    "version": "0.2.0",
+    "version": "0.2.2",
     "virtualbox_guest_os_type": "Ubuntu_64",
     "vm_name": "ubuntu1604",
-    "vmware_guest_os_type": "ubuntu-64"
+    "vmware_guest_os_type": "ubuntu-64",
+    "vagrant_cloud_token": "{{env `VAGRANT_CLOUD_TOKEN`}}"
   }
 }

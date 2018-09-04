@@ -161,6 +161,7 @@
     {
       "environment_vars": [
         "CLEANUP_PAUSE={{user `cleanup_pause`}}",
+        "DEBIAN_FRONTEND=noninteractive",
         "DESKTOP={{user `desktop`}}",
         "UPDATE={{user `update`}}",
         "INSTALL_VAGRANT_KEY={{user `install_vagrant_key`}}",
@@ -174,8 +175,8 @@
       ],
       "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
-        "script/update.sh",
         "script/desktop.sh",
+        "script/update.sh",
         "script/vagrant.sh",
         "script/sshd.sh",
         "script/vmware.sh",

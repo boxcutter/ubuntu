@@ -7,7 +7,8 @@ This repository contains [Packer](https://packer.io/) templates for creating Ubu
 - Zap (2.7.0)
 - nmap
 - Burproxy
-It is a fork of [boxcutter](https://github.com/boxcutter/ubuntu).
+
+This is a fork of [boxcutter](https://github.com/boxcutter/ubuntu).
 
 ## Project status
 

@@ -167,6 +167,7 @@
     {
       "environment_vars": [
         "CLEANUP_PAUSE={{user `cleanup_pause`}}",
+        "DEBIAN_FRONTEND=noninteractive",
         "DESKTOP={{user `desktop`}}",
         "UPDATE={{user `update`}}",
         "INSTALL_VAGRANT_KEY={{user `install_vagrant_key`}}",
@@ -180,7 +181,11 @@
       ],
       "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
+<<<<<<< HEAD
         "script/custom/create_folders.sh",
+=======
+        "script/desktop.sh",
+>>>>>>> 8588a552cd63f6e0966f8c713589a0ee3736dc77
         "script/update.sh",
         "script/vagrant.sh",
         "script/sshd.sh",
@@ -211,15 +216,23 @@
     "desktop": "false",
     "disk_size": "65536",
     "ftp_proxy": "{{env `ftp_proxy`}}",
-    "headless": "",
+    "headless": "false",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "install_vagrant_key": "true",
+<<<<<<< HEAD
     "iso_checksum": "ee834fbeb94cc55972b38caafa2029c29625e2e8 ",
     "iso_checksum_type": "sha1",
     "iso_name": "ubuntu-16.04.4-server-amd64.iso",
     "iso_path": "/Volumes/Storage/software/ubuntu",
     "iso_url": "http://releases.ubuntu.com/16.04.4/ubuntu-16.04.4-server-amd64.iso?_ga=2.249838405.27733128.1522405235-1447420026.1520972587",
+=======
+    "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
+    "iso_checksum_type": "sha256",
+    "iso_name": "ubuntu-16.04.5-server-amd64.iso",
+    "iso_path": "/Volumes/Storage/software/ubuntu",
+    "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.5-server-amd64.iso",
+>>>>>>> 8588a552cd63f6e0966f8c713589a0ee3736dc77
     "locale": "en_US",
     "memory": "4096",
     "no_proxy": "{{env `no_proxy`}}",

@@ -2,7 +2,11 @@
 
 ## Overview
 
-This repository contains [Packer](https://packer.io/) templates for creating Ubuntu Vagrant boxes.
+This repository contains [Packer](https://packer.io/) templates for creating Ubuntu Vagrant boxes, currently the focus is on ubuntu Desktop 16.04. With the box you get:
+- Docker & docker images of Webgoat 7, Webgoat 8 and a few others
+- Zap (2.7.0)
+- nmap
+- Burproxy
 It is a fork of [boxcutter](https://github.com/boxcutter/ubuntu).
 
 ## Project status
@@ -12,10 +16,11 @@ This project is a prototype and is currently no longer actively being maintained
 ## How to use the vagrant box
 
 Requires: Virtualbox 5, Vagrant.
+
 Go to https://app.vagrantup.com/commjoen/boxes/trainingbox and follow instructions.
 
 ## How to create your own box
-Requires: Virtualbox 5, Vagrant, Packer
+Requires: Virtualbox 5, Vagrant, Packer.
 
 - prepare a release at https://app.vagrantup.com
 - update `box_tag` in ubuntu.json

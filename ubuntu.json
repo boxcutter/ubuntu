@@ -181,11 +181,7 @@
       ],
       "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
-<<<<<<< HEAD
         "script/custom/create_folders.sh",
-=======
-        "script/desktop.sh",
->>>>>>> 8588a552cd63f6e0966f8c713589a0ee3736dc77
         "script/update.sh",
         "script/vagrant.sh",
         "script/sshd.sh",

@@ -216,11 +216,11 @@
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "install_vagrant_key": "true",
-    "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
+    "iso_checksum": "5748706937539418ee5707bd538c4f5eabae485d17aa49fb13ce2c9b70532433",
     "iso_checksum_type": "sha256",
-    "iso_name": "ubuntu-16.04.5-desktop-amd64.iso",
     "iso_path": "/Volumes/Storage/software/ubuntu",
-    "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.5-desktop-amd64.iso",
+    "iso_name": "ubuntu-18.04.1-desktop-amd64.iso",
+    "iso_url": "http://mirror.amsiohosting.net/releases.ubuntu.com/18.04.1/ubuntu-18.04.1-desktop-amd64.iso",
     "locale": "en_US",
     "memory": "4096",
     "no_proxy": "{{env `no_proxy`}}",
@@ -235,7 +235,7 @@
     "vagrantfile_template": "",
     "version": "0.2.2",
     "virtualbox_guest_os_type": "Ubuntu_64",
-    "vm_name": "ubuntu1604",
+    "vm_name": "ubuntu1804",
     "vmware_guest_os_type": "ubuntu-64",
     "vagrant_cloud_token": "{{env `VAGRANT_CLOUD_TOKEN`}}"
   }

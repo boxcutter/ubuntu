@@ -25,7 +25,7 @@ Requires: Virtualbox 5, Vagrant, Packer.
 
 - prepare a release at https://app.vagrantup.com
 - update `box_tag` in ubuntu.json
-- run `packer build -only=virtualbox-iso -var-file=ubuntu1604-desktop.json -var 'vagrant_cloud_token=<YOURVAGRANTCLODUTOKENHERE>' -var 'version=<VERSIONHERE>' ubuntu.json` & in the vm:
+- run `packer build -only=virtualbox-iso -var-file=ubuntu1804-desktop.json -var 'vagrant_cloud_token=<YOURVAGRANTCLODUTOKENHERE>' -var 'version=<VERSIONHERE>' ubuntu.json` & in the vm:
   - Complete the setup wizard
   - reboot
   - run sshd from terminal (e.g. type sshd and follow instructions). After this, packer will take over.

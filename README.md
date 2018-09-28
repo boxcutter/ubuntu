@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains [Packer](https://packer.io/) templates for creating Ubuntu Vagrant boxes, currently the focus is on ubuntu Desktop 16.04. With the box you get:
+This repository contains [Packer](https://packer.io/) templates for creating Ubuntu Vagrant boxes, currently the focus is on ubuntu Desktop 18.04. With the box you get:
 - Docker & docker images of Webgoat 7, Webgoat 8 and a few others
 - Zap (2.7.0)
 - nmap

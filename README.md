@@ -163,3 +163,5 @@ their software to run on the basebox build farm.
 [SmartyStreets](http://www.smartystreets.com) provided basebox hosting for the box-cutter project since 2015 - thank you for your support!
 
 <img src="https://d79i1fxsrar4t.cloudfront.net/images/brand/smartystreets.65887aa3.png" width="320">
+
+My Changes

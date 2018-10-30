@@ -6,48 +6,32 @@ fi
 
 SSH_USER=${SSH_USERNAME:-vagrant}
 
-configure_ubuntu1204_autologin()
-{
-    USERNAME=${SSH_USER}
-    LIGHTDM_CONFIG=/etc/lightdm/lightdm.conf
-
-    echo "==> Configuring lightdm autologin"
-    if [ -f $LIGHTDM_CONFIG ]; then
-        echo "" >> $LIGHTDM_CONFIG
-        echo "autologin-user=${USERNAME}" >> $LIGHTDM_CONFIG
-        echo "autologin-user-timeout=0" >> $LIGHTDM_CONFIG
-    fi
-}
-
 echo "==> Checking version of Ubuntu"
 . /etc/lsb-release
 
-if [[ $DISTRIB_RELEASE == 12.04 ]]; then
+echo "==> Installing ubuntu-desktop"
+apt-get install -y ubuntu-desktop
 
-    configure_ubuntu1204_autologin
+USERNAME=${SSH_USER}
+LIGHTDM_CONFIG=/etc/lightdm/lightdm.conf
+GDM_CUSTOM_CONFIG=/etc/gdm/custom.conf
 
-elif [[ $DISTRIB_RELEASE == 14.04 || $DISTRIB_RELEASE == 15.04 || $DISTRIB_RELEASE == 16.04 || $DISTRIB_RELEASE == 16.10 || $DISTRIB_RELEASE == 17.04 ]]; then
-    echo "==> Installing ubuntu-desktop"
-    apt-get install -y ubuntu-desktop
+mkdir -p $(dirname ${GDM_CUSTOM_CONFIG})
+echo "[daemon]" >> $GDM_CUSTOM_CONFIG
+echo "# Enabling automatic login" >> $GDM_CUSTOM_CONFIG
+echo "AutomaticLoginEnable=True" >> $GDM_CUSTOM_CONFIG
+echo "AutomaticLoginEnable=${USERNAME}" >> $GDM_CUSTOM_CONFIG
 
-    USERNAME=${SSH_USER}
-    LIGHTDM_CONFIG=/etc/lightdm/lightdm.conf
-    GDM_CUSTOM_CONFIG=/etc/gdm/custom.conf
-
-    mkdir -p $(dirname ${GDM_CUSTOM_CONFIG})
-    echo "[daemon]" >> $GDM_CUSTOM_CONFIG
-    echo "# Enabling automatic login" >> $GDM_CUSTOM_CONFIG
-    echo "AutomaticLoginEnable=True" >> $GDM_CUSTOM_CONFIG
-    echo "AutomaticLoginEnable=${USERNAME}" >> $GDM_CUSTOM_CONFIG
-
+if [ -f $LIGHTDM_CONFIG ]; then
     echo "==> Configuring lightdm autologin"
     echo "[SeatDefaults]" >> $LIGHTDM_CONFIG
     echo "autologin-user=${USERNAME}" >> $LIGHTDM_CONFIG
+    echo "autologin-user-timeout=0" >> $LIGHTDM_CONFIG
 fi
 
 if [ -d /etc/xdg/autostart/ ]; then
     echo "==> Disabling screen blanking"
-NODPMS_CONFIG=/etc/xdg/autostart/nodpms.desktop
+    NODPMS_CONFIG=/etc/xdg/autostart/nodpms.desktop
     echo "[Desktop Entry]" >> $NODPMS_CONFIG
     echo "Type=Application" >> $NODPMS_CONFIG
     echo "Exec=xset -dpms s off s noblank s 0 0 s noexpose" >> $NODPMS_CONFIG
@@ -59,4 +43,3 @@ NODPMS_CONFIG=/etc/xdg/autostart/nodpms.desktop
     echo "Comment[en_US]=" >> $NODPMS_CONFIG
     echo "Comment=" >> $NODPMS_CONFIG
 fi
-

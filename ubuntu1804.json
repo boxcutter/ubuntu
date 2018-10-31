@@ -8,6 +8,5 @@
   "iso_name": "ubuntu-18.04.1-server-amd64.iso",
   "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso",
   "memory": "512",
-  "preseed" : "preseed.cfg",
-  "boot_command_prefix": "<esc><esc><enter><wait>"
+  "preseed" : "preseed.cfg"
 }

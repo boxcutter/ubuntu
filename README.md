@@ -21,16 +21,16 @@ be installed as an additional preqrequisite.
 We make use of JSON files containing user variables to build specific versions of Ubuntu.
 You tell `packer` to use a specific user variable file via the `-var-file=` command line
 option.  This will override the default options on the core `ubuntu.json` packer template,
-which builds Ubuntu 16.04 by default.
+which builds Ubuntu 18.04 by default.
 
-For example, to build Ubuntu 16.04, use the following:
+For example, to build Ubuntu 18.04, use the following:
 
-    $ packer build -var-file=ubuntu1604.json ubuntu.json
+    $ packer build -var-file=ubuntu1804.json ubuntu.json
     
 If you want to make boxes for a specific desktop virtualization platform, use the `-only`
-parameter.  For example, to build Ubuntu 16.04 for VirtualBox:
+parameter.  For example, to build Ubuntu 18.04 for VirtualBox:
 
-    $ packer build -only=virtualbox-iso -var-file=ubuntu1604.json ubuntu.json
+    $ packer build -only=virtualbox-iso -var-file=ubuntu1804.json ubuntu.json
 
 The boxcutter templates currently support the following desktop virtualization strings:
 
@@ -41,13 +41,13 @@ The boxcutter templates currently support the following desktop virtualization s
 ## Building the Vagrant boxes with the box script
 
 We've also provided a wrapper script `bin/box` for ease of use, so alternatively, you can use
-the following to build Ubuntu 16.04 for all providers:
+the following to build Ubuntu 18.04 for all providers:
 
-    $ bin/box build ubuntu1604
+    $ bin/box build ubuntu1804
 
-Or if you just want to build Ubuntu 16.04 for VirtualBox:
+Or if you just want to build Ubuntu 18.04 for VirtualBox:
 
-    $ bin/box build ubuntu1604 virtualbox
+    $ bin/box build ubuntu1804 virtualbox
 
 ## Building the Vagrant boxes with the Makefile
 
@@ -88,15 +88,15 @@ The `bin/box` script has subcommands for running both the automated tests
 and for performing exploratory testing.
 
 Use the `bin/box test` subcommand to run the automated Serverspec tests.
-For example to execute the tests for the Ubuntu 14.04 box on VirtualBox, use
+For example to execute the tests for the Ubuntu 18.04 box on VirtualBox, use
 the following:
 
-    bin/box test ubuntu1604 virtualbox
+    bin/box test ubuntu1804 virtualbox
 
 Similarly, to perform exploratory testing on the VirtualBox image via ssh,
 run the following command:
 
-    bin/box ssh ubuntu1604 virtualbox
+    bin/box ssh ubuntu1804 virtualbox
 
 ### Variable overrides
 
@@ -141,9 +141,9 @@ The default is `custom-script.sh` which does nothing.
 
 1. Fork and clone the repo.
 2. Create a new branch, please don't work in your `master` branch directly.
-3. Add new [Serverspec](http://serverspec.org/) or [Bats](https://blog.engineyard.com/2014/bats-test-command-line-tools) tests in the `test/` subtree for the change you want to make.  Run `make test` on a relevant template to see the tests fail (like `make test-virtualbox/ubuntu1404`).
-4. Fix stuff.  Use `make ssh` to interactively test your box (like `make ssh-virtualbox/ubuntu1404`).
-5. Run `make test` on a relevant template (like `make test-virtualbox/ubuntu1404`) to see if the tests pass.  Repeat steps 3-5 until done.
+3. Add new [Serverspec](http://serverspec.org/) or [Bats](https://blog.engineyard.com/2014/bats-test-command-line-tools) tests in the `test/` subtree for the change you want to make.  Run `make test` on a relevant template to see the tests fail (like `make test-virtualbox/ubuntu1804`).
+4. Fix stuff.  Use `make ssh` to interactively test your box (like `make ssh-virtualbox/ubuntu1804`).
+5. Run `make test` on a relevant template (like `make test-virtualbox/ubuntu1804`) to see if the tests pass.  Repeat steps 3-5 until done.
 6. Update `README.md` and `AUTHORS` to reflect any changes.
 7. If you have a large change in mind, it is still preferred that you split them into small commits.  Good commit messages are important.  The git documentatproject has some nice guidelines on [writing descriptive commit messages](http://git-scm.com/book/ch5-2.html#Commit-Guidelines).
 8. Push to your fork and submit a pull request.

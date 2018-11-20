@@ -14,7 +14,7 @@ apt-get install -y ubuntu-desktop
 
 USERNAME=${SSH_USER}
 LIGHTDM_CONFIG=/etc/lightdm/lightdm.conf
-GDM_CUSTOM_CONFIG=/etc/gdm/custom.conf
+GDM_CUSTOM_CONFIG=/etc/gdm3/custom.conf
 
 mkdir -p $(dirname ${GDM_CUSTOM_CONFIG})
 echo "[daemon]" >> $GDM_CUSTOM_CONFIG

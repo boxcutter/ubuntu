@@ -21,8 +21,8 @@ if [ -f $GDM_CUSTOM_CONFIG ]; then
     > $GDM_CUSTOM_CONFIG
     echo "[daemon]" >> $GDM_CUSTOM_CONFIG
     echo "# Enabling automatic login" >> $GDM_CUSTOM_CONFIG
-    echo "AutomaticLoginEnable=True" >> $GDM_CUSTOM_CONFIG
-    echo "AutomaticLoginEnable=${USERNAME}" >> $GDM_CUSTOM_CONFIG
+    echo "AutomaticLoginEnable = true" >> $GDM_CUSTOM_CONFIG
+    echo "AutomaticLogin = ${USERNAME}" >> $GDM_CUSTOM_CONFIG
 fi
 
 if [ -f $LIGHTDM_CONFIG ]; then

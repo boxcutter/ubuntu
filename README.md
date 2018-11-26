@@ -26,7 +26,7 @@ which builds Ubuntu 18.04 by default.
 For example, to build Ubuntu 18.04, use the following:
 
     $ packer build -var-file=ubuntu1804.json ubuntu.json
-    
+
 If you want to make boxes for a specific desktop virtualization platform, use the `-only`
 parameter.  For example, to build Ubuntu 18.04 for VirtualBox:
 

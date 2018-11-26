@@ -12,8 +12,6 @@ usage() {
     echo "Requires the following environment variables to be set:"
     echo "  ATLAS_USERNAME"
     echo "  ATLAS_ACCESS_TOKEN"
-    echo "  BOX_CUTTER_ATLAS_USERNAME"
-    echo "  BOX_CUTTER_ATLAS_ACCESS_TOKEN"
 }
 
 args() {
@@ -30,16 +28,8 @@ args() {
         echo "ATLAS_ACCESS_TOKEN environment variable not set!"
         usage
         exit 1
-    elif [ -z ${BOX_CUTTER_ATLAS_USERNAME+x} ]; then
-        echo "BOX_CUTTER_ATLAS_USERNAME environment variable not set!"
-        usage
-        exit 1
-    elif [ -z ${BOX_CUTTER_ATLAS_ACCESS_TOKEN+x} ]; then
-        echo "BOX_CUTTER_ATLAS_ACCESS_TOKEN environment variable not set!"
-        usage
-        exit 1
     fi
-    
+
     BOX_NAME=$1
     BOX_SUFFIX=$2
     VERSION=$3
@@ -58,8 +48,6 @@ get_short_description() {
     EDITION_STRING=
     if [[ "${BOX_NAME}" =~ desktop ]]; then
         EDITION_STRING=" Desktop"
-    else
-        EDITION_STRING=" Server"
     fi
     RAW_VERSION=${BOX_NAME#ubuntu}
     RAW_VERSION=${RAW_VERSION%-i386}
@@ -205,61 +193,115 @@ publish_provider() {
     atlas_access_token=$2
 
     echo "==> Checking to see if ${PROVIDER} provider exists"
-    HTTP_STATUS=$(curl -s -f -o /dev/nul -w "%{http_code}" -i "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/version/${VERSION}/provider/${PROVIDER}"?access_token="${atlas_access_token}" || true)
-    echo ${HTTP_STATUS}
+    HTTP_STATUS=$(curl \
+        -s -o /dev/null -w "%{http_code}" \
+        --header "Authorization: Bearer ${atlas_access_token}" \
+        "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/version/${VERSION}/provider/${PROVIDER}")
+
+    VMWARE_BOX_FILE=box/vmware/${BOX_NAME}${BOX_SUFFIX}
+    VIRTUALBOX_BOX_FILE=box/virtualbox/${BOX_NAME}${BOX_SUFFIX}
+
     if [ 200 -eq ${HTTP_STATUS} ]; then
         echo "==> Updating ${PROVIDER} provider"
-        curl -X PUT "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/version/${VERSION}/provider/${PROVIDER}" -d "access_token=${atlas_access_token}" -d provider[name]="${PROVIDER}" -d provider[url]="${PROVIDER_URL}"
     else
         echo "==> Creating ${PROVIDER} provider"
-        curl -X POST "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/version/${VERSION}/providers" -d "access_token=${atlas_access_token}" -d provider[name]="${PROVIDER}" -d provider[url]="${PROVIDER_URL}"
+
+        JSON=$(
+            jq -n "{
+                provider: {
+                    name: \"${PROVIDER}\"
+                }
+            }")
+
+        curl \
+            --header "Content-Type: application/json" \
+            --header "Authorization: Bearer ${atlas_access_token}" \
+            "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/version/${VERSION}/providers" \
+            --data "$JSON"
     fi
+
+    FILE=""
+    if [[ "vmware_desktop" = "${PROVIDER}" ]]; then
+        FILE=${VMWARE_BOX_FILE}
+    elif [[ "virtualbox" = "${PROVIDER}" ]]; then
+        FILE=${VIRTUALBOX_BOX_FILE}
+    fi
+
+    RESULT=$(curl \
+            --header "Authorization: Bearer ${atlas_access_token}" \
+            "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/version/${VERSION}/provider/${PROVIDER}/upload")
+    UPLOAD_PATH=$(echo "$RESULT" | jq -r .upload_path)
+    curl "$UPLOAD_PATH" --request PUT --upload-file $FILE
 }
 
 atlas_publish() {
     atlas_username=$1
     atlas_access_token=$2
-
-    ATLAS_API_URL=https://atlas.hashicorp.com/api/v1
+    ATLAS_API_URL=https://app.vagrantup.com/api/v1/
 
     echo "==> Checking for existing box ${BOX_NAME} on ${atlas_username}"
-    # Retrieve box
-    HTTP_STATUS=$(curl -s -f -o /dev/nul -w "%{http_code}" -i "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}"?access_token="${atlas_access_token}" || true)
+    HTTP_STATUS=$(curl \
+        -s -o /dev/null -w "%{http_code}" \
+        --header "Authorization: Bearer ${atlas_access_token}" \
+        "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}")
+
     if [ 404 -eq ${HTTP_STATUS} ]; then
         echo "${BOX_NAME} does not exist, creating"
         get_short_description
 
-        curl -X POST "${ATLAS_API_URL}/boxes" -d box[name]="${BOX_NAME}" -d box[short_description]="${SHORT_DESCRIPTION}" -d box[is_private]=false -d "access_token=${atlas_access_token}"
+        JSON=$(
+            jq -n "{
+                box: {
+                    username: \"${atlas_username}\",
+                    name: \"${BOX_NAME}\",
+                    short_description: \"${SHORT_DESCRIPTION}\",
+                    is_private: false
+                }
+            }")
+
+        curl -s \
+            --header "Content-Type: application/json" \
+            --header "Authorization: Bearer ${atlas_access_token}" \
+            "${ATLAS_API_URL}/boxes" \
+            --data "$JSON"
     elif [ 200 -ne ${HTTP_STATUS} ]; then
         echo "Unknown status ${HTTP_STATUS} from box/get" && exit 1
     fi
 
     echo "==> Checking for existing version ${VERSION} on ${atlas_username}"
-    # Retrieve version
-    HTTP_STATUS=$(curl -s -f -o /dev/nul -w "%{http_code}" -i "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/version/${VERSION}" || true)
+    HTTP_STATUS=$(curl \
+        -s -o /dev/null -w "%{http_code}" \
+        --header "Authorization: Bearer ${atlas_access_token}" \
+        "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/version/${VERSION}")
+
     if [ 404 -ne ${HTTP_STATUS} ] && [ 200 -ne ${HTTP_STATUS} ]; then
         echo "Unknown HTTP status ${HTTP_STATUS} from version/get" && exit 1
     fi
 
     create_description
-    #echo "${VERSION_JSON}"
     if [ 404 -eq ${HTTP_STATUS} ]; then
-       echo "==> none found; creating"
-       JSON_RESULT=$(curl -s -f -X POST -H "Content-Type: application/json" "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/versions?access_token=${atlas_access_token}" -d "${VERSION_JSON}" || true)
+        echo "==> none found; creating"
+        JSON_RESULT=$(curl \
+            --header "Content-Type: application/json" \
+            --header "Authorization: Bearer ${atlas_access_token}" \
+            "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/versions" \
+            --data "${VERSION_JSON}")
     else
-       echo "==> version found; updating on ${atlas_username}"
-       JSON_RESULT=$(curl -s -f -X PUT "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/version/${VERSION}" -d "access_token=${atlas_access_token}" -d "version[description]=${DESCRIPTION}" || true)
+        echo "==> version found; updating on ${atlas_username}"
+        JSON_RESULT=$(curl \
+            --header "Content-Type: application/json" \
+            --header "Authorization: Bearer ${atlas_access_token}" \
+            "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/version/${VERSION}" \
+            --request PUT \
+            --data "${VERSION_JSON}")
     fi
 
-    BOXCUTTER_BASE_URL=http://cdn.boxcutter.io/ubuntu
     if [[ -e ${VMWARE_BOX_FILE} ]]; then
         PROVIDER=vmware_desktop
-        PROVIDER_URL=${BOXCUTTER_BASE_URL}/vmware${VMWARE_VERSION}/${BOX_NAME}${BOX_SUFFIX}
         publish_provider ${atlas_username} ${atlas_access_token}
     fi
     if [[ -e ${VIRTUALBOX_BOX_FILE} ]]; then
         PROVIDER=virtualbox
-        PROVIDER_URL=${BOXCUTTER_BASE_URL}/virtualbox${VIRTUALBOX_VERSION}/${BOX_NAME}${BOX_SUFFIX}
         publish_provider ${atlas_username} ${atlas_access_token}
     fi
     if [[ -e ${PARALLELS_BOX_FILE} ]]; then
@@ -268,26 +310,27 @@ atlas_publish() {
         publish_provider ${atlas_username} ${atlas_access_token}
     fi
 
-    echo
     STATUS=$(echo ${JSON_RESULT} | jq -r .status)
     case $STATUS in
     unreleased)
-      curl -X PUT "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/version/${VERSION}/release" -d "access_token=${atlas_access_token}"
-      echo 'released!'
-      ;;
+        curl \
+            --header "Authorization: Bearer ${atlas_access_token}" \
+            --request PUT \
+            "${ATLAS_API_URL}/box/${atlas_username}/${BOX_NAME}/version/${VERSION}/release"
+
+        echo 'released!'
+        ;;
     active)
-      echo 'already released'
-      ;;
+        echo 'already released'
+        ;;
     *)
-      abort "cannot publish version with status '$STATUS'"
+        echo "cannot publish version with status '$STATUS'"
+        ;;
     esac
 }
 
 main() {
     args "$@"
-
-    ATLAS_API_URL=https://atlas.hashicorp.com/api/v1
-    atlas_publish ${BOX_CUTTER_ATLAS_USERNAME} ${BOX_CUTTER_ATLAS_ACCESS_TOKEN}
     atlas_publish ${ATLAS_USERNAME} ${ATLAS_ACCESS_TOKEN}
 }
 

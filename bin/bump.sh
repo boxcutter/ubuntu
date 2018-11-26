@@ -84,8 +84,8 @@ patch() {
 main() {
     CURRENT_VERSION=$(cat VERSION)
     VERSION_LIST=($(echo ${CURRENT_VERSION} | tr '.' ' '))
-    MAJOR_VERSION=${VERSION_LIST[0]} 
-    MINOR_VERSION=${VERSION_LIST[1]} 
+    MAJOR_VERSION=${VERSION_LIST[0]}
+    MINOR_VERSION=${VERSION_LIST[1]}
     PATCH_VERSION=${VERSION_LIST[2]}
     args "$@"
 }

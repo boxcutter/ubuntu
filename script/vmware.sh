@@ -60,10 +60,10 @@ if [[ $PACKER_BUILDER_TYPE =~ vmware ]]; then
         install_vmware_tools
         # Ensure that VMWare Tools recompiles kernel modules
         echo "answer AUTO_KMODS_ENABLED yes" >> /etc/vmware-tools/locations
-      else 
+      else
         install_open_vm_tools
       fi
     else
       install_vmware_tools
-    fi 
+    fi
 fi

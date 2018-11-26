@@ -47,7 +47,7 @@ test() {
 }
 
 build() {
-  bin/build-box "$@"  
+  bin/build-box "$@"
 }
 
 # main

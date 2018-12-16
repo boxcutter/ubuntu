@@ -18,7 +18,6 @@ if [ -d "/var/lib/dhcp" ]; then
     rm /var/lib/dhcp/*
 fi
 
-UBUNTU_VERSION=$(lsb_release -sr)
 # Add delay to prevent "vagrant reload" from failing
 echo "pre-up sleep 2" >> /etc/network/interfaces
 
@@ -59,6 +58,7 @@ case "$?" in
     2|0) ;;
     *) exit 1 ;;
 esac
+
 set -e
 if [ "x${swapuuid}" != "x" ]; then
     # Whiteout the swap partition to reduce box size

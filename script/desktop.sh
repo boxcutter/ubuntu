@@ -16,11 +16,14 @@ USERNAME=${SSH_USER}
 LIGHTDM_CONFIG=/etc/lightdm/lightdm.conf
 GDM_CUSTOM_CONFIG=/etc/gdm3/custom.conf
 
-mkdir -p $(dirname ${GDM_CUSTOM_CONFIG})
-echo "[daemon]" >> $GDM_CUSTOM_CONFIG
-echo "# Enabling automatic login" >> $GDM_CUSTOM_CONFIG
-echo "AutomaticLoginEnable=True" >> $GDM_CUSTOM_CONFIG
-echo "AutomaticLoginEnable=${USERNAME}" >> $GDM_CUSTOM_CONFIG
+if [ -f $GDM_CUSTOM_CONFIG ]; then
+    mkdir -p $(dirname ${GDM_CUSTOM_CONFIG})
+    > $GDM_CUSTOM_CONFIG
+    echo "[daemon]" >> $GDM_CUSTOM_CONFIG
+    echo "# Enabling automatic login" >> $GDM_CUSTOM_CONFIG
+    echo "AutomaticLoginEnable = true" >> $GDM_CUSTOM_CONFIG
+    echo "AutomaticLogin = ${USERNAME}" >> $GDM_CUSTOM_CONFIG
+fi
 
 if [ -f $LIGHTDM_CONFIG ]; then
     echo "==> Configuring lightdm autologin"

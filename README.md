@@ -21,7 +21,7 @@ Requires: Virtualbox 5, Vagrant.
 Go to https://app.vagrantup.com/commjoen/boxes/trainingbox and follow instructions.
 
 ## How to create your own box
-Requires: Virtualbox 5, Vagrant, Packer.
+Requires: Virtualbox 6, Vagrant, Packer.
 
 - prepare a release at https://app.vagrantup.com
 - update `box_tag` in ubuntu.json

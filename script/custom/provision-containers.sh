@@ -2,13 +2,13 @@ echo "provisioning containers"
 echo "container overview:" >> containers.md
 
 echo "juiceshop container:">> containers.md
-echo "docker run --rm -p 3000:3000 bkimminich/juice-shop" >> containers.md
+echo "docker run -d --rm -p 3000:3000 bkimminich/juice-shop" >> containers.md
 echo "https://github.com/bkimminich/juice-shop" >> containers.md
 docker pull bkimminich/juice-shop
 
 echo " ">> containers.md
 echo "webgoat container (8.0):" >> containers.md
-echo "docker run -p 8080:8080 -it webgoat/webgoat-8.0 /home/webgoat/start.sh" >> containers.md
+echo "docker run -d -p 8080:8080 -it webgoat/webgoat-8.0 /home/webgoat/start.sh" >> containers.md
 echo "https://github.com/WebGoat/WebGoat" >> containers.md
 docker pull webgoat/webgoat-8.0
 

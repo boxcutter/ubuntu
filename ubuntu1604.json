@@ -3,10 +3,10 @@
   "vm_name": "ubuntu1604",
   "cpus": "1",
   "disk_size": "65536",
-  "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
+  "iso_checksum": "16afb1375372c57471ea5e29803a89a5a6bd1f6aabea2e5e34ac1ab7eb9786ac",
   "iso_checksum_type": "sha256",
-  "iso_name": "ubuntu-16.04.5-server-amd64.iso",
-  "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.5-server-amd64.iso",
+  "iso_name": "ubuntu-16.04.6-server-amd64.iso",
+  "iso_url": "http://mirrors.gigenet.com/ubuntu/16.04.6/ubuntu-16.04.6-server-amd64.iso",
   "memory": "512",
   "preseed" : "preseed.cfg",
   "boot_command_prefix": "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>"

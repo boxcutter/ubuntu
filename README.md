@@ -16,7 +16,7 @@ To build all the boxes, you will need [VirtualBox](https://www.virtualbox.org/wi
 
 Parallels requires that the
 [Parallels Virtualization SDK for Mac](http://www.parallels.com/downloads/desktop)
-be installed as an additional preqrequisite.
+be installed as an additional prerequisite.
 
 We make use of JSON files containing user variables to build specific versions of Ubuntu.
 You tell `packer` to use a specific user variable file via the `-var-file=` command line

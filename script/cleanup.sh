@@ -18,6 +18,13 @@ if [ -d "/var/lib/dhcp" ]; then
     rm /var/lib/dhcp/*
 fi
 
+# Blank machine-id (DUID) so machines get unique ID generated on boot.
+# https://www.freedesktop.org/software/systemd/man/machine-id.html#Initialization
+echo "==> Blanking systemd machine-id"
+if [ -f "/etc/machine-id" ]; then
+    truncate -s 0 "/etc/machine-id"
+fi
+
 # Add delay to prevent "vagrant reload" from failing
 echo "pre-up sleep 2" >> /etc/network/interfaces
 

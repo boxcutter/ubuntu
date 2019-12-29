@@ -3,10 +3,10 @@
   "vm_name": "ubuntu1804",
   "cpus": "1",
   "disk_size": "65536",
-  "iso_checksum": "a5b0ea5918f850124f3d72ef4b85bda82f0fcd02ec721be19c1a6952791c8ee8",
+  "iso_checksum": "7d8e0055d663bffa27c1718685085626cb59346e7626ba3d3f476322271f573e",
   "iso_checksum_type": "sha256",
-  "iso_name": "ubuntu-18.04.1-server-amd64.iso",
-  "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso",
+  "iso_name": "ubuntu-18.04.3-server-amd64.iso",
+  "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.3-server-amd64.iso",
   "memory": "512",
   "preseed" : "preseed.cfg"
 }

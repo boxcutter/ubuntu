@@ -208,7 +208,7 @@
     "iso_name": "ubuntu-18.04.1-server-amd64.iso",
     "iso_path": "/Volumes/Storage/software/ubuntu",
     "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso",
-    "locale": "en_US",
+    "locale": "en_US.UTF-8",
     "memory": "512",
     "no_proxy": "{{env `no_proxy`}}",
     "parallels_guest_os_type": "ubuntu",

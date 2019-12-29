@@ -222,7 +222,7 @@
     "ssh_username": "vagrant",
     "update": "false",
     "vagrantfile_template": "",
-    "version": "0.1.1",
+    "version": "0.1.0",
     "virtualbox_guest_os_type": "Ubuntu_64",
     "vm_name": "ubuntu1804",
     "vmware_guest_os_type": "ubuntu-64"

@@ -220,7 +220,7 @@
     "ssh_password": "vagrant",
     "ssh_disable_password_auth": "true",
     "ssh_username": "vagrant",
-    "update": "true",
+    "update": "false",
     "vagrantfile_template": "",
     "version": "0.1.1",
     "virtualbox_guest_os_type": "Ubuntu_64",

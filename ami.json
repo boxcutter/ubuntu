@@ -1,0 +1,62 @@
+{
+  "_comment": "Build with `packer build -var-file=ubuntu1804.json ubuntu.json`",
+  "builders": [
+    {
+      "boot_command": [
+        "{{ user `boot_command_prefix` }}",
+        "/install/vmlinuz noapic ",
+        "initrd=/install/initrd.gz ",
+        "file=/floppy/{{ user `preseed` }} ",
+        "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
+        "hostname={{ user `hostname` }} ",
+        "grub-installer/bootdev=/dev/sda<wait> ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "passwd/user-fullname={{ user `ssh_fullname` }} ",
+        "passwd/user-password={{ user `ssh_password` }} ",
+        "passwd/user-password-again={{ user `ssh_password` }} ",
+        "passwd/username={{ user `ssh_username` }} ",
+        "-- <enter>"
+      ],
+      "disk_size": "{{ user `disk_size` }}",
+      "floppy_files": [
+        "http/{{ user `preseed` }}"
+      ],
+      "guest_os_type": "{{ user `vmware_guest_os_type` }}",
+      "headless": "{{ user `headless` }}",
+      "http_directory": "http",
+      "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
+      "communicator": "ssh",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "ssh_wait_timeout": "10000s",
+      "ssh_pty": "true",
+      "type": "amazon-ebs",
+      "vm_name": "{{ user `vm_name` }}", 
+      "access_key": "{{ user `aws_access_key` }}",
+      "secret_key": "{{ user `aws_secrect_key` }}",
+      "region": "{{ user `aws_region`}}",
+      "source_ami": "{{ user `aws_source_ami` }}",
+      "instance_type": "{{ user `aws_instance_type` }}",
+      "ssh_username": "{{ user `aws_ssh_username` }}",
+      "ami_name": "puppet {{timestamp}}"
+    }
+],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "provision/new-ami.sh"
+    }
+  ],
+
+  "variables": {
+    "aws_access_key": "{{env `aws_access_key`}}",
+    "aws_secret_key": "{{env `aws_secret_key`}}",
+    "aws_region": "us-east-2",
+    "aws_instance_type": "t2.micro",
+    "aws_source_ami": "ami-050553a7784d00d21",
+    "aws_ssh_username": "ubuntu"
+  }
+}

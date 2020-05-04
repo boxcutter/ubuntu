@@ -1,0 +1,7 @@
+{
+  "_comment": "Build with `packer build -only=amazon-ebs -var-file=ubuntu1804-ami.json -var-file=ubuntu1804.json ubuntu.json`",
+  "dest_ami_name_prefix": "base-ami",
+  "ssh_username": "ubuntu",
+  "install_vagrant_key": "false",
+  "source_ami_filter_name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"
+}

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $PACKER_BUILDER_TYPE =~ amazon-ebs ]]; then
+    echo "==> Amazon EBS build. Exiting vagrant.sh"
+    exit 
+fi
+
 date > /etc/box_build_time
 
 SSH_USER=${SSH_USERNAME:-vagrant}

@@ -8,5 +8,6 @@
   "iso_name": "ubuntu-18.04.4-server-amd64.iso",
   "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.4-server-amd64.iso",
   "memory": "512",
-  "preseed" : "preseed.cfg"
+  "preseed": "preseed.cfg",
+  "install_vagrant_key": "true"
 }

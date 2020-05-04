@@ -17,3 +17,6 @@ iso/
 custom.sh
 script/custom/*
 !script/custom/.gitkeep
+
+DEBUG.log
+typescript

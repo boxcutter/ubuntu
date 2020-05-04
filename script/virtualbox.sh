@@ -9,8 +9,8 @@ if [[ $PACKER_BUILDER_TYPE =~ virtualbox ]]; then
     # apt-get install -y dkms
 
     VBOX_VERSION=$(cat /home/${SSH_USER}/.vbox_version)
-    mount -o loop /home/${SSH_USER}/VBoxGuestAdditions_$VBOX_VERSION.iso /mnt
-    sh /mnt/VBoxLinuxAdditions.run
+    mount -o loop /home/${SSH_USER}/VBoxGuestAdditions_$VBOX_VERSION.iso /mnt > /dev/null 2>&1
+    sh /mnt/VBoxLinuxAdditions.run > /dev/null 
     umount /mnt
     rm /home/${SSH_USER}/VBoxGuestAdditions_$VBOX_VERSION.iso
     rm /home/${SSH_USER}/.vbox_version

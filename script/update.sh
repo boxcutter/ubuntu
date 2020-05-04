@@ -14,11 +14,11 @@ fi
 
 echo "==> Updating list of repositories"
 # apt-get update does not actually perform updates, it just downloads and indexes the list of packages
-apt-get -y update
+apt-get -y update > /dev/null 2>&1
 
 if [[ $UPDATE  =~ true || $UPDATE =~ 1 || $UPDATE =~ yes ]]; then
     echo "==> Performing dist-upgrade (all packages and kernel)"
-    apt-get -y dist-upgrade --force-yes
+    apt-get -y dist-upgrade --force-yes > /dev/null 2>&1
     reboot
     sleep 60
 fi

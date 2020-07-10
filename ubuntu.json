@@ -26,8 +26,7 @@
       "guest_os_type": "{{ user `vmware_guest_os_type` }}",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
-      "iso_checksum": "{{ user `iso_checksum` }}",
-      "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+      "iso_checksum": "{{ user `iso_checksum_type` }}:{{ user `iso_checksum` }}",
       "iso_urls": [
         "{{ user `iso_path` }}/{{ user `iso_name` }}",
         "{{ user `iso_url` }}"
@@ -35,8 +34,8 @@
       "output_directory": "output-{{ user `vm_name` }}-vmware-iso",
       "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
       "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_timeout": "10000s",
       "ssh_username": "{{ user `ssh_username` }}",
-      "ssh_wait_timeout": "10000s",
       "tools_upload_flavor": "linux",
       "type": "vmware-iso",
       "vm_name": "{{ user `vm_name` }}",
@@ -73,8 +72,7 @@
       "guest_os_type": "{{ user `virtualbox_guest_os_type` }}",
       "hard_drive_interface": "sata",
       "headless": "{{ user `headless` }}",
-      "iso_checksum": "{{ user `iso_checksum` }}",
-      "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+      "iso_checksum": "{{ user `iso_checksum_type` }}:{{ user `iso_checksum` }}",
       "iso_urls": [
         "{{ user `iso_path` }}/{{ user `iso_name` }}",
         "{{ user `iso_url` }}"
@@ -83,18 +81,27 @@
       "post_shutdown_delay": "1m",
       "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
       "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_timeout": "10000s",
       "ssh_username": "{{ user `ssh_username` }}",
-      "ssh_wait_timeout": "10000s",
       "type": "virtualbox-iso",
       "vboxmanage": [
         [
-          "modifyvm", "{{.Name}}", "--nictype1", "virtio"
+          "modifyvm",
+          "{{.Name}}",
+          "--nictype1",
+          "virtio"
         ],
         [
-          "modifyvm", "{{.Name}}", "--memory", "{{ user `memory` }}"
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "{{ user `memory` }}"
         ],
         [
-          "modifyvm", "{{.Name}}", "--cpus", "{{ user `cpus` }}"
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "{{ user `cpus` }}"
         ]
       ],
       "virtualbox_version_file": ".vbox_version",
@@ -124,8 +131,7 @@
       ],
       "guest_os_type": "{{ user `parallels_guest_os_type` }}",
       "http_directory": "http",
-      "iso_checksum": "{{ user `iso_checksum` }}",
-      "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+      "iso_checksum": "{{ user `iso_checksum_type` }}:{{ user `iso_checksum` }}",
       "iso_urls": [
         "{{ user `iso_path` }}/{{ user `iso_name` }}",
         "{{ user `iso_url` }}"
@@ -134,35 +140,43 @@
       "parallels_tools_flavor": "lin",
       "prlctl": [
         [
-          "set", "{{.Name}}", "--memsize", "{{ user `memory` }}"
+          "set",
+          "{{.Name}}",
+          "--memsize",
+          "{{ user `memory` }}"
         ],
         [
-          "set", "{{.Name}}", "--cpus", "{{ user `cpus` }}"
+          "set",
+          "{{.Name}}",
+          "--cpus",
+          "{{ user `cpus` }}"
         ]
       ],
       "prlctl_version_file": ".prlctl_version",
       "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
       "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_timeout": "10000s",
       "ssh_username": "{{ user `ssh_username` }}",
-      "ssh_wait_timeout": "10000s",
       "type": "parallels-iso",
       "vm_name": "{{ user `vm_name` }}"
     }
   ],
-  "post-processors": [[
-    {
-      "type": "vagrant",
-      "keep_input_artifact": false,
-      "output": "box/{{.Provider}}/{{user `vm_name`}}-{{user `version`}}.box",
-      "vagrantfile_template": "{{ user `vagrantfile_template` }}"
-    },
-    {
-      "type": "vagrant-cloud",
-      "access_token": "{{user `vagrant_cloud_token`}}",
-      "box_tag": "commjoen/training",
-      "version":"{{user `version`}}"
-    }
-  ]],
+  "post-processors": [
+    [
+      {
+        "keep_input_artifact": false,
+        "output": "box/{{.Provider}}/{{user `vm_name`}}-{{user `version`}}.box",
+        "type": "vagrant",
+        "vagrantfile_template": "{{ user `vagrantfile_template` }}"
+      },
+      {
+        "access_token": "{{user `vagrant_cloud_token`}}",
+        "box_tag": "commjoen/trainingbox",
+        "type": "vagrant-cloud",
+        "version": "{{user `version`}}"
+      }
+    ]
+  ],
   "provisioners": [
     {
       "environment_vars": [
@@ -180,6 +194,7 @@
         "no_proxy={{user `no_proxy`}}"
       ],
       "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "expect_disconnect": "true",
       "scripts": [
         "script/custom/create_folders.sh",
         "script/update.sh",
@@ -200,12 +215,11 @@
         "script/minimize.sh",
         "script/cleanup.sh"
       ],
-      "type": "shell",
-      "expect_disconnect": "true"
+      "type": "shell"
     }
   ],
   "variables": {
-    "boot_command_prefix": "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "boot_command_prefix": "<esc><esc><enter><wait>",
     "cleanup_pause": "",
     "cpus": "2",
     "custom_script": "custom-script.sh",
@@ -213,30 +227,31 @@
     "disk_size": "65536",
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "headless": "false",
+    "hostname": "vagrant",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "install_vagrant_key": "true",
-    "iso_checksum": "22580b9f3b186cc66818e60f44c46f795d708a1ad86b9225c458413b638459c4",
+    "iso_checksum": "c0d025e560d54434a925b3707f8686a7f588c42a5fbc609b8ea2447f88847041",
     "iso_checksum_type": "sha256",
+    "iso_name": "ubuntu-18.04.4-desktop-amd64.iso",
     "iso_path": "/Volumes/Storage/software/ubuntu",
-    "iso_name": "ubuntu-18.04.2-desktop-amd64.iso",
-    "iso_url": "http://mirror.amsiohosting.net/releases.ubuntu.com/18.04.2/ubuntu-18.04.2-desktop-amd64.iso",
+    "iso_url": "https://releases.ubuntu.com/18.04/ubuntu-18.04.4-desktop-amd64.iso",
     "locale": "en_US",
-    "memory": "4096",
+    "memory": "8100",
     "no_proxy": "{{env `no_proxy`}}",
     "parallels_guest_os_type": "ubuntu",
-    "preseed" : "preseed.cfg",
+    "preseed": "preseed.cfg",
     "rsync_proxy": "{{env `rsync_proxy`}}",
-    "hostname": "vagrant",
     "ssh_fullname": "vagrant",
     "ssh_password": "vagrant",
     "ssh_username": "vagrant",
     "update": "false",
+    "vagrant_cloud_token": "{{env `VAGRANT_CLOUD_TOKEN`}}",
     "vagrantfile_template": "",
-    "version": "0.2.2",
+    "version": "0.3.2",
     "virtualbox_guest_os_type": "Ubuntu_64",
     "vm_name": "ubuntu1804",
-    "vmware_guest_os_type": "ubuntu-64",
-    "vagrant_cloud_token": "{{env `VAGRANT_CLOUD_TOKEN`}}"
+    "vmware_guest_os_type": "ubuntu-64"
   }
 }
+

@@ -37,6 +37,51 @@
       "ssh_timeout": "10000s",
       "ssh_username": "{{ user `ssh_username` }}",
       "tools_upload_flavor": "linux",
+      "type": "libvirt-iso",
+      "vm_name": "{{ user `vm_name` }}",
+      "vmx_data": {
+        "ethernet0.pciSlotNumber": "32",
+        "memsize": "{{ user `memory` }}",
+        "numvcpus": "{{ user `cpus` }}"
+      },
+      "vmx_remove_ethernet_interfaces": true
+    },
+    {
+      "boot_command": [
+        "{{ user `boot_command_prefix` }}",
+        "/install/vmlinuz noapic ",
+        "initrd=/install/initrd.gz ",
+        "file=/floppy/{{ user `preseed` }} ",
+        "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
+        "hostname={{ user `hostname` }} ",
+        "grub-installer/bootdev=/dev/sda<wait> ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "passwd/user-fullname={{ user `ssh_fullname` }} ",
+        "passwd/user-password={{ user `ssh_password` }} ",
+        "passwd/user-password-again={{ user `ssh_password` }} ",
+        "passwd/username={{ user `ssh_username` }} ",
+        "-- <enter>"
+      ],
+      "disk_size": "{{ user `disk_size` }}",
+      "floppy_files": [
+        "http/{{ user `preseed` }}"
+      ],
+      "guest_os_type": "{{ user `vmware_guest_os_type` }}",
+      "headless": "{{ user `headless` }}",
+      "http_directory": "http",
+      "iso_checksum": "{{ user `iso_checksum_type` }}:{{ user `iso_checksum` }}",
+      "iso_urls": [
+        "{{ user `iso_path` }}/{{ user `iso_name` }}",
+        "{{ user `iso_url` }}"
+      ],
+      "output_directory": "output-{{ user `vm_name` }}-vmware-iso",
+      "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_timeout": "10000s",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "tools_upload_flavor": "linux",
       "type": "vmware-iso",
       "vm_name": "{{ user `vm_name` }}",
       "vmx_data": {
@@ -207,6 +252,7 @@
         "script/custom/provision-zap.sh",
         "script/custom/provision-burp.sh",
         "script/custom/provision-containers.sh",
+        "script/custom/provision-inspec.sh",
         "script/vmware.sh",
         "script/virtualbox.sh",
         "script/parallels.sh",

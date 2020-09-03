@@ -296,7 +296,7 @@
     "update": "false",
     "vagrant_cloud_token": "{{env `VAGRANT_CLOUD_TOKEN`}}",
     "vagrantfile_template": "",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "virtualbox_guest_os_type": "Ubuntu_64",
     "vm_name": "ubuntu1804",
     "vmware_guest_os_type": "ubuntu-64"

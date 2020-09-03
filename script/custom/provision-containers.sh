@@ -6,6 +6,15 @@ echo "docker run -d --rm -p 3000:3000 bkimminich/juice-shop" >> containers.md
 echo "https://github.com/bkimminich/juice-shop" >> containers.md
 docker pull bkimminich/juice-shop
 
+echo "Downloading additional sources"
+cd workspace
+wget https://github.com/bkimminich/juice-shop/archive/master.zip
+unzip master.zip
+rm master.zip
+mv juice-shop-master juice-shop
+
+echo "getting more containers"
+
 echo " ">> containers.md
 echo "webgoat and webwolf container:" >> containers.md
 echo "docker run -p 8080:8080 -t webgoat/webgoat-8.0" >> containers.md
@@ -49,6 +58,9 @@ echo "    -v /var/lib:/var/lib:ro \ " >> containers.md
 echo "    -v /var/run/docker.sock:/var/run/docker.sock:ro \ " >> containers.md
 echo "    --label docker_bench_security \ " >> containers.md
 docker pull docker/docker-bench-security
+
+echo " ">> containers.md
+
 
 
 exit

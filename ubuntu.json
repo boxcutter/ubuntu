@@ -248,6 +248,7 @@
         "script/custom/provision_nmap.sh",
         "script/custom/provision-jdk.sh",
         "script/custom/provision-node.sh",
+        "script/custom/provision-dependency-check.sh",
         "script/custom/provision-docker.sh",
         "script/custom/provision-zap.sh",
         "script/custom/provision-burp.sh",

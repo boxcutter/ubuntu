@@ -253,6 +253,7 @@
         "script/custom/provision-burp.sh",
         "script/custom/provision-containers.sh",
         "script/custom/provision-inspec.sh",
+        "script/custom/provision-trivy.sh",
         "script/vmware.sh",
         "script/virtualbox.sh",
         "script/parallels.sh",

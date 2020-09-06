@@ -216,7 +216,7 @@
       },
       {
         "access_token": "{{user `vagrant_cloud_token`}}",
-        "box_tag": "commjoen/trainingbox",
+        "box_tag": "jeroenwillemsen/trainingbox",
         "type": "vagrant-cloud",
         "version": "{{user `version`}}"
       }
@@ -255,6 +255,7 @@
         "script/custom/provision-containers.sh",
         "script/custom/provision-inspec.sh",
         "script/custom/provision-trivy.sh",
+        "script/custom/provision-code.sh",
         "script/vmware.sh",
         "script/virtualbox.sh",
         "script/parallels.sh",
@@ -296,7 +297,7 @@
     "update": "false",
     "vagrant_cloud_token": "{{env `VAGRANT_CLOUD_TOKEN`}}",
     "vagrantfile_template": "",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "virtualbox_guest_os_type": "Ubuntu_64",
     "vm_name": "ubuntu1804",
     "vmware_guest_os_type": "ubuntu-64"

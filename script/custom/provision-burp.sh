@@ -8,4 +8,4 @@ curl 'https://portswigger.net/burp/releases/download?product=community&version=2
 
 echo "java -jar /home/vagrant/tools/burp/burp.jar" > burp.sh
 chmod +x burp.sh
-echo "export PATH=$PATH:/home/vagrant/tools/burp" >> ~/.bashrc
+echo "export PATH=\$PATH:/home/vagrant/tools/burp" >> ~/.bashrc

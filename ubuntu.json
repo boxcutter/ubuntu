@@ -219,6 +219,17 @@
         "box_tag": "jeroenwillemsen/trainingbox",
         "type": "vagrant-cloud",
         "version": "{{user `version`}}"
+      },
+      {
+        "type": "amazon-import",
+        "access_key": "$AWS_ACCESS_KEY",
+        "secret_key": "$SECRET_KEY",
+        "region": "us-central-1",
+        "s3_bucket_name": "s3amitrainingcache",
+        "license_type": "BYOL",
+        "tags": {
+          "Description": "packer amazon-import {{timestamp}}"
+        }
       }
     ]
   ],

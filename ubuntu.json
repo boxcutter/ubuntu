@@ -223,7 +223,7 @@
       {
         "type": "amazon-import",
         "access_key": "$AWS_ACCESS_KEY",
-        "secret_key": "$SECRET_KEY",
+        "secret_key": "$AWS_SECRET_KEY",
         "region": "us-central-1",
         "s3_bucket_name": "s3amitrainingcache",
         "license_type": "BYOL",
@@ -308,7 +308,7 @@
     "update": "false",
     "vagrant_cloud_token": "{{env `VAGRANT_CLOUD_TOKEN`}}",
     "vagrantfile_template": "",
-    "version": "0.3.5",
+    "version": "0.3.6",
     "virtualbox_guest_os_type": "Ubuntu_64",
     "vm_name": "ubuntu1804",
     "vmware_guest_os_type": "ubuntu-64"

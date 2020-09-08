@@ -3,8 +3,8 @@ set -e
 
 # install JDK as it was meant to be - from scratch
 # echo "Provisioning Java JDK..."
-# mkdir -p /home/vagrant/java
-# cd /home/vagrant/java
+# mkdir -p /home/$USER_FOLDER/java
+# cd /home/$USER_FOLDER/java
 # test -f /tmp/jdk-8-linux-x64.tar.gz || curl -q -L --cookie "oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u162-b12/0da788060d494f5095bf8624735fa2f1/jdk-8u162-linux-i586.tar.gz -o /tmp/jdk-8-linux-x64.tar.gz
 # sha256sum -c <<<"eecf88dbcf7c78d236251d44350126f1297a522f2eab974b4027ef20f7a6fb24 */tmp/jdk-8-linux-x64.tar.gz"
 #
@@ -24,7 +24,7 @@ set -e
 # ln -s /usr/lib/jvm/jdk1.8.0_162/ /usr/lib/jvm/current
 
 #sudo echo -e "export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_162" >> /etc/environment
-#echo "export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_162" >> /home/vagrant/.zshrc
+#echo "export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_162" >> /home/$USER_FOLDER/.zshrc
 
 # echo "Provisinong maven..."
 #

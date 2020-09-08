@@ -219,17 +219,6 @@
         "access_token": "{{user `vagrant_cloud_token`}}",
         "box_tag": "jeroenwillemsen/trainingbox",
         "version": "{{user `version`}}"
-      },
-      {
-        "type": "amazon-import",
-        "access_key": "$AWS_ACCESS_KEY",
-        "secret_key": "$AWS_SECRET_KEY",
-        "region": "us-central-1",
-        "s3_bucket_name": "s3amitrainingcache",
-        "license_type": "BYOL",
-        "tags": {
-          "Description": "packer amazon-import {{timestamp}}"
-        }
       }
     ]
   ],
@@ -238,6 +227,7 @@
       "environment_vars": [
         "CLEANUP_PAUSE={{user `cleanup_pause`}}",
         "DEBIAN_FRONTEND=noninteractive",
+        "USER_FOLDER=vagrant",
         "DESKTOP={{user `desktop`}}",
         "UPDATE={{user `update`}}",
         "INSTALL_VAGRANT_KEY={{user `install_vagrant_key`}}",
@@ -256,9 +246,9 @@
         "script/update.sh",
         "script/vagrant.sh",
         "script/sshd.sh",
+        "script/custom/provision-node.sh",
         "script/custom/provision_nmap.sh",
         "script/custom/provision-jdk.sh",
-        "script/custom/provision-node.sh",
         "script/custom/provision-dependency-check.sh",
         "script/custom/provision-docker.sh",
         "script/custom/provision-zap.sh",
@@ -268,7 +258,6 @@
         "script/custom/provision-trivy.sh",
         "script/custom/provision-code.sh",
         "script/custom/provision-docker-tools.sh",
-        "script/custom/vnc-setup.sh",
         "script/vmware.sh",
         "script/virtualbox.sh",
         "script/parallels.sh",
@@ -310,7 +299,7 @@
     "update": "false",
     "vagrant_cloud_token": "{{env `VAGRANT_CLOUD_TOKEN`}}",
     "vagrantfile_template": "",
-    "version": "0.3.6",
+    "version": "0.3.9",
     "virtualbox_guest_os_type": "Ubuntu_64",
     "vm_name": "ubuntu1804",
     "vmware_guest_os_type": "ubuntu-64"

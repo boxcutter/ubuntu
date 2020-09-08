@@ -1,0 +1,109 @@
+{
+	"variables": {
+		"aws_access_key_id": "{{ env `AWS_ACCESS_KEY_ID` }}",
+		"aws_secret_access_key": "{{ env `AWS_SECRET_ACCESS_KEY` }}",
+		"region": "eu-central-1",
+		"buildtime": "{{isotime \"2006-01-02-1504\"}}"
+	},
+	"builders": [{
+		"type": "amazon-ebs",
+		"access_key": "{{ user `aws_access_key_id` }}",
+		"secret_key": "{{ user `aws_secret_access_key` }}",
+		"region": "{{user `region`}}",
+
+		"ssh_pty": true,
+		"instance_type": "m4.large",
+		"associate_public_ip_address": true,
+		"ssh_username": "ubuntu",
+		"ssh_timeout": "5m",
+
+		"source_ami_filter": {
+			"filters": {
+				"virtualization-type": "hvm",
+				"name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*",
+				"root-device-type": "ebs"
+			},
+			"owners": ["099720109477"],
+			"most_recent": true
+		},
+
+		"ena_support": "true",
+
+		"launch_block_device_mappings": [
+			{
+				"device_name": "/dev/sda1",
+				"delete_on_termination": true,
+				"volume_size": 50,
+				"volume_type": "gp2"
+			}
+		],
+
+		"run_tags": {
+			"Name": "Packer Builder - Root Ubuntu",
+			"Project": "operator-error.com"
+		},
+		"run_volume_tags": {
+			"Name": "Packer Builder - Root Ubuntu",
+			"Project": "operator-error.com"
+		},
+
+		"ami_name": "ubuntu-bionic-18.04-{{user `version`}}-{{ user `buildtime` }}",
+		"ami_description": "Ubuntu Bionic (18.04) for training",
+		"ami_virtualization_type": "hvm",
+		"ami_regions": [
+			"ap-south-1",
+			"ap-northeast-1",
+			"ap-northeast-2",
+			"ap-southeast-1",
+			"ap-southeast-2",
+			"ca-central-1",
+			"eu-west-1",
+			"eu-west-2",
+			"eu-west-3",
+			"eu-central-1",
+			"sa-east-1",
+			"us-east-1",
+			"us-east-2",
+			"us-west-1"
+		],
+		"tags": {
+			"Name": "Ubuntu Bionic (18.04) with vagrant porting",
+			"BuildTime": "{{user `version`}}-{{ user `buildtime` }}"
+		}
+	}],
+	"provisioners": [
+		{
+			"type": "shell",
+			"environment_vars": [
+				"DEBIAN_FRONTEND=noninteractive",
+				"USER_FOLDER=ubuntu",
+				"SSH_USERNAME={{user `ssh_username`}}",
+				"http_proxy={{user `http_proxy`}}",
+				"https_proxy={{user `https_proxy`}}",
+				"ftp_proxy={{user `ftp_proxy`}}",
+				"rsync_proxy={{user `rsync_proxy`}}",
+				"no_proxy={{user `no_proxy`}}"
+			],
+			"execute_command": "sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+			"expect_disconnect": "true",
+			"scripts": [
+			  "awsscripts/provision-desktop.sh",
+			  "script/custom/create_folders.sh",
+			  "script/custom/provision_nmap.sh",
+			  "script/custom/provision-jdk.sh",
+			  "script/custom/provision-node.sh",
+			  "script/custom/provision-dependency-check.sh",
+			  "script/custom/provision-docker.sh",
+			  "script/custom/provision-zap.sh",
+			  "script/custom/provision-burp.sh",
+			  "script/custom/provision-containers.sh",
+			  "script/custom/provision-inspec.sh",
+			  "script/custom/provision-trivy.sh",
+			  "script/custom/provision-code.sh",
+			  "script/custom/provision-docker-tools.sh",
+			  "awsscripts/cleanup.sh"
+			]
+		  }
+	]
+}
+

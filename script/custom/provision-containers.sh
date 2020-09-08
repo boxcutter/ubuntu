@@ -6,6 +6,15 @@ echo "docker run -d --rm -p 3000:3000 bkimminich/juice-shop" >> containers.md
 echo "https://github.com/bkimminich/juice-shop" >> containers.md
 docker pull bkimminich/juice-shop
 
+echo "Downloading additional sources"
+cd workspace
+wget https://github.com/bkimminich/juice-shop/archive/master.zip
+unzip master.zip
+rm master.zip
+mv juice-shop-master juice-shop
+
+echo "getting more containers"
+
 echo " ">> containers.md
 echo "webgoat and webwolf container:" >> containers.md
 echo "docker run -p 8080:8080 -t webgoat/webgoat-8.0" >> containers.md
@@ -33,6 +42,25 @@ docker pull gitlab/gitlab-ce
 
 echo " ">> containers.md
 echo "openvas container:">> containers.md
-echo "docker run -d -p 443:443 --name openvas mikesplain/openvas" >> containers.md
+echo "docker run --detach --publish 8080:9392 -e PASSWORD=PASSWORD HERE --name openvas immauss/openvas" >> containers.md
 echo "https://hub.docker.com/r/mikesplain/openvas/" >> containers.md
-docker pull mikesplain/openvas
+docker pull immauss/openvas
+
+echo " ">> containers.md
+echo "docker run -it --net host --pid host --userns host --cap-add audit_control \ " >> containers.md
+echo "    -e DOCKER_CONTENT_TRUST=$DOCKER_CONTENT_TRUST \ " >> containers.md
+echo "    -v /etc:/etc:ro \ " >> containers.md
+echo "    -v /lib/systemd/system:/lib/systemd/system:ro \ " >> containers.md
+echo "    -v /usr/bin/containerd:/usr/bin/containerd:ro \ " >> containers.md
+echo "    -v /usr/bin/runc:/usr/bin/runc:ro \ " >> containers.md
+echo "    -v /usr/lib/systemd:/usr/lib/systemd:ro \ " >> containers.md
+echo "    -v /var/lib:/var/lib:ro \ " >> containers.md
+echo "    -v /var/run/docker.sock:/var/run/docker.sock:ro \ " >> containers.md
+echo "    --label docker_bench_security \ " >> containers.md
+docker pull docker/docker-bench-security
+
+echo " ">> containers.md
+
+
+
+exit

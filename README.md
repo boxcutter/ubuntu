@@ -3,10 +3,12 @@
 ## Overview
 
 This repository contains [Packer](https://packer.io/) templates for creating Ubuntu Vagrant boxes, currently the focus is on ubuntu Desktop 18.04. With the box you get:
+
 - Docker & docker images of webgoat, webwolf, Juiceshop
 - Zap (2.9.0)
 - nmap
 - Burproxy
+- Infrastructure validation tools
 
 This is a fork of [boxcutter](https://github.com/boxcutter/ubuntu).
 
@@ -167,12 +169,14 @@ their software to run on the basebox build farm.
 <img src="https://d79i1fxsrar4t.cloudfront.net/images/brand/smartystreets.65887aa3.png" width="320">
 
 ## Short: How to create your own box
+
 Requires: Virtualbox 6, Vagrant, Packer.
 
 - prepare a release at https://app.vagrantup.com
 - update box_tag in ubuntu.json
-- run packer build -only=virtualbox-iso -var-file=ubuntu1804-desktop.json -var 'vagrant_cloud_token=<YOURVAGRANTCLODUTOKENHERE>' -var 'version=<VERSIONHERE>' ubuntu.json & in the vm:
-   - Complete the setup wizard
-   - reboot
-   - run sshd from terminal (e.g. type sshd and follow instructions). After this, packer will take over.
+- run `packer build -only=virtualbox-iso -var-file=ubuntu1804-desktop.json -var 'vagrant_cloud_token=<YOURVAGRANTCLODUTOKENHERE>' -var 'version=<VERSIONHERE>' ubuntu.json` & in the vm:
+  - Complete the setup wizard
+  - reboot
+  - run sshd from terminal (e.g. type sshd and follow instructions). After this, packer will take over.
 - Finalize your release at https://app.vagrantup.com or use the locally created virtualbox and export it for your own usage/training.
+- AWS: note we added AMI creation now, make sure you have set your env AWS_ACCESS_KEY and AWS_SECRET_KEY

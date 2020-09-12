@@ -22,6 +22,10 @@ echo "docker run -p 8080:8080 -t webgoat/webgoat-8.0" >> containers.md
 echo "https://github.com/WebGoat/WebGoat" >> containers.md
 docker pull webgoat/webgoat-8.0
 
+echo " ">> containers.md
+echo"docker run -d -p 27017:27017 -v ~/data:/data/db mongo">> containers.md
+docker pull mongo
+
 # echo " ">> containers.md
 # echo "dvws container:">> containers.md
 # echo "docker run -d -p 80:80 -p 8080:8080 tssoffsec/dvws" >> containers.md

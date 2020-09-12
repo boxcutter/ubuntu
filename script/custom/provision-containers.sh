@@ -12,6 +12,7 @@ wget https://github.com/bkimminich/juice-shop/archive/master.zip
 unzip master.zip
 rm master.zip
 mv juice-shop-master juice-shop
+chown -R $USER_FOLDER /home/$USER_FOLDER/workspace/juice-shop
 
 echo "getting more containers"
 

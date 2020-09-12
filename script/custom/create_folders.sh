@@ -1,5 +1,6 @@
+#!/usr/bin/env bash
 echo "Creating folders"
-mkdir -p /home/vagrant/workspace
-sudo chmod 777 /home/vagrant/workspace
-mkdir -p /home/vagrant/tools
-sudo chmod 777 /home/vagrant/tools
+mkdir -p /home/$USER_FOLDER/workspace
+sudo chmod 777 /home/$USER_FOLDER/workspace
+mkdir -p /home/$USER_FOLDER/tools
+sudo chmod 777 /home/$USER_FOLDER/tools

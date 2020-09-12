@@ -10,7 +10,7 @@ This repository contains [Packer](https://packer.io/) templates for creating Ubu
 - Burproxy
 - Infrastructure validation tools
 
-This is a fork of [boxcutter](https://github.com/boxcutter/ubuntu).
+This is a fork of [boxcutter](https://github.com/boxcutter/ubuntu) and uses some files from [Packer Templates for Ubuntu with ZFS Root](https://github.com/jen20/packer-ubuntu-zfs) for the AWS ami.
 
 ## Project status
 
@@ -179,4 +179,4 @@ Requires: Virtualbox 6, Vagrant, Packer.
   - reboot
   - run sshd from terminal (e.g. type sshd and follow instructions). After this, packer will take over.
 - Finalize your release at https://app.vagrantup.com or use the locally created virtualbox and export it for your own usage/training.
-- AWS: note we added AMI creation now, make sure you have set your env AWS_ACCESS_KEY and AWS_SECRET_KEY
+- export your access key and access key id and then run `packer build aws-template.json`. Protip use: `packer build -var 'version=0.3.8' aws-template.json >> amicreatorlog.log` and `tail -f amicreatorlog.log` for easy debugging.

@@ -45,6 +45,19 @@ echo " docker run --detach \
   gitlab/gitlab-ce:latest" >> containers.md
 docker pull gitlab/gitlab-ce
 
+echo " " >> containers.md
+echo "docker run --rm -v $(pwd):/zap/wrk/:rw -t ictu/zap2docker-weekly zap-full-scan.py -I -j -m 10 -T 60 \ " >> containers.md
+echo "  -t http://localhost:4000 \ " >> containers.md
+echo "  -r testreport.html \ " >> containers.md
+echo "   --hook=/zap/auth_hook.py \ " >> containers.md
+echo "  -z \"auth.loginurl=http://localhost:4000/login \ " >> containers.md
+echo "      auth.username=\"admin\" \ " >> containers.md
+echo "      auth.password=\"Admin_123\" \ " >> containers.md
+echo "      auth.username_field=\"userName\" \ " >> containers.md
+echo "      auth.password_field=\"password\" \ " >> containers.md
+echo "      auth.submit_field=\"submit\" \"" >> containers.md
+docker pull ictu/zap2docker-weekly
+
 echo " ">> containers.md
 echo "openvas container:">> containers.md
 echo "docker run --detach --publish 8080:9392 -e PASSWORD=PASSWORD HERE --name openvas immauss/openvas" >> containers.md

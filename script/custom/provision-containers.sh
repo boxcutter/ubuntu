@@ -13,6 +13,7 @@ unzip master.zip
 rm master.zip
 mv juice-shop-master juice-shop
 chown -R $USER_FOLDER /home/$USER_FOLDER/workspace/juice-shop
+cd ..
 
 echo "getting more containers"
 
@@ -22,24 +23,41 @@ echo "docker run -p 8080:8080 -t webgoat/webgoat-8.0" >> containers.md
 echo "https://github.com/WebGoat/WebGoat" >> containers.md
 docker pull webgoat/webgoat-8.0
 
+echo " ">> containers.md
+echo"docker run -d -p 27017:27017 -v ~/data:/data/db mongo">> containers.md
+docker pull mongo
+
 # echo " ">> containers.md
 # echo "dvws container:">> containers.md
 # echo "docker run -d -p 80:80 -p 8080:8080 tssoffsec/dvws" >> containers.md
 # echo "https://hub.docker.com/r/tssoffsec/dvws/" >> containers.md
 # docker pull tssoffsec/dvws
 
+# echo " " >> containers.md
+# echo "Gitlab container: " >> containers.md
+# echo " docker run --detach \
+#   --hostname gitlab.example.com \
+#   --publish 443:443 --publish 80:80 --publish 22:22 \
+#   --name gitlab \
+#   --restart always \
+#   --volume /srv/gitlab/config:/etc/gitlab \
+#   --volume /srv/gitlab/logs:/var/log/gitlab \
+#   --volume /srv/gitlab/data:/var/opt/gitlab \
+#   gitlab/gitlab-ce:latest" >> containers.md
+# docker pull gitlab/gitlab-ce
+
 echo " " >> containers.md
-echo "Gitlab container: " >> containers.md
-echo " docker run --detach \
-  --hostname gitlab.example.com \
-  --publish 443:443 --publish 80:80 --publish 22:22 \
-  --name gitlab \
-  --restart always \
-  --volume /srv/gitlab/config:/etc/gitlab \
-  --volume /srv/gitlab/logs:/var/log/gitlab \
-  --volume /srv/gitlab/data:/var/opt/gitlab \
-  gitlab/gitlab-ce:latest" >> containers.md
-docker pull gitlab/gitlab-ce
+echo "docker run --rm -v $(pwd):/zap/wrk/:rw -t ictu/zap2docker-weekly zap-full-scan.py -I -j -m 10 -T 60 \ " >> containers.md
+echo "  -t http://localhost:4000 \ " >> containers.md
+echo "  -r testreport.html \ " >> containers.md
+echo "   --hook=/zap/auth_hook.py \ " >> containers.md
+echo "  -z \"auth.loginurl=http://localhost:4000/login \ " >> containers.md
+echo "      auth.username=\"admin\" \ " >> containers.md
+echo "      auth.password=\"Admin_123\" \ " >> containers.md
+echo "      auth.username_field=\"userName\" \ " >> containers.md
+echo "      auth.password_field=\"password\" \ " >> containers.md
+echo "      auth.submit_field=\"submit\" \"" >> containers.md
+docker pull ictu/zap2docker-weekly
 
 echo " ">> containers.md
 echo "openvas container:">> containers.md

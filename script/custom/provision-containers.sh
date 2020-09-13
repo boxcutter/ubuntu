@@ -65,18 +65,18 @@ echo "docker run --detach --publish 8080:9392 -e PASSWORD=PASSWORD HERE --name o
 echo "https://hub.docker.com/r/mikesplain/openvas/" >> containers.md
 docker pull immauss/openvas
 
-# echo " ">> containers.md
-# echo "docker run -it --net host --pid host --userns host --cap-add audit_control \ " >> containers.md
-# echo "    -e DOCKER_CONTENT_TRUST=$DOCKER_CONTENT_TRUST \ " >> containers.md
-# echo "    -v /etc:/etc:ro \ " >> containers.md
-# echo "    -v /lib/systemd/system:/lib/systemd/system:ro \ " >> containers.md
-# echo "    -v /usr/bin/containerd:/usr/bin/containerd:ro \ " >> containers.md
-# echo "    -v /usr/bin/runc:/usr/bin/runc:ro \ " >> containers.md
-# echo "    -v /usr/lib/systemd:/usr/lib/systemd:ro \ " >> containers.md
-# echo "    -v /var/lib:/var/lib:ro \ " >> containers.md
-# echo "    -v /var/run/docker.sock:/var/run/docker.sock:ro \ " >> containers.md
-# echo "    --label docker_bench_security \ " >> containers.md
-# docker pull docker/docker-bench-security
+echo " ">> containers.md
+echo "docker run -it --net host --pid host --userns host --cap-add audit_control \ " >> containers.md
+echo "    -e DOCKER_CONTENT_TRUST=$DOCKER_CONTENT_TRUST \ " >> containers.md
+echo "    -v /etc:/etc:ro \ " >> containers.md
+echo "    -v /lib/systemd/system:/lib/systemd/system:ro \ " >> containers.md
+echo "    -v /usr/bin/containerd:/usr/bin/containerd:ro \ " >> containers.md
+echo "    -v /usr/bin/runc:/usr/bin/runc:ro \ " >> containers.md
+echo "    -v /usr/lib/systemd:/usr/lib/systemd:ro \ " >> containers.md
+echo "    -v /var/lib:/var/lib:ro \ " >> containers.md
+echo "    -v /var/run/docker.sock:/var/run/docker.sock:ro \ " >> containers.md
+echo "    --label docker_bench_security \ " >> containers.md
+docker pull docker/docker-bench-security
 
 echo " ">> containers.md
 

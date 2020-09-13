@@ -38,3 +38,6 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
 echo "provisioning docker (Access dockers)"
 # Access docker w/o sudo
 usermod -aG docker $USER_FOLDER
+
+echo "provsioning docker-compose"
+sudo apt install -y docker-compose

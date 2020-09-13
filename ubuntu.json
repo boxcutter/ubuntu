@@ -258,6 +258,7 @@
         "script/custom/provision-trivy.sh",
         "script/custom/provision-code.sh",
         "script/custom/provision-docker-tools.sh",
+        "script/provision_vault_ws.sh",
         "script/vmware.sh",
         "script/virtualbox.sh",
         "script/parallels.sh",

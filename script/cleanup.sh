@@ -1,5 +1,8 @@
 #!/bin/bash -eux
 
+echo "ensure ownership"
+chown -R $USER_FOLDER ~/
+
 SSH_USER=${SSH_USERNAME:-vagrant}
 DISK_USAGE_BEFORE_CLEANUP=$(df -h)
 

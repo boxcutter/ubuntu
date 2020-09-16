@@ -43,10 +43,9 @@ chmod 777 ~/.vnc/xstartup
 
 echo "sudo xhost +"  >> ~/quickfix.sh
 echo "sudo sed -i 's/BIG-REQUESTS/_IG-REQUESTS/' /usr/lib/x86_64-linux-gnu/libxcb.so.1 & " >> ~/quickfix.sh
-echo "sudo chown -R ubuntu:$(id -gn ubuntu) /home/ubuntu/.config" >> ~/quickfix.sh
+echo "sudo chown -R ubuntu /home/ubuntu" >> ~/quickfix.sh
 echo "echo \"With this quickfix NPM, Firefox and VS Code should be fixed again. Please click ok at the next dialog\"">> ~/quickfix.sh
 echo "code ." >> ~/quickfix.sh
-echo "sudo chown -R ubuntu /home/ubuntu/.vscode" >> ~/quickfix.sh
 chmod 777 ~/quickfix.sh
 
 

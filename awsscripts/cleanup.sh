@@ -1,7 +1,6 @@
 #!/bin/bash -eux
 
 echo "ensuring ownership"
-chown -R $USER_FOLDER ~/
 
 SSH_USER=ubuntu
 DISK_USAGE_BEFORE_CLEANUP=$(df -h)

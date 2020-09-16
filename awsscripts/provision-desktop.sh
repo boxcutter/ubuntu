@@ -23,8 +23,8 @@ sudo -- sh -c "echo 'deb http://security.ubuntu.com/ubuntu/ bionic-security mult
 sudo -- sh -c "echo 'deb http://archive.ubuntu.com/ubuntu bionic-updates multiverse main restricted universe' >> /etc/apt/sources.list"
 sudo -- sh -c "echo 'deb http://archive.ubuntu.com/ubuntu bionic-backports multiverse main restricted universe' >> /etc/apt/sources.list"
 
-apt-get update
-apt-get upgrade
+apt-get update -y
+apt-get upgrade -y
 
 sleep 10
 

@@ -7,7 +7,7 @@ sed -i.bak 's/^Prompt=.*$/Prompt=never/' /etc/update-manager/release-upgrades
 echo "==> Checking version of Ubuntu"
 . /etc/lsb-release
 
-if [[ $DISTRIB_RELEASE == 16.04 || $DISTRIB_RELEASE == 18.04 ]]; then
+if [[ $DISTRIB_RELEASE == 16.04 || $DISTRIB_RELEASE == 18.04 || $DISTRIB_RELEASE == 20.04 ]]; then
     echo "==> Disabling periodic apt upgrades"
     echo 'APT::Periodic::Enable "0";' >> /etc/apt/apt.conf.d/10periodic
 fi

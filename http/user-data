@@ -1,0 +1,26 @@
+#cloud-config
+autoinstall:
+  version: 1
+  identity:
+    hostname: vagrant
+    password: '$6$iCc.WH.j$EuCSsvXtnIX2UnrunKZHApB3uvKuxplkAL1UBtBkab047y/jyn9WnpVAkc57jtqSv.hsLGje.milvneydC.Cw/'
+    username: vagrant
+  network:
+    version: 2
+    ethernets:
+      enp0s3:
+        dhcp4: true
+        dhcp-identifier: mac
+  ssh:
+    install-server: true
+  packages:
+    - build-essential
+    - perl
+  late-commands:
+    - 'echo "vagrant        ALL=(ALL)       NOPASSWD: ALL" > /target/etc/sudoers.d/vagrant'
+    - chmod 440 /target/etc/sudoers.d/vagrant
+    - apt-get -y install linux-headers-$(uname -r)
+  locale: en_US
+  keyboard: 
+    layout: us
+    variant: ''

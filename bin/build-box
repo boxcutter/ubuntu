@@ -45,6 +45,9 @@ args() {
     only="-only=${only}"      
   fi
   packer_template=${3:-ubuntu.json}
+  if [[ ${var_file} == ubuntu1404* ]] || [[ ${var_file} == ubuntu1604* ]]; then
+    packer_template=${3:-ubuntu-legacy.json}
+  fi
 }
 
 # main

@@ -2,17 +2,31 @@
   "_comment": "Build with `packer build ubuntu.json`",
   "builders": [
     {
-      "boot_wait": "5s",
       "boot_command": [
         "{{ user `boot_command_prefix` }}",
-        "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
-        "<wait><enter>"
+        "/install/vmlinuz noapic ",
+        "initrd=/install/initrd.gz ",
+        "file=/floppy/{{ user `preseed` }} ",
+        "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
+        "hostname={{ user `hostname` }} ",
+        "grub-installer/bootdev=/dev/sda<wait> ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "passwd/user-fullname={{ user `ssh_fullname` }} ",
+        "passwd/user-password={{ user `ssh_password` }} ",
+        "passwd/user-password-again={{ user `ssh_password` }} ",
+        "passwd/username={{ user `ssh_username` }} ",
+        "-- <enter>"
       ],
       "disk_size": "{{ user `disk_size` }}",
+      "floppy_files": [
+        "http/{{ user `preseed` }}"
+      ],
       "guest_os_type": "{{ user `vmware_guest_os_type` }}",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
-      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum": "{{ user `iso_checksum` }}",      
       "iso_urls": [
         "{{ user `iso_path` }}/{{ user `iso_name` }}",
         "{{ user `iso_url` }}"
@@ -22,7 +36,6 @@
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_username": "{{ user `ssh_username` }}",
       "ssh_timeout": "10000s",
-      "ssh_handshake_attempts": "20",
       "tools_upload_flavor": "linux",
       "type": "vmware-iso",
       "vm_name": "{{ user `vm_name` }}",
@@ -34,19 +47,32 @@
       "vmx_remove_ethernet_interfaces": true
     },
     {
-      "boot_wait": "5s",
       "boot_command": [
         "{{ user `boot_command_prefix` }}",
-        "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
-        "<wait><enter>"
+        "/install/vmlinuz noapic ",
+        "initrd=/install/initrd.gz ",
+        "file=/floppy/{{ user `preseed` }} ",
+        "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
+        "hostname={{ user `hostname` }} ",
+        "grub-installer/bootdev=/dev/sda<wait> ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "passwd/user-fullname={{ user `ssh_fullname` }} ",
+        "passwd/user-password={{ user `ssh_password` }} ",
+        "passwd/user-password-again={{ user `ssh_password` }} ",
+        "passwd/username={{ user `ssh_username` }} ",
+        "-- <enter>"
       ],
       "disk_size": "{{ user `disk_size` }}",
+      "floppy_files": [
+        "http/{{ user `preseed` }}"
+      ],
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "{{ user `virtualbox_guest_os_type` }}",
       "hard_drive_interface": "sata",
       "headless": "{{ user `headless` }}",
-      "http_directory": "http",
-      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum": "{{ user `iso_checksum` }}",      
       "iso_urls": [
         "{{ user `iso_path` }}/{{ user `iso_name` }}",
         "{{ user `iso_url` }}"
@@ -57,7 +83,6 @@
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_username": "{{ user `ssh_username` }}",
       "ssh_wait_timeout": "10000s",
-      "ssh_handshake_attempts": "200",
       "type": "virtualbox-iso",
       "vboxmanage": [
         [
@@ -74,11 +99,22 @@
       "vm_name": "{{user `vm_name`}}"
     },
     {
-      "boot_wait": "5s",
       "boot_command": [
         "{{ user `boot_command_prefix` }}",
-        "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
-        "<wait><enter>"
+        "/install/vmlinuz noapic ",
+        "initrd=/install/initrd.gz ",
+        "file=/floppy/{{ user `preseed` }} ",
+        "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
+        "hostname={{ user `hostname` }} ",
+        "grub-installer/bootdev=/dev/sda<wait> ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "passwd/user-fullname={{ user `ssh_fullname` }} ",
+        "passwd/user-password={{ user `ssh_password` }} ",
+        "passwd/user-password-again={{ user `ssh_password` }} ",
+        "passwd/username={{ user `ssh_username` }} ",
+        "-- <wait><enter>"
       ],
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
@@ -106,7 +142,6 @@
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_username": "{{ user `ssh_username` }}",
       "ssh_wait_timeout": "10000s",
-      "ssh_handshake_attempts": "20",
       "type": "parallels-iso",
       "vm_name": "{{ user `vm_name` }}"
     }
@@ -154,7 +189,7 @@
     }
   ],
   "variables": {
-    "boot_command_prefix": "<enter><enter><f6><esc><wait>",
+    "boot_command_prefix": "<esc><esc><enter><wait>",
     "cleanup_pause": "",
     "cpus": "1",
     "custom_script": "custom-script.sh",
@@ -165,13 +200,15 @@
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "install_vagrant_key": "true",
-    "iso_checksum": "sha256:443511f6bf12402c12503733059269a2e10dec602916c0a75263e5d990f6bb93",    
-    "iso_name": "ubuntu-20.04.1-live-server-amd64.iso",
+    "iso_checksum": "sha256:a5b0ea5918f850124f3d72ef4b85bda82f0fcd02ec721be19c1a6952791c8ee8",    
+    "iso_name": "ubuntu-18.04.1-server-amd64.iso",
     "iso_path": "/Volumes/Storage/software/ubuntu",
-    "iso_url": "http://releases.ubuntu.com/20.04/ubuntu-20.04.1-live-server-amd64.iso",
+    "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso",
+    "locale": "en_US",
     "memory": "512",
     "no_proxy": "{{env `no_proxy`}}",
     "parallels_guest_os_type": "ubuntu",
+    "preseed" : "preseed.cfg",
     "rsync_proxy": "{{env `rsync_proxy`}}",
     "hostname": "vagrant",
     "ssh_fullname": "vagrant",
@@ -181,7 +218,7 @@
     "vagrantfile_template": "",
     "version": "0.1.0",
     "virtualbox_guest_os_type": "Ubuntu_64",
-    "vm_name": "ubuntu2004",
+    "vm_name": "ubuntu1804",
     "vmware_guest_os_type": "ubuntu-64"
   }
 }

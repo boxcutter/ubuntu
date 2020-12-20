@@ -2,13 +2,11 @@
   "_comment": "Build with `packer build -var-file=ubuntu1804-desktop.json ubuntu.json`",
   "vm_name": "ubuntu1804-desktop",
   "desktop": "true",
-  "locale": "en_US.UTF-8",
   "cpus": "1",
   "disk_size": "130048",
-  "iso_checksum": "sha256:a5b0ea5918f850124f3d72ef4b85bda82f0fcd02ec721be19c1a6952791c8ee8",  
-  "iso_name": "ubuntu-18.04.1-server-amd64.iso",
-  "iso_url": "http://old-releases.ubuntu.com/releases/bionic/ubuntu-18.04.1-server-amd64.iso",
+  "iso_checksum": "sha256:3756b3201007a88da35ee0957fbe6666c495fb3d8ef2e851ed2bd1115dc36446",
+  "iso_name": "ubuntu-18.04.5-live-server-amd64.iso",
+  "iso_url": "http://releases.ubuntu.com/18.04/ubuntu-18.04.5-live-server-amd64.iso",
   "memory": "1024",
-  "preseed" : "preseed-desktop.cfg",
   "vagrantfile_template": "tpl/vagrantfile-ubuntu1804-desktop.tpl"
 }

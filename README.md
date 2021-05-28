@@ -1,8 +1,8 @@
-# Packer templates for Ubuntu
+# Packer templates for Ubuntu written in legacy JSON
 
 ### Overview
 
-This repository contains [Packer](https://packer.io/) templates for creating Ubuntu Vagrant boxes.
+This repository contains [Packer](https://packer.io/) templates for creating Ubuntu Vagrant boxes written in legacy JSON.
 
 ## Current Boxes
 

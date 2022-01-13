@@ -20,7 +20,7 @@
 		"source_ami_filter": {
 			"filters": {
 				"virtualization-type": "hvm",
-				"name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*",
+                "name": "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*",
 				"root-device-type": "ebs"
 			},
 			"owners": ["099720109477"],
@@ -47,15 +47,15 @@
 			"Project": "operator-error.com"
 		},
 
-		"ami_name": "ubuntu-bionic-18.04-{{user `version`}}-{{ user `buildtime` }}",
-		"ami_description": "Ubuntu Bionic (18.04) for training",
+		"ami_name": "ubuntu-focal-{{user `version`}}-{{ user `buildtime` }}",
+		"ami_description": "Ubuntu for training",
 		"ami_virtualization_type": "hvm",
 		"ami_regions": [
 			"eu-west-1",
 			"eu-central-1"
 		],
 		"tags": {
-			"Name": "Ubuntu Bionic (18.04) with vagrant porting",
+			"Name": "Ubuntu with vagrant porting",
 			"BuildTime": "{{user `version`}}-{{ user `buildtime` }}"
 		}
 	}],

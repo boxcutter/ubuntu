@@ -93,7 +93,7 @@ zpool status
 zfs list
 
 # Bootstrap Ubuntu into /mnt
-debootstrap --arch amd64 bionic /mnt
+debootstrap --arch amd64 focal /mnt
 # cp /tmp/sources.list /mnt/etc/apt/sources.list
 cp /etc/apt/sources.list /mnt/etc/apt/sources.list
 
@@ -127,7 +127,7 @@ rm -f /mnt/etc/apt/sources.list
 
 # This could perhaps be replaced (more reliably) with an `lsof | grep -v /mnt` loop,
 # however in approximately 20 runs, the bind mounts have not failed to unmount.
-sleep 10 
+sleep 10
 
 # Unmount bind mounts
 umount -l /mnt/dev

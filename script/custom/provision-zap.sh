@@ -3,11 +3,11 @@ set -e
 
 echo "Provisioning ZAP..."
 cd tools
-wget https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
-tar xvfx ZAP_2.9.0_Linux.tar.gz
-rm -rf ZAP_2.9.0_Linux.tar.gz
-echo "export PATH=\$PATH:/home/$USER_FOLDER/tools/ZAP_2.9.0" >> ~/.bashrc
-
+zap_version="2.11.1"
+wget https://github.com/zaproxy/zaproxy/releases/download/v${zap_version}/ZAP_${zap_version}_Linux.tar.gz
+tar xvfx ZAP_${zap_version}_Linux.tar.gz
+rm -rf ZAP_${zap_version}_Linux.tar.gz
+echo "export PATH=\$PATH:/home/$USER_FOLDER/tools/ZAP_${zap_version}" >> /home/$USER_FOLDER/.bashrc
 
 echo "provision exercise material..."
 cd /home/$USER_FOLDER/workspace

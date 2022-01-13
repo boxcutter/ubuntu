@@ -10,5 +10,5 @@ sudo chown -R $USER_FOLDER /home/$USER_FOLDER/workspace/vault-in-practice
 echo "installing Trufflehog"
 sudo apt install-y python3-pip
 pip3 install trufflehog
-echo "export PATH=\$PATH:/home/$USER_FOLDER/.local/bin" >> ~/.bashrc
+echo "export PATH=\$PATH:/home/$USER_FOLDER/.local/bin" >> /home/$USER_FOLDER/.bashrc
 source ~/.bashrc

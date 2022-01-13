@@ -8,7 +8,7 @@ wget https://github.com/iriusrisk/RopeyTasks/raw/master/ropeytasks.jar
 
 echo "java -jar /home/$USER_FOLDER/tools/ropeytasks/ropeytasks.jar" > ropeytasks.sh
 chmod +x ropeytasks.sh
-echo "export PATH=\$PATH:/home/$USER_FOLDER/tools/ropeytasks" >> ~/.bashrc
+echo "export PATH=\$PATH:/home/$USER_FOLDER/tools/ropeytasks" >> /home/$USER_FOLDER/.bashrc
 
 
 echo "provisioning bdd-security"

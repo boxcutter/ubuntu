@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains [Packer](https://packer.io/) templates for creating Ubuntu Vagrant boxes, currently the focus is on ubuntu Desktop 18.04. With the box you get:
+This repository contains [Packer](https://packer.io/) templates for creating Ubuntu Vagrant boxes, currently the focus is on ubuntu Desktop 20.04. With the box you get:
 
 - Docker & docker images of webgoat, webwolf, Juiceshop
 - Zap (2.9.0)
@@ -27,14 +27,14 @@ You tell `packer` to use a specific user variable file via the `-var-file=` comm
 option.  This will override the default options on the core `ubuntu.json` packer template,
 which builds Ubuntu 18.04 by default.
 
-For example, to build Ubuntu 18.04, use the following:
+For example, to build Ubuntu 20.04, use the following:
 
-    $ packer build -var-file=ubuntu1804.json ubuntu.json
+    `$ packer build -var-file=ubuntu2004.json ubuntu.json`
     
 If you want to make boxes for a specific desktop virtualization platform, use the `-only`
-parameter.  For example, to build Ubuntu 18.04 for VirtualBox:
+parameter.  For example, to build Ubuntu 20.04 for VirtualBox:
 
-    $ packer build -only=virtualbox-iso -var-file=ubuntu1804.json ubuntu.json
+    `$ packer build -only=virtualbox-iso -var-file=ubuntu2004.json ubuntu.json`
 
 The boxcutter templates currently support the following desktop virtualization strings:
 
@@ -45,13 +45,13 @@ The boxcutter templates currently support the following desktop virtualization s
 ## Building the Vagrant boxes with the box script
 
 We've also provided a wrapper script `bin/box` for ease of use, so alternatively, you can use
-the following to build Ubuntu 18.04 for all providers:
+the following to build Ubuntu 20.04 for all providers:
 
-    $ bin/box build ubuntu1804
+    `$ bin/box build ubuntu2004`
 
-Or if you just want to build Ubuntu 18.04 for VirtualBox:
+Or if you just want to build Ubuntu 20.04 for VirtualBox:
 
-    $ bin/box build ubuntu1804 virtualbox
+    `$ bin/box build ubuntu2004 virtualbox`
 
 ## Building the Vagrant boxes with the Makefile
 
@@ -174,7 +174,7 @@ Requires: Virtualbox 6, Vagrant, Packer.
 
 - prepare a release at https://app.vagrantup.com
 - update box_tag in ubuntu.json
-- run `packer build -only=virtualbox-iso -var-file=ubuntu1804-desktop.json -var 'vagrant_cloud_token=<YOURVAGRANTCLODUTOKENHERE>' -var 'version=<VERSIONHERE>' ubuntu.json` & in the vm:
+- run `packer build -only=virtualbox-iso -var 'vagrant_cloud_token=<YOURVAGRANTCLODUTOKENHERE>' -var 'version=<VERSIONHERE>' ubuntu.json` & in the vm:
   - Complete the setup wizard
   - reboot
   - run sshd from terminal (e.g. type sshd and follow instructions). After this, packer will take over.

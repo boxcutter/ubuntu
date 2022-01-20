@@ -29,4 +29,4 @@ apt-get upgrade -y
 sleep 10
 
 # Install OpenSSH
-apt-get install -y openssh-server tightvncserver mate-desktop-environment mate-indicator-applet firefox
+apt-get install -y openssh-server tightvncserver novnc mate-desktop-environment mate-indicator-applet firefox

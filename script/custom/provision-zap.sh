@@ -15,6 +15,16 @@ wget https://github.com/OWASP/NodeGoat/archive/master.zip
 unzip master.zip && rm master.zip
 mv NodeGoat-master nodegoat
 cd nodegoat
+
+export NVM_DIR="/home/$USER_FOLDER/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+nvm install v12
+nvm use v12
+
+npm config set unsafe-perm true
+npm install
+
 rm config/env/all.js
 echo "// default app configuration" >> config/env/all.js
 echo "" >> config/env/all.js

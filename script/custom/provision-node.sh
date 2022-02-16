@@ -12,13 +12,18 @@ apt-get install -y curl
 # then
 # apt install -y npm
 # fi
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+nvm_version="v0.39.1"
+mkdir -p "/home/$USER_FOLDER/.nvm"
+export NVM_DIR="/home/$USER_FOLDER/.nvm" # to make sure nvm is install for ubuntu user
 
-nvm install node
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${nvm_version}/install.sh | bash
+
+echo 'export NVM_DIR="$HOME/.nvm"' >> /home/$USER_FOLDER/.bashrc
+echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm'  >> /home/$USER_FOLDER/.bashrc
+
+#nvm install node
 
 # apt-get install -y -f npm
-npm install -g retire
-npm install -g license-checker
+#npm install -g retire
+#npm install -g license-checker

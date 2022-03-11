@@ -14,3 +14,4 @@ wget https://github.com/WebGoat/WebGoat/archive/develop.zip
 unzip develop.zip && rm develop.zip
 chown -R $USER_FOLDER /home/$USER_FOLDER/workspace/WebGoat-develop
 apt install -y maven
+

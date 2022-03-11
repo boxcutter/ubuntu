@@ -40,3 +40,4 @@ sleep 60
 # apt-get install oracle-java8-installer -y
 # apt-get install ant -y
 sudo apt-get install openjdk-11-jre -y
+apt install -y openjdk-17-jdk

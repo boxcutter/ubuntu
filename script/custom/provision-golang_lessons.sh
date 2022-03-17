@@ -10,4 +10,11 @@ git clone https://github.com/longld/peda.git ~/peda
 echo "source ~/peda/peda.py" >> ~/.gdbinit
 echo "DONE! debug your program with gdb and enjoy"
 
-pip install ropper pwn
+pip3 install ropper pwn
+sudo add-apt-repository universe
+sudo apt update 
+sudo apt install python2
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
+sudo python2 get-pip.py
+pip2 --version
+pip2 install ropper pwn

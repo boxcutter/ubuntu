@@ -91,6 +91,7 @@
 			  "script/custom/provision-code.sh",
 			  "script/custom/provision-docker-tools.sh",
 			  "script/custom/provision_vault_ws.sh",
+			  "script/custom/provision-golang-lessons.sh",
 			  "awsscripts/cleanup.sh"
 			]
 		  }

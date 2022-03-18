@@ -17,4 +17,6 @@ sudo apt install python2
 curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
 sudo python2 get-pip.py
 pip2 --version
-pip2 install ropper pwn
+pip2 install ropper pwn pathlib2
+bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+source /home/ubuntu/.gvm/scripts/gvm

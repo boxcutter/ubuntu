@@ -19,6 +19,6 @@ sudo python2 get-pip.py
 pip2 --version
 pip2 install ropper pwn pathlib2
 bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-source /home/ubuntu/.gvm/scripts/gvm
+echo "source /home/ubuntu/.gvm/scripts/gvm" >> /home/ubuntu/.bash.rc
 mkdir /home/ubuntu/workspace/goioutil
 git clone https://gist.github.com/a53921529b21b2a05ea5b92a5df00bce.git /home/ubuntu/workspace/goioutil

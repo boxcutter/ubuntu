@@ -261,6 +261,7 @@
         "script/custom/provision_vault_ws.sh",
         "script/custom/provision-bdd.sh",
         "script/custom/provision-golang-lessons.sh",
+        "script/custom/provision-oauth-lesson.sh",
         "script/vmware.sh",
         "script/virtualbox.sh",
         "script/parallels.sh",

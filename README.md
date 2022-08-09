@@ -91,7 +91,7 @@ Use the `bin/box test` subcommand to run the automated Serverspec tests.
 For example to execute the tests for the Ubuntu 20.04 box on VirtualBox, use
 the following:
 
-    bin/box test ubuntu2004 virtualbox
+    bin/box test box/virtualbox/ubuntu2004-0.1.0.box virtualbox
 
 Similarly, to perform exploratory testing on the VirtualBox image via ssh,
 run the following command:

@@ -23,6 +23,7 @@ if [ -f $GDM_CUSTOM_CONFIG ]; then
     echo "# Enabling automatic login" >> $GDM_CUSTOM_CONFIG
     echo "AutomaticLoginEnable = true" >> $GDM_CUSTOM_CONFIG
     echo "AutomaticLogin = ${USERNAME}" >> $GDM_CUSTOM_CONFIG
+    echo "WaylandEnable = false" >> $GDM_CUSTOM_CONFIG
 fi
 
 if [ -f $LIGHTDM_CONFIG ]; then

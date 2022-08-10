@@ -8,7 +8,7 @@
   "iso_name": "ubuntu-22.04-live-server-amd64.iso",
   "iso_url": "http://releases.ubuntu.com/22.04/ubuntu-22.04-live-server-amd64.iso",
   "memory": "1024",
-  "vagrantfile_template": "tpl/vagrantfile-ubuntu2004-desktop.tpl",
+  "vagrantfile_template": "tpl/vagrantfile-ubuntu2204-desktop.tpl",
   "boot_command_prefix": "c<wait>set gfxpayload=keep<enter><wait>linux /casper/vmlinuz quiet <wait>",
   "boot_command_suffix": "initrd /casper/initrd<wait><enter>boot<enter><wait>"
 }

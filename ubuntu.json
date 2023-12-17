@@ -1,3 +1,4 @@
+
 {
   "_comment": "Build with `packer build ubuntu.json`",
   "builders": [

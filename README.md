@@ -1,5 +1,21 @@
 # Packer templates for Ubuntu written in legacy JSON
 
+> **We're moving away from vagrant!**
+>
+> Archived on July 11, 2026.
+> 
+> Boxcutter is moving away from using legacy JSON/vagrant in favour of HCL
+> and producing compressed images that can be loaded into the various
+> hypervisors directly.
+>
+> Now repos are per-hypervisor with all the OSes within them instead of being
+> per-OS/per-distribution. Currently we're focusing on KVM/QEMU in 
+> https://github.com/boxcutter/kvm and we may target other hypervisors in the future.
+>
+> These projects still appear to maintain templates for vagrant:
+> - Robox: https://github.com/lavabit/robox
+> - Bento: https://github.com/chef/bento
+
 ### Overview
 
 This repository contains [Packer](https://packer.io/) templates for creating Ubuntu Vagrant boxes written in legacy JSON.

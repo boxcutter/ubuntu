@@ -1,0 +1,14 @@
+{
+  "_comment": "Build with `packer build -var-file=ubuntu2204-desktop.json ubuntu.json`",
+  "vm_name": "ubuntu2204-desktop",
+  "desktop": "true",
+  "cpus": "1",
+  "disk_size": "130048",
+  "iso_checksum": "sha256:84aeaf7823c8c61baa0ae862d0a06b03409394800000b3235854a6b38eb4856f",
+  "iso_name": "ubuntu-22.04-live-server-amd64.iso",
+  "iso_url": "http://releases.ubuntu.com/22.04/ubuntu-22.04-live-server-amd64.iso",
+  "memory": "1024",
+  "vagrantfile_template": "tpl/vagrantfile-ubuntu2204-desktop.tpl",
+  "boot_command_prefix": "c<wait>set gfxpayload=keep<enter><wait>linux /casper/vmlinuz quiet <wait>",
+  "boot_command_suffix": "initrd /casper/initrd<wait><enter>boot<enter><wait>"
+}

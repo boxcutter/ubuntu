@@ -5,8 +5,9 @@
       "boot_wait": "5s",
       "boot_command": [
         "{{ user `boot_command_prefix` }}",
-        "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
-        "<wait><enter>"
+        "autoinstall ds='nocloud-net;s=http://<wait>{{ .HTTPIP }}<wait>:{{ .HTTPPort }}/<wait>'  ---",
+        "<wait><enter>",
+        "{{ user `boot_command_suffix` }}"
       ],
       "disk_size": "{{ user `disk_size` }}",
       "guest_os_type": "{{ user `vmware_guest_os_type` }}",
@@ -37,8 +38,9 @@
       "boot_wait": "5s",
       "boot_command": [
         "{{ user `boot_command_prefix` }}",
-        "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
-        "<wait><enter>"
+        "autoinstall ds='nocloud-net;s=http://<wait>{{ .HTTPIP }}<wait>:{{ .HTTPPort }}/<wait>'  ---",
+        "<wait><enter>",
+        "{{ user `boot_command_suffix` }}"
       ],
       "disk_size": "{{ user `disk_size` }}",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
@@ -77,8 +79,9 @@
       "boot_wait": "5s",
       "boot_command": [
         "{{ user `boot_command_prefix` }}",
-        "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
-        "<wait><enter>"
+        "autoinstall ds='nocloud-net;s=http://<wait>{{ .HTTPIP }}<wait>:{{ .HTTPPort }}/<wait>'  ---",
+        "<wait><enter>",
+        "{{ user `boot_command_suffix` }}"
       ],
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
@@ -155,6 +158,7 @@
   ],
   "variables": {
     "boot_command_prefix": "<enter><enter><f6><esc><wait>",
+    "boot_command_suffix": "",
     "cleanup_pause": "",
     "cpus": "1",
     "custom_script": "custom-script.sh",
